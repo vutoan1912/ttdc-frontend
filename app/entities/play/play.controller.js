@@ -158,54 +158,57 @@
                 }
 
                 //submit answer
-                //console.log('submit answer')
-                clearStorage();
-
                 vm.finish_play = true;
                 submitAnswer();
             }
         }
 
         function submitAnswer() {
-            var answer_result = "";
-            for(var t=0;t<vm.array_answer.length;t++){
-                if(answer_result.length == 0)
-                    answer_result += vm.array_answer[t].join("").replace(",","");
-                else
-                    answer_result += " " + vm.array_answer[t].join("").replace(",","");
-            }
-            console.log(answer_result)
-            var req = {
-                method: 'POST',
-                url: API_URL + 'api/questions/answerQuestion',
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                },
-                data: {
-                    "active": true,
-                    "answer": answer_result,
-                    "created": "string",
-                    "id": 0,
-                    "msisdn": "string",
-                    "questionId": vm.question.id,
-                    "updated": "string"
-                }
-            }
+            //clear storage
+            clearStorage();
 
-            return $http(req).then(function(response){
-                console.log(response);
-                if(response.data == 1)
-                    vm.popupContent = "Chúc mừng bạn đã trả lời đúng !";
-                else
-                    vm.popupContent = "Đáp án của bạn chưa chính xác !";
-                popupShowHide();
-                return response.data;
-            }, function(error){
-                console.log(error)
-                popupShowHide();
-                vm.popupContent = error.data.title;
-                return error;
-            });
+            if(vm.question.status == 200){
+                //console.log('submit answer')
+                var answer_result = "";
+                for(var t=0;t<vm.array_answer.length;t++){
+                    if(answer_result.length == 0)
+                        answer_result += vm.array_answer[t].join("").replace(",","");
+                    else
+                        answer_result += " " + vm.array_answer[t].join("").replace(",","");
+                }
+                console.log(answer_result)
+                var req = {
+                    method: 'POST',
+                    url: API_URL + 'api/questions/answerQuestion',
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    },
+                    data: {
+                        "active": true,
+                        "answer": answer_result,
+                        "created": "string",
+                        "id": 0,
+                        "msisdn": "string",
+                        "questionId": vm.question.id,
+                        "updated": "string"
+                    }
+                }
+
+                return $http(req).then(function(response){
+                    console.log(response);
+                    if(response.data == 1)
+                        vm.popupContent = "Chúc mừng bạn đã trả lời đúng !";
+                    else
+                        vm.popupContent = "Đáp án của bạn chưa chính xác !";
+                    popupShowHide();
+                    return response.data;
+                }, function(error){
+                    console.log(error)
+                    popupShowHide();
+                    vm.popupContent = error.data.title;
+                    return error;
+                });
+            }
         }
 
         function buildLink(type, link) {
@@ -281,7 +284,7 @@
                 TimeSubmit= twentyMinutesLater.getTime();
                 localStorage.setItem("dateNow",TimeSubmit);
 
-                //set data storage
+                //get question and set data storage
                 if($scope.isAuthenticated) getQuestion();
 
                 vm.finish_play = false;

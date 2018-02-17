@@ -1,0 +1,63 @@
+<!-- CryptoJS -->
+<script src="../cryptojs/src/core.js"></script>
+<script src="../cryptojs/src/lib-typedarrays.js"></script>
+<script src="../cryptojs/src/x64-core.js"></script>
+<script src="../cryptojs/src/enc-utf16.js"></script>
+<script src="../cryptojs/src/enc-base64.js"></script>
+<script src="../cryptojs/src/md5.js"></script>
+<script src="../cryptojs/src/sha1.js"></script>
+<script src="../cryptojs/src/sha256.js"></script>
+<script src="../cryptojs/src/sha224.js"></script>
+<script src="../cryptojs/src/sha512.js"></script>
+<script src="../cryptojs/src/sha384.js"></script>
+<script src="../cryptojs/src/sha3.js"></script>
+<script src="../cryptojs/src/ripemd160.js"></script>
+<script src="../cryptojs/src/hmac.js"></script>
+<script src="../cryptojs/src/pbkdf2.js"></script>
+<script src="../cryptojs/src/evpkdf.js"></script>
+<script src="../cryptojs/src/cipher-core.js"></script>
+<script src="../cryptojs/src/mode-cfb.js"></script>
+<script src="../cryptojs/src/mode-ctr.js"></script>
+<script src="../cryptojs/src/mode-ofb.js"></script>
+<script src="../cryptojs/src/mode-ecb.js"></script>
+<script src="../cryptojs/src/pad-ansix923.js"></script>
+<script src="../cryptojs/src/pad-iso10126.js"></script>
+<script src="../cryptojs/src/pad-zeropadding.js"></script>
+<script src="../cryptojs/src/pad-iso97971.js"></script>
+<script src="../cryptojs/src/pad-nopadding.js"></script>
+<script src="../cryptojs/src/rc4.js"></script>
+<script src="../cryptojs/src/rabbit.js"></script>
+<script src="../cryptojs/src/rabbit-legacy.js"></script>
+<script src="../cryptojs/src/aes.js"></script>
+<script src="../cryptojs/src/tripledes.js"></script>
+
+<div id="origin"></div>
+<br/>
+<div id="dump_encrypt"></div>
+<br/>
+<div id="dump_decrypt"></div>
+
+<script>
+    var key = "gV84mUOVwdN2XIgc";
+    var message = "123456&M30&3000&http://mmusic.vn&G##243;i ng##224;y";
+    //console.log('origin: ' + message);
+    //var cfg = 128;
+    var ciphertext = CryptoJS.AES.encrypt(message, key);
+    console.log(ciphertext.toString())
+    console.log(ciphertext.toString().substring(0, 6))
+    var plaintext  = CryptoJS.AES.decrypt(ciphertext, key);
+    console.log(plaintext.toString())
+    console.log(hex2a(plaintext.toString()))
+
+    document.getElementById("origin").innerHTML = 'origin: ' + message;
+    document.getElementById("dump_encrypt").innerHTML = 'encrypt: ' + ciphertext;
+    document.getElementById("dump_decrypt").innerHTML = 'decrypt: ' + hex2a(plaintext.toString());
+
+    function hex2a(hexx) {
+        var hex = hexx.toString();//force conversion
+        var str = '';
+        for (var i = 0; i < hex.length; i += 2)
+            str += String.fromCharCode(parseInt(hex.substr(i, 2), 16));
+        return str;
+    }
+</script>

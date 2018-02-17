@@ -5,9 +5,9 @@
         .module('thientaidoanchuApp')
         .factory('AuthServerProvider', AuthServerProvider);
 
-    AuthServerProvider.$inject = ['$http', '$localStorage', '$sessionStorage', '$q', 'API_URL'];
+    AuthServerProvider.$inject = ['$http', '$localStorage', '$sessionStorage', '$q', 'API_URL', '$state'];
 
-    function AuthServerProvider ($http, $localStorage, $sessionStorage, $q, API_URL) {
+    function AuthServerProvider ($http, $localStorage, $sessionStorage, $q, API_URL, $state) {
 
         var _token;
 
