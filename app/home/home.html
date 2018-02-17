@@ -1,0 +1,86 @@
+<main>
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-6">
+                    <div class="game clearfix">
+                        <div class="clearfix"></div>
+                        <br>
+                        <br>
+                        <div class="container-fluid">
+                            <div class="row justify-content-md-center text-center">
+                                <div class="col col-sm-6 col-md-8 ">
+                                    <img src="content/images/gd-dchu_07.png" class="img-fluid logo-game">
+                                </div>
+                            </div>
+                            <br><br><br><br><br>
+                            <div class="row justify-content-around text-center all-button">
+                                <div class="col col-sm-6">
+                                    <a class="text-center" ng-click="vm.popupShowHide()">
+                                        <img src="content/images/gd-dchu_28.png" class="img-fluid icon"><br>
+                                        Hướng dẫn
+                                    </a>
+                                </div>
+                                <div class="col col-sm-6">
+                                    <a ui-sref="play" class="text-center">
+                                        <img src="content/images/choi-vui.png" class="img-fluid icon"><br>
+                                        Chơi vui
+                                    </a>
+                                </div>
+                                <div class="w-100"></div>
+                                <div class="col col-sm-6 align-self-end">
+                                    <a href="#" class="text-center">
+                                        <img src="content/images/icon-giai-thuong.png" class="img-fluid icon"><br>
+                                        Giải thưởng
+                                    </a>
+                                </div>
+                                <div class="col col-sm-6 align-self-end">
+                                    <a ui-sref="play" class="text-center">
+                                        <img src="content/images/choi-co-thuong.png" class="img-fluid icon"><br>
+                                        Chơi có thưởng
+                                    </a>
+                                </div>
+
+                                <!--popup-->
+                                <div class="popup PopUpHelp" ng-show="vm.popupShow">
+                                    <div class="bgr-trans"></div>
+                                    <div class="bgr-popup">
+                                        <div class="close-popup">
+                                            <button type="button" class="close closePopUp" ng-click="vm.popupShowHide()">×</button>
+                                        </div>
+                                        <div class="clearfix"></div>
+                                        <h4>Chơi có thưởng:</h4>
+                                        <p>Dành cho các thuê bao Mobifone đã đăng ky tham gia CTKM Đoán Chữ.<br>
+                                            Kim cương tích lũy khi tham gia trả lời câu hỏi có hiệu lực tham gia lật bài trúng thưởng
+                                        <h4>Chơi vui</h4>
+                                        <p>Thuê bao chưa đăng ký, đăng nhập đều có thể chơi thử. <br>
+                                            Cho 10 kim cương mặc định để chơi thử. <br>
+                                    </div>
+                                </div>
+                                <style>
+                                    .bgr-popup h4 { font-size: 22px; padding:0 20px}
+                                    .bgr-popup p { font-size: 18px; padding:0 20px }
+                                    .bgr-popup .close-popup {margin-bottom: 2em;overflow: hidden;}
+                                    @media screen and (max-width: 480px){
+                                        .bgr-popup h4 { font-size: 20px; padding:0 5px}
+                                        .bgr-popup p { font-size: 17px; padding:0 5px }
+                                        .bgr-popup {overflow: scroll}
+                                    }
+                                </style>
+                                <!--end popup-->
+
+
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <body-winner-list></body-winner-list>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+    </div>
+</main>

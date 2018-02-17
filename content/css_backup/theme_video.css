@@ -1,0 +1,24 @@
+		.video-js .vjs-control-bar{z-index:9999;}
+		.body{overflow:visible}
+		#content_video{width:100% !important; position: relative; z-index: 1;}
+		#ima-ad-container{width:100% !important;}
+		#ima-ad-container > div{width:100% !important;}
+		#ima-ad-container div iframe{width:100% !important;min-width:500px;}
+		.video-js .vjs-big-play-button{width:60px;height:60px;left:50%;margin-left:-30px;top:50%;margin-top:-30px;z-index:9999;border-radius:35px;}
+		.video-js .vjs-big-play-button::before{top:6px;}
+
+.video-js .vjs-control-bar{height:44px;background:rgba(1, 20, 26, 0.4);}
+.video-js .vjs-control::before{font-size:24px;line-height:44px;}
+.video-js .vjs-time-control{font-size:11px;line-height:44px;}
+.video-js .vjs-volume-bar{margin:20px 8px 21px;}
+.vjs-resolution-button .vjs-resolution-button-staticlabel::before{color:#ffffff;line-height:44px;}
+.vjs-icon-volume-high::before, .video-js .vjs-mute-control::before, .video-js .vjs-volume-menu-button::before{font-size:20px;}
+.video-js .vjs-play-progress, .video-js .vjs-volume-level{background:#f2b002;}
+.video-js .vjs-progress-holder,.video-js .vjs-progress-holder .vjs-play-progress, .video-js .vjs-progress-holder .vjs-load-progress, .video-js .vjs-progress-holder .vjs-load-progress div,.vjs-volume-bar.vjs-slider-horizontal,.vjs-slider-horizontal .vjs-volume-level{height:5px;}
+.video-js .vjs-play-progress::before,.vjs-slider-horizontal .vjs-volume-level::before{font-size:13px;}
+.vjs-progress-control.vjs-control{top:1px;}
+.video-js .vjs-menu-button-inline::before{width:30px;}
+.vjs-volume-bar.vjs-slider-horizontal{width:65px}
+.hot_news_img .video-js{height:335px;margin-top: 15px; width: 100%;}
+
+.video-js{background:none !important}

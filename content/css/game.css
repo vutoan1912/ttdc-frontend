@@ -1,0 +1,5 @@
+         @media screen and (max-width: 580px){ 
+                 .banner{display:none}
+		 .alert-box{display:none}
+		 .main{margin-top: 0px;}
+              }

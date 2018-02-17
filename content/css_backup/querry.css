@@ -1,0 +1,156 @@
+@media only screen and (max-width: 991.98px) {
+   .box-card .w-100{
+    display: none;
+  }
+  .mobile-card .hidden-xs{
+  display: block;
+  }
+  .navbar-top{
+    display: none;
+  }
+  .navbar-nav li{
+    margin: 5px 0;
+  }
+  .navbar-nav .hidden-xs{
+   display: block;
+  }
+  .btn-quydoi{
+    padding: 0 10px;
+  }
+  /* .searchbox{
+    top: 10px;
+    right: 60px;
+  }
+  .searchbox-icon{
+    color: #888;
+    background-color: #fff;
+  } */
+  .game{
+    padding: 10px;
+  }
+
+  .trans-white{
+    font-size: 20px;
+    height: 42px;
+    line-height: 38px;
+  }
+  .chontu{
+  margin-right: 0;
+  margin-left: 0;
+  }
+  .chontu > .col,
+  .chontu > [class*="col-"] {
+    padding-right:5px;
+    padding-left: 5px;
+  }
+  .chontu > .col{
+  position: relative;
+  margin: 6px 0 0;
+}
+  .chontu .text-center, .tukhoa .text-center{
+  width: 100%;
+  color: #fff5ce;
+  font-size: 20px;
+  font-weight: bold;
+  }
+  .control img{
+    width: 42px;
+  }
+  .game img.icon{
+  width: 72px;
+  }
+  .game img.logo-game{
+  width: 66%;
+  }
+  .nav-bot button.cycle{
+   font-size: 24px;
+   width: 52px;
+   height: 52px;
+  }
+  .nav-bot span{
+    font-size: 12px;
+  }
+  .oval{
+    bottom: -120px;
+  }
+  .game .container-fluid{
+    padding: 0;
+  }
+  .game button.cycle{
+    width: 42px;
+    height: 42px;
+    line-height: 36px;
+    font-size: 20px;
+  }
+  .game button.cycle.float-left{
+    font-size: 16px;
+    line-height: 32px;
+  }
+  .game .diamon{
+    font-size: 20px;
+    height: 42px;
+    line-height:32px;
+    margin: 0 50px;
+    width: 40%;
+  }
+  .game .diamon img{
+    height: 32px;
+    top: 5px;
+  }
+  .game .nav-icon1 {
+    width: 24px;
+    height: 16px;
+    top: -4px;
+  }
+  .game .nav-icon1 span:nth-child(2) {
+    top: 8px;
+  }
+  .game .nav-icon1 span:nth-child(3) {
+    top: 16px;
+  }
+  .game .nav-icon1.open span:nth-child(1){
+    top: 6px;
+  }
+  .game .nav-icon1.open span:nth-child(3){
+      top: 6px;
+  }
+ .box-card .no-gutters > .col,
+  .box-card .no-gutters > [class*="col-"] {
+    padding-right: 10px;
+    padding-left: 10px;
+    margin-bottom: 30px;
+     max-width:25%;
+   flex: 1;
+   flex-basis: 25%;
+   height: 180px;
+   margin-bottom: 20px;
+  }
+.nav-bot button.cycle{
+		font-size: 20px;
+    height: 50px;
+    width: 50px;
+	}
+	.nav-bot span{
+		font-size: 14px;
+	}
+
+	.icon{
+		width: 72px;
+	}
+	.over .counterdown{
+	position: absolute;
+	width: 42px;
+	height: 42px;
+	line-height: 40px;
+	font-size: 20px;
+	color: #fff;
+	font-weight: bold;
+}
+
+}
+@media only screen and (max-width: 480px) {
+  .box-card .no-gutters > .col,
+  .box-card .no-gutters > [class*="col-"] {
+    height: 120px;
+  }
+}

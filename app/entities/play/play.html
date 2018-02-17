@@ -1,0 +1,200 @@
+<main>
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-6">
+                    <div  style="display:none" class="alert alert-box clearfix">
+                        <div class="float-left">
+                            So kim cuong:  <span class="red">120</span>
+                        </div>
+                        <div class="float-right">
+                            So luot lat bai: <span class="red">5</span>
+                        </div>
+                        <div class="w-100 clearfix"></div>
+                        <div class="float-none">
+                            So kim cuong:  <span class="red">120</span>
+                        </div>
+                        <div class="quydoi clearfix row">
+                            <label class="col col-3 col-sm-2">Quy đổi:</label>
+                            <div class="col col-7 col-sm-5">
+                                <select name="" id="" class="sl-quydoi img-fluid">
+                                    <option value="">5 kim cuong : 1 lan the mo bai</option>
+                                </select>
+                            </div>
+                            <button class="btn btn-quydoi col col-2">Đổi</button>
+                        </div>
+                    </div>
+                    <div class="game clearfix">
+                        <div class="oval"></div>
+                        <button class="cycle float-left" ng-click="vm.goHome()">
+                            <i class="fa fa-reply" aria-hidden="true"></i>
+                        </button>
+
+                        <div class="diamon">
+                            <img src="content/images/diamond_icon.png" class="float-left">
+                            <label>{{account.diamonds}}</label>
+                        </div>
+
+                        <div class="clearfix"></div>
+                        <br>
+                        <br>
+                        <div class="container-fluid">
+                            <div class="row justify-content-center text-center">
+                                <div class="col col-md-12 text-center">
+
+                                    <!--{{vm.question}}-->
+
+                                    <!--game text-->
+                                    <img ng-show="vm.question.type == 1" style="height: 155px;" src="http://wegrowours.com/wp-content/uploads/2014/02/question-mark.png" class="img-fluid logo-game">
+
+                                    <!--game image-->
+                                    <img ng-show="vm.question.type == 2" src="{{vm.question.link}}" class="img-fluid logo-game">
+
+                                    <!--game audio-->
+                                    <div ng-show="vm.question.type == 3">
+                                        <img src="https://media.giphy.com/media/TflmaQZaQGRGg/source.gif" class="img-fluid logo-game">
+                                        <style>
+                                            audio::-internal-media-controls-download-button {display:none;}
+                                            audio::-webkit-media-controls-enclosure {overflow:hidden;}
+                                            audio::-webkit-media-controls-panel {width: calc(100% + 30px); /* Adjust as needed */}
+                                            audio {opacity: 0.6; margin-top:5px}
+                                        </style>
+                                        <audio controls="" autoplay="" name="media" >
+                                            <source src="{{vm.question.link}}" type="audio/mpeg">
+                                        </audio>
+                                    </div>
+
+                                    <!--game video -->
+                                    <div ng-show="vm.question.type == 4">
+                                        <video height="240" width="100%" preload="auto" controls="" class="video-js vjs-default-skin" id="content_video">
+                                            <source type="video/mp4" src="{{vm.question.link}}"></source>
+                                        </video>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row justify-content-center text-center">
+                                <div class="text-center col col-md-12">
+                                    <label class="trans-white">{{vm.question.content}}</label>
+                                </div>
+                            </div>
+
+                            <div class="tukhoa">
+
+                                <div class="one-text justify-content-center row" ng-repeat="row in vm.array_answer track by $index" style="padding-top: 10px;">
+                                    <div ng-repeat="c in row track by $index">
+                                        <div class="col inner" style="padding-right: 4px;padding-left: 4px;" ng-show="c != ' '">
+                                            <img src="content/images/icon_23.png" class="img-fluid">
+                                            <div class="text align-items-center">
+                                                <div class="text-center">{{c}}</div>
+                                            </div>
+                                        </div>
+                                        <div class="col inner" style="padding-right: 7px;padding-left: 7px;" ng-show="c == ' '">
+                                            <div class="text align-items-center">
+                                                <div class="text-center" style="width: 15px"></div>
+                                            </div>
+                                        </div>
+                                        <!--<div ng-show="c == ' '">{{vm.space_char}}</div>-->
+                                    </div>
+                                </div>
+                                <!--<div class="w-100"></div>-->
+                            </div>
+
+                            <div class="clearfix"></div>
+
+                            <div class="control">
+                                <a class="float-left" style="padding-top: 5px;">
+                                    <img src="content/images/icon_30.png">
+                                </a>
+
+                                <a class="float-right" style="padding-top: 5px;">
+                                    <img src="content/images/icon_27.png">
+                                </a>
+                                <div class="over text-center align-items-center justify-content-center">
+                                    <img src="content/images/video.png">
+                                    <div  id ="counterdown" class="counterdown"></div>
+                                </div>
+                            </div>
+
+                            <div class="clearfix"></div>
+                            <!--{{vm.array_answer}}-->
+                            <div class="row chontu no-gutters justify-content-center" ng-repeat="row in vm.array_suggest track by $index">
+
+                                <!--<div ng-repeat="c in vm.array_answer track by $index">-->
+                                    <div class="col text-center" ng-repeat="c in row track by $index">
+                                        <img src="content/images/icon_35.png" class="img-fluid">
+                                        <div class="text align-items-center" ng-click="vm.chooseCharacter(c)">
+                                            <div class="text-center">{{c}}</div>
+                                        </div>
+                                    </div>
+                                    <!--<div ng-show="c == ' '"><br></div>-->
+                                    <!--<div class="w-100" ng-show="c == ' '"></div>-->
+                                <!--</div>-->
+
+                                <!--<div class="col  text-center">
+                                    <img src="content/images/icon_35.png" class="img-fluid">
+                                    <div class="text align-items-center">
+                                        <div class="text-center">B</div>
+                                    </div>
+                                </div>-->
+                            </div>
+                            <br><br>
+                            <div class="row nav-bot justify-content-around">
+                                <div class="col col-3 text-center">
+                                    <button class="cycle">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                    </button><br>
+                                    <span>Tùy chọn</span>
+                                </div>
+                                <div class="col col-6 text-center">
+                                    <button class="cycle">
+                                        <i class="fa fa-users" aria-hidden="true"></i>
+                                    </button><br>
+                                    <span>Danh sách trúng thưởng</span>
+                                </div>
+                                <div class="col col-3 text-center">
+                                    <button class="cycle">
+                                        <i class="fa fa-cog" aria-hidden="true"></i>
+                                    </button><br>
+                                    <span>Cài đặt</span>
+                                </div>
+                            </div>
+
+                            <!--popup-->
+                            <div class="popup PopUpHelp" ng-show="vm.popupShow" style="height: 400px;">
+                                <div class="bgr-trans"></div>
+                                <div class="bgr-popup">
+                                    <div class="close-popup">
+                                        <button type="button" class="close closePopUp" ng-click="vm.popupShowHide()">×</button>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <h4></h4>
+                                    <p>{{vm.popupContent}}</p>
+                                </div>
+                            </div>
+                            <style>
+                                .bgr-popup h4 { font-size: 22px; padding:0 20px}
+                                .bgr-popup p { font-size: 18px; padding:0 20px }
+                                .bgr-popup .close-popup {margin-bottom: 2em;overflow: hidden;}
+                                @media screen and (max-width: 480px){
+                                    .bgr-popup h4 { font-size: 20px; padding:0 5px}
+                                    .bgr-popup p { font-size: 17px; padding:0 5px }
+                                    .bgr-popup {overflow: scroll}
+                                }
+                            </style>
+                            <!--end popup-->
+
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <body-winner-list></body-winner-list>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+    </div>
+</main>

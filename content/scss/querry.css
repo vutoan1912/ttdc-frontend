@@ -1,0 +1,25 @@
+@media (max-width: 991.98px) {
+  .box-card .w-100{
+    display: none;
+  }
+  .navbar-top{
+    display: none;
+  }
+  .navbar-nav li{
+    margin: 5px 0;
+  }
+  .navbar-nav .hidden-xs{
+   display: block;
+  }
+  .btn-quydoi{
+    padding: 0 10px;
+  }
+  .searchbox{
+    top: 10px;
+    right: 60px;
+  }
+  .searchbox-icon{
+    color: #888;
+    background-color: #fff;
+  }
+}

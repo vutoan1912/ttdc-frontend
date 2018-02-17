@@ -1,0 +1,308 @@
+$color-yellow:#f2b002;
+$color-white:#fff;
+$color-grey:#555;
+$color-green:#009201;
+$color-red:#ed2222;
+/* @include transition(all,2s,ease-out); */
+@mixin transition($what: all, $time: 0.2s, $how: ease-in-out) {
+    -webkit-transition: $what $time $how;
+    -moz-transition:    $what $time $how;
+    -ms-transition:     $what $time $how;
+    -o-transition:      $what $time $how;
+    transition:         $what $time $how;
+}
+@mixin box-shadow($left, $top, $radius, $color) {
+  box-shadow: $left $top $radius $color;
+  -webkit-box-shadow: $left $top $radius $color;
+  -moz-box-shadow: $left $top $radius $color;
+}
+
+@mixin transition($property, $duration, $easing: linear) {
+  transition: $property $duration $easing;
+  -webkit-transition: $property $duration $easing;
+  -moz-transition: $property $duration $easing;
+}
+
+@mixin border-radius($radius) {
+  border-radius: $radius;
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+}
+
+@mixin border-radii($topleft, $topright, $bottomright, $bottomleft) {
+  border-top-left-radius: $topleft;
+  border-top-right-radius: $topright;
+  border-bottom-right-radius: $bottomright;
+  border-bottom-left-radius: $bottomleft;
+  -webkit-border-top-left-radius: $topleft;
+  -webkit-border-top-right-radius: $topright;
+  -webkit-border-bottom-right-radius: $bottomright;
+  -webkit-border-bottom-left-radius: $bottomleft;
+  -moz-border-radius-topleft: $topleft;
+  -moz-border-radius-topright: $topright;
+  -moz-border-radius-bottomright: $bottomright;
+  -moz-border-radius-bottomleft: $bottomleft;
+}
+body{
+  margin: 0;
+  padding: 0;
+  color:$color-grey;
+}
+a:hover, a:focus, a:active{
+  text-decoration: none;
+  border: 0;
+}
+.navbar-top{
+  background: $color-yellow;
+  .nav-item{
+    margin-left: 20px;
+  }
+  a{
+    color: $color-white;
+  }
+}
+.navbar-white{
+  background: $color-white;
+  a{
+    color: $color-grey;
+    text-transform: uppercase;
+    font-size: 17px;
+    padding: 0 .75rem !important;
+    float: left;
+    &:hover, &.active{
+      color: $color-green;
+    }
+  }
+  .hidden-xs{
+      display: none;
+    }
+}
+.main{
+  margin-top: 50px;
+  .tip{
+    @include border-radii(6px,6px,0,0);
+    background: $color-yellow;
+    font-size: 18px;
+    color: $color-white;
+    text-align: center;
+    padding: 1em;
+    font-weight: normal;
+    margin: 0;
+  }
+  .box{
+    background:$color-white;
+    border: 1px solid #ddd;
+    padding: 1.5em;
+    dt{
+      font-weight: normal;
+      color:$color-green;
+      a{
+        color:$color-green;
+      }
+    }
+    dd{
+        margin-bottom: .75rem;
+      }
+  }
+}
+.alert-box{
+      @include border-radius(10px);
+      background:#fef7e5;
+      .red{
+        color:$color-red;
+      }
+    }
+  .quydoi{
+    margin-top: 10px;
+  }
+  .btn-quydoi{
+    @include border-radius(20px);
+    height: 38px;
+    padding: 0 30px;
+    background:$color-yellow;
+    color:$color-white;
+  }
+  .sl-quydoi{
+    @include border-radius(20px);
+    height: 38px;
+    padding: 0 10px;
+  }
+.box-card{
+  .col{
+    margin-bottom: 30px;
+  }
+}
+.game{
+  overflow: hidden;
+  background:$color-yellow;
+  padding:1.5em 1.5em 4em;
+  position: relative;
+  max-width: 420px;
+  button.cycle{
+    width: 52px;
+    height: 52px;
+    @include border-radius(26px);
+    background:rgba(0,0,0,.3);
+    padding: 3px;
+    position: relative;
+    z-index: 3;
+  }
+  .canvas-mn{
+    @include transition (all, 0.3s, ease-in-out);
+    transform: translateX(280px);
+    background: rgba(6,46,82,.8);
+    position: absolute;
+    width: 280px;
+    height: 100%;
+    right: -280px;
+    top:0;
+    z-index: 2;
+    padding:1.5em;
+    padding-top: 100px;
+    color:$color-white;
+    ul{
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+    }
+    li{
+      position: relative;
+      margin-top: 10px;
+      display: block;
+    }
+    a{
+      display: block;
+      position: relative;
+      color:$color-white;
+      &::before{
+          content: "\f0da";
+          font-family: FontAwesome;
+          margin-right: 5px;
+      }
+    }
+    h4{
+      font-size:20px;
+      font-weight: normal;
+      padding-bottom: 20px;
+      border-bottom: 1px solid rgba(255,255,255,.1);
+      span{
+        color:$color-yellow;
+        font-weight: bold;
+      }
+    }
+  }
+  .logo{
+    text-align: center;
+  }
+   a{
+      color:$color-white;
+    }
+  .all-button{
+    .col{
+      margin-top: 30px;
+    }
+  }
+}
+.footer{
+  margin-top: 3em;
+  background:rgba(0,0,0,.1);
+  padding: 1em 0;
+  .copy{
+    color:$color-green;
+  }
+  p{
+    margin-bottom: 0;
+  }
+}
+/* Search begin */
+.navbar-top .container,
+.navbar-white .container{
+  position: relative;
+}
+.navbar-top .container{
+  padding-right: 40px;
+}
+.searchbox {
+  position: absolute;
+  min-width: 40px;
+  width: 0;
+  height: 40px;
+  float: right;
+  overflow: hidden;
+  right: 0;
+  top:-57px;
+  -webkit-transition: width 0.3s;
+  -moz-transition: width 0.3s;
+  -ms-transition: width 0.3s;
+  -o-transition: width 0.3s;
+  transition: width 0.3s;
+}
+.searchbox-input {
+  top: 0;
+  right: 0;
+  border: 0;
+  outline: 0;
+  background: $color-white;
+  width: 265px;
+  height: 40px;
+  margin: 0;
+  padding: 0px 45px 0px 20px;
+  font-size: 18px;
+  position: relative;
+  color: $color-yellow;
+  &::-webkit-input-placeholder {
+    color: $color-grey;
+  }
+  &:-moz-placeholder {
+    color: $color-grey;
+  }
+  &::-moz-placeholder {
+    color: $color-grey;
+  }
+  &:-ms-input-placeholder {
+    color: $color-grey;
+  }
+}
+.searchbox-icon {
+  width: 40px;
+  height: 40px;
+  display: block;
+  position: absolute;
+  top: 0;
+  font-size: 18px;
+  right: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+  background:$color-yellow;
+  color:$color-white;
+}
+.searchbox-submit {
+  width: 40px;
+  height: 40px;
+  display: block;
+  position: absolute;
+  top: 0;
+  font-size: 22px;
+  right: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  outline: 0;
+  line-height: 40px;
+  text-align: center;
+  cursor: pointer;
+}
+.searchbox-open {
+  width: 295px;
+  z-index:3;
+}
+.canvas-mn.open{
+  display: block !important;
+  right:0;
+  transform: translateX(0);
+}
