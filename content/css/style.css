@@ -2,7 +2,9 @@
 body {
   margin: 0;
   padding: 0;
-  color: #555; }
+  color: #555; 
+  font-size: 15px;
+}
 
 a:hover, a:focus, a:active {
   text-decoration: none;
@@ -82,7 +84,9 @@ border-radius: 10px;}
   height: 38px;
   padding: 0 30px;
   background: #f2b002;
-  color: #fff; }
+  color: #fff; 
+  font-size: 15px;
+  }
 
 .sl-quydoi {
 

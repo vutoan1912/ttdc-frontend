@@ -11,17 +11,21 @@
         var vm = this;
 
         vm.isNavbarCollapsed = true;
-        vm.isAuthenticated = Principal.isAuthenticated;
-        //console.log(vm.isAuthenticated)
 
-        $scope.isAuthenticated = Principal.isAuthenticated();
-        $scope.account = Principal.getAccountInfo();
-        console.log($scope.account)
+        function getAccount() {
+            Principal.identity().then(function(account) {
+                console.log(account);
+                $scope.account = account;
+                vm.isAuthenticated = Principal.isAuthenticated();
+            });
+        }
 
-        //fake
+        getAccount();
+
+        //fake reject
         //reject
         /*if(!$scope.isAuthenticated){
-            if ($state.current.name === 'play') {
+            if ($state.current.name === 'play' || $state.current.name === 'flip') {
                 $state.go('home');
             }
         }*/
@@ -54,7 +58,7 @@
             vm.isNavbarCollapsed = true;
         }
 
-        console.log($rootScope.msisdn);
+        //console.log($rootScope.msisdn);
 
         function getMsisdn() {
             //$rootScope

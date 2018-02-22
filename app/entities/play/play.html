@@ -4,27 +4,6 @@
             <div class="row">
                 <div class="col-md-1"></div>
                 <div class="col-md-6">
-                    <div  style="display:none" class="alert alert-box clearfix">
-                        <div class="float-left">
-                            So kim cuong:  <span class="red">120</span>
-                        </div>
-                        <div class="float-right">
-                            So luot lat bai: <span class="red">5</span>
-                        </div>
-                        <div class="w-100 clearfix"></div>
-                        <div class="float-none">
-                            So kim cuong:  <span class="red">120</span>
-                        </div>
-                        <div class="quydoi clearfix row">
-                            <label class="col col-3 col-sm-2">Quy đổi:</label>
-                            <div class="col col-7 col-sm-5">
-                                <select name="" id="" class="sl-quydoi img-fluid">
-                                    <option value="">5 kim cuong : 1 lan the mo bai</option>
-                                </select>
-                            </div>
-                            <button class="btn btn-quydoi col col-2">Đổi</button>
-                        </div>
-                    </div>
                     <div class="game clearfix">
                         <div class="oval"></div>
                         <button class="cycle float-left" ng-click="vm.goHome()">
@@ -83,9 +62,9 @@
 
                             <div class="tukhoa">
 
-                                <div class="one-text justify-content-center row" ng-repeat="row in vm.array_answer track by $index" style="padding-top: 10px;">
+                                <div class="one-text justify-content-center row" ng-repeat="row in vm.array_answer_guest track by $index" style="padding-top: 10px;">
                                     <div ng-repeat="c in row track by $index">
-                                        <div class="col inner" style="padding-right: 4px;padding-left: 4px;" ng-show="c != ' '">
+                                        <div class="col inner" style="padding-right: 4px;padding-left: 4px;" ng-show="c != ' '" ng-click="vm.clearChar(c,$index,row)">
                                             <img src="content/images/icon_23.png" class="img-fluid">
                                             <div class="text align-items-center">
                                                 <div class="text-center">{{c}}</div>
@@ -105,11 +84,11 @@
                             <div class="clearfix"></div>
 
                             <div class="control">
-                                <a class="float-left" style="padding-top: 5px;">
+                                <a class="float-left" style="padding-top: 5px;" ng-click="vm.suggestAnwer()">
                                     <img src="content/images/icon_30.png">
                                 </a>
 
-                                <a class="float-right" style="padding-top: 5px;">
+                                <a class="float-right" style="padding-top: 5px;" ng-click="vm.changeQuestion()">
                                     <img src="content/images/icon_27.png">
                                 </a>
                                 <div class="over text-center align-items-center justify-content-center">
@@ -119,26 +98,16 @@
                             </div>
 
                             <div class="clearfix"></div>
-                            <!--{{vm.array_answer}}-->
+
                             <div class="row chontu no-gutters justify-content-center" ng-repeat="row in vm.array_suggest track by $index">
 
-                                <!--<div ng-repeat="c in vm.array_answer track by $index">-->
-                                    <div class="col text-center" ng-repeat="c in row track by $index">
-                                        <img src="content/images/icon_35.png" class="img-fluid">
-                                        <div class="text align-items-center" ng-click="vm.chooseCharacter(c)">
-                                            <div class="text-center">{{c}}</div>
-                                        </div>
-                                    </div>
-                                    <!--<div ng-show="c == ' '"><br></div>-->
-                                    <!--<div class="w-100" ng-show="c == ' '"></div>-->
-                                <!--</div>-->
-
-                                <!--<div class="col  text-center">
+                                <div class="col text-center" ng-repeat="c in row track by $index">
                                     <img src="content/images/icon_35.png" class="img-fluid">
-                                    <div class="text align-items-center">
-                                        <div class="text-center">B</div>
+                                    <div class="text align-items-center" ng-click="vm.chooseCharacter(c,$index,row)">
+                                        <div class="text-center">{{c}}</div>
                                     </div>
-                                </div>-->
+                                </div>
+
                             </div>
                             <br><br>
                             <div class="row nav-bot justify-content-around">
@@ -172,6 +141,10 @@
                                     <div class="clearfix"></div>
                                     <h4></h4>
                                     <p>{{vm.popupContent}}</p>
+                                    <div style="padding-top: 20px;display: inline-flex;width: 100%;" ng-show="vm.popupBtn">
+                                        <button class="btn btn-cancel" ng-click="vm.clickCancel()">{{vm.btnCancel}}</button>
+                                        <button class="btn btn-confirm" ng-click="vm.clickConfirm()">{{vm.btnConfirm}}</button>
+                                    </div>
                                 </div>
                             </div>
                             <style>
@@ -182,6 +155,28 @@
                                     .bgr-popup h4 { font-size: 20px; padding:0 5px}
                                     .bgr-popup p { font-size: 17px; padding:0 5px }
                                     .bgr-popup {overflow: scroll}
+                                }
+                                .btn-confirm{
+                                    color: #fff;
+                                    background: #f2b002;
+                                    margin: 10px auto;
+                                    border: none;
+                                    display: block;
+                                    border-radius: 20px;
+                                    padding: 8px 20px;
+                                    font-size: 16px;
+                                    width: 120px;
+                                }
+                                .btn-cancel{
+                                    color: #fff;
+                                    background: #a0a0a0;
+                                    margin: 10px auto;
+                                    border: none;
+                                    display: block;
+                                    border-radius: 20px;
+                                    padding: 8px 20px;
+                                    font-size: 16px;
+                                    width: 120px;
                                 }
                             </style>
                             <!--end popup-->

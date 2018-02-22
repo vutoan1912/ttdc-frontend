@@ -1,0 +1,216 @@
+<main>
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="alert alert-box clearfix">
+                        <div class="float-left">
+                            Số kim cương:  <span class="red">120</span>
+                        </div>
+                        <div class="float-right">
+                            Số lượt lật bài: <span class="red">0</span>
+                        </div>
+                        <div class="w-100 clearfix"></div>
+                        <div class="quydoi clearfix row">
+                            <label class="col col-3 col-sm-2">Quy đổi:</label>
+                            <div class="col col-7 col-sm-7" style="padding-left: 30px;">
+                                <select name="" id="" class="sl-quydoi img-fluid">
+                                    <option value="">5 kim cương : 1 lần mở thẻ bài</option>
+                                </select>
+                                <button class="btn btn-quydoi" style="margin-top: -5px;width: 28%;height: 96%;">Đổi</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alert alert-danger">
+                        <strong>Chú ý!</strong> Click vào để lật bài.
+                    </div>
+
+                    <div class="box-card d-flex flex-wrap" style="padding-top: 6px;">
+                        <div class="row  mobile-card no-gutters justify-content-center ">
+                            <div class="col">
+                                <div class="classclick classclick1">
+                                    <div class="card card1">
+                                        <div class="front"><img src="{{vm.array_card[0].front_img}}" class="mx-auto d-block img-fluid"></div>
+                                        <div class="back"><img src="{{vm.array_card[0].back_img}}" class="mx-auto d-block img-fluid"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="classclick classclick2">
+                                    <div class="card card2">
+                                        <div class="front"><img src="{{vm.array_card[1].front_img}}" class="mx-auto d-block img-fluid"></div>
+                                        <div class="back"><img src="{{vm.array_card[1].back_img}}" class="mx-auto d-block img-fluid"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="classclick classclick3">
+                                    <div class="card card3">
+                                        <div class="front"><img src="{{vm.array_card[2].front_img}}" class="mx-auto d-block img-fluid"></div>
+                                        <div class="back"><img src="{{vm.array_card[2].back_img}}" class="mx-auto d-block img-fluid"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-100 hidden-xs"></div>
+                            <div class="col">
+                                <div class="classclick classclick4">
+                                    <div class="card card4">
+                                        <div class="front"><img src="{{vm.array_card[3].front_img}}" class="mx-auto d-block img-fluid"></div>
+                                        <div class="back"><img src="{{vm.array_card[3].back_img}}" class="mx-auto d-block img-fluid"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="classclick classclick5">
+                                    <div class="card card5">
+                                        <div class="front"><img src="{{vm.array_card[4].front_img}}" class="mx-auto d-block img-fluid"></div>
+                                        <div class="back"><img src="{{vm.array_card[4].back_img}}" class="mx-auto d-block img-fluid"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="classclick classclick6">
+                                    <div class="card card6">
+                                        <div class="front"><img src="{{vm.array_card[5].front_img}}" class="mx-auto d-block img-fluid"></div>
+                                        <div class="back"><img src="{{vm.array_card[5].back_img}}" class="mx-auto d-block img-fluid"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="classclick classclick7">
+                                    <div class="card card7">
+                                        <div class="front"><img src="{{vm.array_card[6].front_img}}" class="mx-auto d-block img-fluid"></div>
+                                        <div class="back"><img src="{{vm.array_card[6].back_img}}" class="mx-auto d-block img-fluid"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-100 hidden-xs"></div>
+                            <div class="col">
+                                <div class="classclick classclick8">
+                                    <div class="card card8">
+                                        <div class="front"><img src="{{vm.array_card[7].front_img}}" class="mx-auto d-block img-fluid"></div>
+                                        <div class="back"><img src="{{vm.array_card[7].back_img}}" class="mx-auto d-block img-fluid"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col">
+                                <div class="classclick classclick9">
+                                    <div class="card card9">
+                                        <div class="front"><img src="{{vm.array_card[8].front_img}}" class="mx-auto d-block img-fluid"></div>
+                                        <div class="back"><img src="{{vm.array_card[8].back_img}}" class="mx-auto d-block img-fluid"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="classclick classclick10">
+                                    <div class="card card10">
+                                        <div class="front"><img src="{{vm.array_card[9].front_img}}" class="mx-auto d-block img-fluid"></div>
+                                        <div class="back"><img src="{{vm.array_card[9].back_img}}" class="mx-auto d-block img-fluid"></div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!--popup-->
+                            <div class="popup PopUpHelp" ng-show="vm.popupShow" style="height: 400px;">
+                                <div class="bgr-trans"></div>
+                                <div class="bgr-popup" style="width: 60%;text-align: center;margin-left: 20%;">
+                                    <div class="close-popup">
+                                        <button type="button" class="close closePopUp" ng-click="vm.popupShowHide()">×</button>
+                                    </div>
+                                    <div class="clearfix"></div>
+                                    <h4></h4>
+                                    <p>{{vm.popupContent}}</p>
+                                    <div style="padding-top: 20px;display: inline-flex;width: 100%;" ng-show="vm.popupBtn">
+                                        <button class="btn btn-cancel" ng-click="vm.clickCancel()">{{vm.btnCancel}}</button>
+                                        <button class="btn btn-confirm" ng-click="vm.clickConfirm()">{{vm.btnConfirm}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <style>
+                                .bgr-popup h4 { font-size: 22px; padding:0 20px}
+                                .bgr-popup p { font-size: 18px; padding:0 20px }
+                                .bgr-popup .close-popup {margin-bottom: 2em;overflow: hidden;}
+                                @media screen and (max-width: 480px){
+                                    .bgr-popup h4 { font-size: 20px; padding:0 5px}
+                                    .bgr-popup p { font-size: 17px; padding:0 5px }
+                                    .bgr-popup {overflow: scroll}
+                                }
+                                .btn-confirm{
+                                    color: #fff;
+                                    background: #f2b002;
+                                    margin: 10px auto;
+                                    border: none;
+                                    display: block;
+                                    border-radius: 20px;
+                                    padding: 8px 20px;
+                                    font-size: 16px;
+                                    width: 120px;
+                                }
+                                .btn-cancel{
+                                    color: #fff;
+                                    background: #a0a0a0;
+                                    margin: 10px auto;
+                                    border: none;
+                                    display: block;
+                                    border-radius: 20px;
+                                    padding: 8px 20px;
+                                    font-size: 16px;
+                                    width: 120px;
+                                }
+                            </style>
+                            <!--end popup-->
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <body-winner-list></body-winner-list>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('.classclick1').on('click', function () {
+            $('.card1').toggleClass('flipped');
+        });
+        $('.classclick2').on('click', function () {
+            $('.card2').toggleClass('flipped');
+        });
+        $('.classclick3').on('click', function () {
+            $('.card3').toggleClass('flipped');
+        });
+        $('.classclick4').on('click', function () {
+            $('.card4').toggleClass('flipped');
+        });
+        $('.classclick5').on('click', function () {
+            $('.card5').toggleClass('flipped');
+        });
+        $('.classclick6').on('click', function () {
+            $('.card6').toggleClass('flipped');
+        });
+        $('.classclick7').on('click', function () {
+            $('.card7').toggleClass('flipped');
+        });
+        $('.classclick8').on('click', function () {
+            $('.card8').toggleClass('flipped');
+        });
+        $('.classclick9').on('click', function () {
+            $('.card9').toggleClass('flipped');
+        });
+        $('.classclick10').on('click', function () {
+            $('.card10').toggleClass('flipped');
+        });
+        $('.classclick11').on('click', function () {
+            $('.card11').toggleClass('flipped');
+        });
+        $('.classclick12').on('click', function () {
+            $('.card12').toggleClass('flipped');
+        });
+    });
+</script>

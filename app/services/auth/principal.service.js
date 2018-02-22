@@ -115,8 +115,32 @@
         }
 
         function getAccountInfo () {
-            //console.log(_identity)
-            return _identity;
+            var deferred = $q.defer();
+
+            Account.getAccount().then(getAccountThen).catch(getAccountCatch);
+
+            return deferred.promise;
+
+            function getAccountThen (response) {
+                //console.log(response)
+                if(response.status == 200){
+                    _identity = response.data;
+                    _authenticated = true;
+                    deferred.resolve(_identity);
+                    JhiTrackerService.connect();
+                }else{
+                    _identity = null;
+                    _authenticated = false;
+                    deferred.resolve(_identity);
+                }
+            }
+
+            function getAccountCatch () {
+                //console.log(_identity)
+                _identity = null;
+                _authenticated = false;
+                deferred.resolve(_identity);
+            }
         }
     }
 })();

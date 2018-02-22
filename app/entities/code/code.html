@@ -1,0 +1,133 @@
+<main>
+    <div class="main">
+
+        <style>
+            .tip{height: 40px;line-height: 40px;padding: 0 0 0 18px !important;text-align: left important;font-size: 17px!important;}
+            .hello {
+
+                text-align: left !important;
+                width: 100%;
+                height: 35px;
+                margin-bottom: 40px;
+                border-bottom: 1px solid #ccc;
+                padding-left: 20px;
+            }
+            }}
+            .content-circle {margin-top:20px;}
+            .content-circle ul{list-style-type: none;}
+            .content-circle ol li{list-style-type: none;}
+            .content-circle .liMain{margin-bottom: 20px;}
+            li .heading{ color: #009201; font-weight: bold; }
+            .main {margin-top: 10px !important;}
+            .table .thead-dark th{border-color: aliceblue}
+            .table .thead-dark th {color: red;background-color: #f2b002;border-bottom-color: #32383e;}
+            .content-circle h4{text-align: center}
+            .content-circle .time{text-align: center}
+            .content-circle .time span {color: red; font-style: italic}
+            .content-circle .search{ margin-top: 20px;   float: right;    margin-bottom: 20px;}
+            .breadcrumb-item a{color:#009201}
+        </style>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Tra cứu mã dự thưởng</li>
+                        </ol>
+                    </nav>
+                    <div class="hello">Xin chào khách</div>
+                    <div class="content-circle">
+                        <h4> TRA CỨU MÃ DỰ THƯỞNG</h4>
+                        <div class="time">
+                            Thời gian áp dụng <span>01/12/2015 00:00:00 - 30/12/2017 00:00:00</span>
+                        </div>
+                        <div class='search'> Search: <input type="text" /></div>
+
+                        <table class="table">
+                            <thead class="thead-dark">
+                            <tr>
+                                <th scope="col">STT</th>
+                                <th scope="col">Thời gian</th>
+                                <th scope="col">Mã dự thưởng</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <th scope="row">1</th>
+                                <td>17/02/2018</td>
+                                <td>0183746372773</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">2</th>
+                                <td>17/02/2018</td>
+                                <td>018374572773</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">3</th>
+                                <td>17/02/2018</td>
+                                <td>0283746372773</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">4</th>
+                                <td>17/02/2018</td>
+                                <td>0283746372773</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">5</th>
+                                <td>17/02/2018</td>
+                                <td>0283746372773</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <div>
+
+                            <style>
+                                .page-item.active .page-link{ background-color: #f2b002; border: 1px solid red;}
+                                .page-link {
+                                    position: relative;
+                                    display: block;
+                                    padding: .5rem .75rem;
+                                    margin-left: -1px;
+                                    line-height: 1.25;
+                                    color: #555;
+                                    background-color: #fff;
+                                    border: 1px solid #dee2e6;
+                                }
+
+                            </style>
+
+                            <div class="divpagination">
+                                <nav aria-label="Page navigation example" style="float: right;">
+                                    <ul class="pagination" style="margin: 17px 0px;">
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                                <span class="sr-only">Previous</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item active"><a class="page-link" href="#">1 </a></li>
+                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                        <li class="page-item">
+                                            <a class="page-link" href="#" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                                <span class="sr-only">Next</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <body-winner-list></body-winner-list>
+                </div>
+            </div>
+        </div>
+</main>

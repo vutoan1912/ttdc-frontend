@@ -22,22 +22,22 @@
     <link rel="manifest" href="manifest.webapp" />
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="content/css/bootstrap.min.css">
+    <link rel="stylesheet" href="content/css/font-awesome.min.css">
     <link rel="stylesheet" href="content/css/icon.css">
     <link rel="stylesheet" href="content/css/style.css">
     <link rel="stylesheet" href="content/css/querry.css">
     <link rel="stylesheet" href="content/css/game.css">
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script src="content/js/jquery-3.2.1.slim.min.js"></script>
+    <script src="content/js/popper.min.js"></script>
+    <script src="content/js/bootstrap.min.js"></script>
 
 </head>
 <body ng-app="thientaidoanchuApp" ng-strict-di>
     <!--[if lt IE 9]>
-        <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <!--<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>-->
     <![endif]-->
     <!--<page-ribbon></page-ribbon>-->
     <div ui-view="navbar" ng-cloak></div>
@@ -218,6 +218,14 @@
     <script src="app/app.directive.js"></script>
     <script src="app/components/login/login.controller.js"></script>
     <script src="app/components/login/login.state.js"></script>
+    <script src="app/entities/flip/flip.controller.js"></script>
+    <script src="app/entities/flip/flip.state.js"></script>
+    <script src="app/entities/code/code.controller.js"></script>
+    <script src="app/entities/code/code.state.js"></script>
+    <script src="app/entities/rule/rule.controller.js"></script>
+    <script src="app/entities/rule/rule.state.js"></script>
+    <script src="app/entities/guide/guide.controller.js"></script>
+    <script src="app/entities/guide/guide.state.js"></script>
     <!-- endinject -->
     <!-- endbuild -->
 
