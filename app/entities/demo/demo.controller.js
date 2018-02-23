@@ -3,42 +3,33 @@
 
     angular
         .module('thientaidoanchuApp')
-        .controller('PlayController', PlayController);
+        .controller('DemoController', DemoController);
 
 
-    PlayController.$inject = ['$scope', 'Principal', 'MEDIA_SERVER', '$translate', '$timeout', '$localStorage', '$sessionStorage', 'API_URL', '$http', 'QUESTION_CONTENT'];
+    DemoController.$inject = ['$scope', 'Principal', 'MEDIA_SERVER', '$translate', '$timeout', '$localStorage', '$sessionStorage', 'API_URL', '$http', 'QUESTION_CONTENT','$stateParams'];
 
-    function PlayController ($scope, Principal, MEDIA_SERVER, $translate, $timeout, $localStorage, $sessionStorage, API_URL, $http, QUESTION_CONTENT) {
+    function DemoController ($scope, Principal, MEDIA_SERVER, $translate, $timeout, $localStorage, $sessionStorage, API_URL, $http, QUESTION_CONTENT, $stateParams) {
         var vm = this;
 
-        var array_alphabet = ["a","b","c","d","e","g","h","i","k","l","m","n","o","p","q","r","s","t","u","v","x","y"];
+        var token = "";
         var intervals = [];
 
+        var array_alphabet = ["a","b","c","d","e","g","h","i","k","l","m","n","o","p","q","r","s","t","u","v","x","y"];
         vm.status = null;
+        vm.typeQuestion = $stateParams.type;
+        console.log('type question: ' + vm.typeQuestion);
 
         //vm.question_content = QUESTION_CONTENT;
         //console.log(vm.question_content);
         vm.question = {};
         vm.finish_play = false;
 
-        $scope.isAuthenticated = Principal.isAuthenticated();
-        getAccount();
-
-        function getAccount() {
-            Principal.getAccountInfo().then(function(account) {
-                console.log(account);
-                $scope.account = account;
-            });
+        $scope.diamonds = 100;
+        function getAccount(number) {
+            $scope.diamonds = $scope.diamonds + number;
         }
 
-        //fake sub
-        //$scope.isAuthenticated = true;
-
-        //get token from $localStorage
-        var token = $localStorage.authenticationToken || $sessionStorage.authenticationToken;
-        //console.log(token);
-        //fake token
-        //var token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTUyMDkzNTkyOSwic2NvcGUiOltdfQ.Fw7gOlXeUjArK0dAuxTUP2SZYeK7UIY3dhPmCV0h3gkRwHqC35cYAOuvA68sPk8mJYGG7gneLX7_9xMentMVJw';
+        clearStorage();
 
         vm.popupShow = false;
         vm.popupContent = null;
@@ -64,7 +55,7 @@
         vm.suggestAnwer = suggestAnwer;
         vm.changeQuestion = changeQuestion;
 
-        if($scope.isAuthenticated) countDown();
+        countDown();
 
         function getQuestion () {
             //vm.errorKey = null;
@@ -72,7 +63,7 @@
 
             var req = {
                 method: 'GET',
-                url: API_URL + 'api/questions/getQuestion',
+                url: API_URL + 'api/questions/getQuestionTest?type=' + vm.typeQuestion,
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
@@ -178,29 +169,28 @@
             intervals.forEach(clearInterval);
             intervals = [];
 
-            localStorage.removeItem("dateNow");
-            localStorage.removeItem("storage_answer");
-            localStorage.removeItem("storage_answer_guest");
-            localStorage.removeItem("storage_suggest");
-            localStorage.removeItem("storage_question");
-            //localStorage.removeItem("storage_question_status");
-            //console.log('clear storage done')
+            localStorage.removeItem("dateNowTest");
+            localStorage.removeItem("storage_answer_test");
+            localStorage.removeItem("storage_answer_guest_test");
+            localStorage.removeItem("storage_suggest_test");
+            localStorage.removeItem("storage_question_test");
+            //localStorage.removeItem("storage_question_status_test");
         }
 
         function getStorage() {
-            vm.array_answer = JSON.parse(localStorage.getItem("storage_answer"));
-            vm.array_answer_guest = JSON.parse(localStorage.getItem("storage_answer_guest"));
-            vm.array_suggest = JSON.parse(localStorage.getItem("storage_suggest"));
-            vm.question = JSON.parse(localStorage.getItem("storage_question"));
-            vm.status = localStorage.getItem("storage_question_status")
+            vm.array_answer = JSON.parse(localStorage.getItem("storage_answer_test"));
+            vm.array_answer_guest = JSON.parse(localStorage.getItem("storage_answer_guest_test"));
+            vm.array_suggest = JSON.parse(localStorage.getItem("storage_suggest_test"));
+            vm.question = JSON.parse(localStorage.getItem("storage_question_test"));
+            vm.status = localStorage.getItem("storage_question_status_test")
         }
 
         function setStorage() {
-            localStorage.setItem("storage_answer",JSON.stringify(vm.array_answer));
-            localStorage.setItem("storage_answer_guest",JSON.stringify(vm.array_answer_guest));
-            localStorage.setItem("storage_suggest",JSON.stringify(vm.array_suggest));
-            localStorage.setItem("storage_question",JSON.stringify(vm.question));
-            localStorage.setItem("storage_question_status",vm.status);
+            localStorage.setItem("storage_answer_test",JSON.stringify(vm.array_answer));
+            localStorage.setItem("storage_answer_guest_test",JSON.stringify(vm.array_answer_guest));
+            localStorage.setItem("storage_suggest_test",JSON.stringify(vm.array_suggest));
+            localStorage.setItem("storage_question_test",JSON.stringify(vm.question));
+            localStorage.setItem("storage_question_status_test",vm.status);
         }
 
         function chooseCharacter(char, index, row) {
@@ -251,7 +241,7 @@
                 console.log(answer_result)
                 var req = {
                     method: 'POST',
-                    url: API_URL + 'api/questions/answerQuestion',
+                    url: API_URL + 'api/questions/answerQuestionTest',
                     headers: {
                         'Authorization': 'Bearer ' + token
                     },
@@ -268,16 +258,18 @@
 
                 return $http(req).then(function(response){
                     console.log(response);
-                    if(response.data == 1)
+                    if(response.data == 1){
+                        getAccount(3);
                         vm.popupContent = "Chúc mừng bạn đã trả lời đúng ! Bạn có muốn tham gia chơi tiếp không?";
-                    else
+                    } else{
+                        getAccount(-2);
                         vm.popupContent = "Đáp án của bạn chưa chính xác ! Bạn có muốn tham gia chơi tiếp không?";
+                    }
                     vm.errorKey = "getQuestion";
                     vm.popupBtn = true;
                     vm.popupShow = true;
                     //popupShowHide();
                     //return response.data;
-                    getAccount();
 
                 }, function(error){
                     console.log(error)
@@ -329,16 +321,15 @@
             return array;
         }
 
-        //var distance;
         function countDown() {
             var distance = 120;
             var TimeSubmit = '';
-            if(localStorage.getItem("dateNow")!= '' && localStorage.getItem("dateNow")!= null )
+            if(localStorage.getItem("dateNowTest")!= '' && localStorage.getItem("dateNowTest")!= null )
             {
                 var dateNow =  new Date();
                 var dateTimeNow= dateNow.getTime();
 
-                TimeSubmit = localStorage.getItem("dateNow");
+                TimeSubmit = localStorage.getItem("dateNowTest");
                 var timeDiff = parseFloat(TimeSubmit) - parseFloat(dateTimeNow);
                 distance = Math.ceil(timeDiff/1000);
                 //console.log(distance);
@@ -346,25 +337,23 @@
                 //get data storage
                 getStorage();
 
-                /*console.log(vm.array_answer)
+                console.log(vm.array_answer)
                 console.log(vm.array_answer_guest)
                 console.log(vm.array_suggest)
-                console.log(vm.question)*/
+                console.log(vm.question)
             } else {
                 var twentyMinutesLater = new Date();
                 twentyMinutesLater.setSeconds(twentyMinutesLater.getSeconds() + distance);
                 TimeSubmit = twentyMinutesLater.getTime();
-                localStorage.setItem("dateNow",TimeSubmit);
+                localStorage.setItem("dateNowTest",TimeSubmit);
 
                 //get question and set data storage
-                if($scope.isAuthenticated) getQuestion();
+                getQuestion();
             }
 
             if(distance>0)
             {
-                //console.log(intervals)
                 var x = setInterval(function() {
-                    //console.log(distance)
                     distance = distance - 1;
                     document.getElementById("counterdown").innerHTML =  distance;
 
@@ -420,7 +409,7 @@
                 vm.popupBtn = false;
                 vm.popupShow = false;
                 //return response.data;
-                getAccount();
+                getAccount(-1);
             }, function(error){
                 console.log(error)
                 vm.errorKey = error.data.errorKey;
@@ -456,53 +445,33 @@
         
         function suggestAnwer() {
 
-            var req = {
-                method: 'GET',
-                url: API_URL + 'api/questions/getGuide?questionId='+vm.question.id,
-                headers: {
-                    'Authorization': 'Bearer ' + token
+            vm.popupContent = null;
+            vm.errorKey = null;
+            vm.popupBtn = false;
+            vm.popupShow = false;
+            //return response.data;
+
+            //ghép từ gợi ý
+            var rand = 0;
+            var i = 0, j = 0;
+            while (i < 3) {
+                j = Math.floor(Math.random() * vm.array_answer_guest.length);
+                rand = Math.floor(Math.random() * vm.array_answer_guest[j].length);
+                if(vm.array_answer[j][rand] != " " && vm.array_answer_guest[j][rand] == ""){
+                    vm.array_answer_guest[j][rand] = vm.array_answer[j][rand];
+                    i++;
                 }
             }
-
-            return $http(req).then(function(response){
-                console.log(response)
-                console.log('Lấy gợi ý thành công !')
-                vm.popupContent = null;
-                vm.errorKey = null;
-                vm.popupBtn = false;
-                vm.popupShow = false;
-                //return response.data;
-
-                //ghép từ gợi ý
-                var rand = 0;
-                var i = 0, j = 0;
-                while (i < 3) {
-                    j = Math.floor(Math.random() * vm.array_answer_guest.length);
-                    rand = Math.floor(Math.random() * vm.array_answer_guest[j].length);
-                    if(vm.array_answer[j][rand] != " " && vm.array_answer_guest[j][rand] == ""){
-                        vm.array_answer_guest[j][rand] = vm.array_answer[j][rand];
-                        i++;
-                    }
-                }
-                //console.log(vm.array_answer)
-                //console.log(vm.array_answer_guest)
-                getAccount();
-
-            }, function(error){
-                console.log(error)
-                vm.errorKey = error.data.errorKey;
-                vm.popupContent = error.data.title;
-                vm.popupBtn = false;
-                vm.popupShow = true;
-                //return error;
-            });
+            //console.log(vm.array_answer)
+            //console.log(vm.array_answer_guest)
+            getAccount(-1);
         }
 
         function changeQuestion() {
 
             var req = {
                 method: 'POST',
-                url: API_URL + 'api/questions/changeQuestion',
+                url: API_URL + 'api/questions/changeQuestionTest?type=' + vm.typeQuestion,
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
@@ -528,7 +497,7 @@
                 //return response.data;
 
                 clearStorage();
-                getAccount();
+                getAccount(-1);
                 countDown();
 
             }, function(error){

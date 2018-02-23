@@ -1,0 +1,76 @@
+<main>
+    <div class="main">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-6">
+                    <div class="game clearfix">
+                        <div class="oval"></div>
+                        <button class="cycle float-left">
+                            <i class="fa fa-reply" aria-hidden="true"></i>
+                        </button>
+                        <div class="diamon">
+                            <img src="content/images/diamond_icon.png" class="float-left">
+                            <label>{{account.diamonds}}</label>
+                        </div>
+                        <div class="clearfix"></div>
+                        <br>
+                        <br>
+                        <div class="container-fluid">
+                            <div class="row justify-content-md-center text-center">
+                                <div class="col col-md-8 text-center">
+                                    <img src="content/images/decor.png" class="img-fluid logo-game">
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row justify-content-md-center text-center">
+                                <div class="text-center col col-md-12">
+                                    <a ui-sref="play">
+                                        <img src="content/images/play-button.png" class="img-fluid icon2">
+                                    </a>
+                                </div>
+                            </div>
+                            <br>
+                            <div class="row justify-content-md-center text-center">
+                                <div class="text-center col col-md-12">
+                                    <img src="content/images/gd-dchu_28.png" class="img-fluid icon">
+                                    <div class="text align-items-center">
+                                        <div class="text-center">Hướng dẫn</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br>
+
+                            <div class="clearfix"></div>
+                            <br>
+                            <div class="row nav-bot justify-content-around">
+                                <div class="col col-3 text-center">
+                                    <button class="cycle">
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                    </button><br>
+                                    <span>Tùy Chọn</span>
+                                </div>
+                                <div class="col col-6 text-center">
+                                    <button class="cycle">
+                                        <i class="fa fa-users" aria-hidden="true"></i>
+                                    </button><br>
+                                    <span>Danh sách trúng thưởng</span>
+                                </div>
+                                <div class="col col-3 text-center">
+                                    <button class="cycle">
+                                        <i class="fa fa-cog" aria-hidden="true"></i>
+                                    </button><br>
+                                    <span>Cài Đặt</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <body-winner-list></body-winner-list>
+                </div>
+                <div class="col-md-2"></div>
+            </div>
+        </div>
+    </div>
+</main>

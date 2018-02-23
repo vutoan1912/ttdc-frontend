@@ -22,13 +22,14 @@
 
         getAccount();
 
-        //fake reject
         //reject
-        /*if(!$scope.isAuthenticated){
-            if ($state.current.name === 'play' || $state.current.name === 'flip') {
+        if(!$scope.isAuthenticated){
+            if ($state.current.name === 'play'
+                || $state.current.name === 'flip'
+                || $state.current.name === 'prepare') {
                 $state.go('home');
             }
-        }*/
+        }
 
         vm.login = login;
         vm.logout = logout;

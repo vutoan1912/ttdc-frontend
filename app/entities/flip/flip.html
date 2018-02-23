@@ -5,17 +5,17 @@
                 <div class="col-md-8">
                     <div class="alert alert-box clearfix">
                         <div class="float-left">
-                            Số kim cương:  <span class="red">120</span>
+                            Số kim cương:  <span class="red">{{account.diamonds}}</span>
                         </div>
                         <div class="float-right">
-                            Số lượt lật bài: <span class="red">0</span>
+                            Số lượt lật bài: <span class="red">{{account.diamonds/10}}</span>
                         </div>
                         <div class="w-100 clearfix"></div>
                         <div class="quydoi clearfix row">
                             <label class="col col-3 col-sm-2">Quy đổi:</label>
                             <div class="col col-7 col-sm-7" style="padding-left: 30px;">
                                 <select name="" id="" class="sl-quydoi img-fluid">
-                                    <option value="">5 kim cương : 1 lần mở thẻ bài</option>
+                                    <option value="">10 kim cương : 1 lần mở thẻ bài</option>
                                 </select>
                                 <button class="btn btn-quydoi" style="margin-top: -5px;width: 28%;height: 96%;">Đổi</button>
                             </div>
@@ -29,7 +29,7 @@
                     <div class="box-card d-flex flex-wrap" style="padding-top: 6px;">
                         <div class="row  mobile-card no-gutters justify-content-center ">
                             <div class="col">
-                                <div class="classclick classclick1">
+                                <div class="classclick classclick1" ng-click="vm.pickCard(0)">
                                     <div class="card card1">
                                         <div class="front"><img src="{{vm.array_card[0].front_img}}" class="mx-auto d-block img-fluid"></div>
                                         <div class="back"><img src="{{vm.array_card[0].back_img}}" class="mx-auto d-block img-fluid"></div>
@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="classclick classclick2">
+                                <div class="classclick classclick2" ng-click="vm.pickCard(1)">
                                     <div class="card card2">
                                         <div class="front"><img src="{{vm.array_card[1].front_img}}" class="mx-auto d-block img-fluid"></div>
                                         <div class="back"><img src="{{vm.array_card[1].back_img}}" class="mx-auto d-block img-fluid"></div>
@@ -45,7 +45,7 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="classclick classclick3">
+                                <div class="classclick classclick3" ng-click="vm.pickCard(2)">
                                     <div class="card card3">
                                         <div class="front"><img src="{{vm.array_card[2].front_img}}" class="mx-auto d-block img-fluid"></div>
                                         <div class="back"><img src="{{vm.array_card[2].back_img}}" class="mx-auto d-block img-fluid"></div>
@@ -54,7 +54,7 @@
                             </div>
                             <div class="w-100 hidden-xs"></div>
                             <div class="col">
-                                <div class="classclick classclick4">
+                                <div class="classclick classclick4" ng-click="vm.pickCard(3)">
                                     <div class="card card4">
                                         <div class="front"><img src="{{vm.array_card[3].front_img}}" class="mx-auto d-block img-fluid"></div>
                                         <div class="back"><img src="{{vm.array_card[3].back_img}}" class="mx-auto d-block img-fluid"></div>
@@ -62,7 +62,7 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="classclick classclick5">
+                                <div class="classclick classclick5" ng-click="vm.pickCard(4)">
                                     <div class="card card5">
                                         <div class="front"><img src="{{vm.array_card[4].front_img}}" class="mx-auto d-block img-fluid"></div>
                                         <div class="back"><img src="{{vm.array_card[4].back_img}}" class="mx-auto d-block img-fluid"></div>
@@ -70,7 +70,7 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="classclick classclick6">
+                                <div class="classclick classclick6" ng-click="vm.pickCard(5)">
                                     <div class="card card6">
                                         <div class="front"><img src="{{vm.array_card[5].front_img}}" class="mx-auto d-block img-fluid"></div>
                                         <div class="back"><img src="{{vm.array_card[5].back_img}}" class="mx-auto d-block img-fluid"></div>
@@ -78,7 +78,7 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="classclick classclick7">
+                                <div class="classclick classclick7" ng-click="vm.pickCard(6)">
                                     <div class="card card7">
                                         <div class="front"><img src="{{vm.array_card[6].front_img}}" class="mx-auto d-block img-fluid"></div>
                                         <div class="back"><img src="{{vm.array_card[6].back_img}}" class="mx-auto d-block img-fluid"></div>
@@ -87,7 +87,7 @@
                             </div>
                             <div class="w-100 hidden-xs"></div>
                             <div class="col">
-                                <div class="classclick classclick8">
+                                <div class="classclick classclick8" ng-click="vm.pickCard(7)">
                                     <div class="card card8">
                                         <div class="front"><img src="{{vm.array_card[7].front_img}}" class="mx-auto d-block img-fluid"></div>
                                         <div class="back"><img src="{{vm.array_card[7].back_img}}" class="mx-auto d-block img-fluid"></div>
@@ -96,7 +96,7 @@
                             </div>
 
                             <div class="col">
-                                <div class="classclick classclick9">
+                                <div class="classclick classclick9" ng-click="vm.pickCard(8)">
                                     <div class="card card9">
                                         <div class="front"><img src="{{vm.array_card[8].front_img}}" class="mx-auto d-block img-fluid"></div>
                                         <div class="back"><img src="{{vm.array_card[8].back_img}}" class="mx-auto d-block img-fluid"></div>
@@ -104,7 +104,7 @@
                                 </div>
                             </div>
                             <div class="col">
-                                <div class="classclick classclick10">
+                                <div class="classclick classclick10" ng-click="vm.pickCard(9)">
                                     <div class="card card10">
                                         <div class="front"><img src="{{vm.array_card[9].front_img}}" class="mx-auto d-block img-fluid"></div>
                                         <div class="back"><img src="{{vm.array_card[9].back_img}}" class="mx-auto d-block img-fluid"></div>
@@ -120,8 +120,6 @@
                                     <div class="close-popup">
                                         <button type="button" class="close closePopUp" ng-click="vm.popupShowHide()">×</button>
                                     </div>
-                                    <div class="clearfix"></div>
-                                    <h4></h4>
                                     <p>{{vm.popupContent}}</p>
                                     <div style="padding-top: 20px;display: inline-flex;width: 100%;" ng-show="vm.popupBtn">
                                         <button class="btn btn-cancel" ng-click="vm.clickCancel()">{{vm.btnCancel}}</button>
@@ -132,7 +130,7 @@
                             <style>
                                 .bgr-popup h4 { font-size: 22px; padding:0 20px}
                                 .bgr-popup p { font-size: 18px; padding:0 20px }
-                                .bgr-popup .close-popup {margin-bottom: 2em;overflow: hidden;}
+                                .bgr-popup .close-popup {overflow: hidden;}
                                 @media screen and (max-width: 480px){
                                     .bgr-popup h4 { font-size: 20px; padding:0 5px}
                                     .bgr-popup p { font-size: 17px; padding:0 5px }
@@ -173,44 +171,3 @@
         </div>
     </div>
 </main>
-
-<script type="text/javascript">
-    $(document).ready(function(){
-        $('.classclick1').on('click', function () {
-            $('.card1').toggleClass('flipped');
-        });
-        $('.classclick2').on('click', function () {
-            $('.card2').toggleClass('flipped');
-        });
-        $('.classclick3').on('click', function () {
-            $('.card3').toggleClass('flipped');
-        });
-        $('.classclick4').on('click', function () {
-            $('.card4').toggleClass('flipped');
-        });
-        $('.classclick5').on('click', function () {
-            $('.card5').toggleClass('flipped');
-        });
-        $('.classclick6').on('click', function () {
-            $('.card6').toggleClass('flipped');
-        });
-        $('.classclick7').on('click', function () {
-            $('.card7').toggleClass('flipped');
-        });
-        $('.classclick8').on('click', function () {
-            $('.card8').toggleClass('flipped');
-        });
-        $('.classclick9').on('click', function () {
-            $('.card9').toggleClass('flipped');
-        });
-        $('.classclick10').on('click', function () {
-            $('.card10').toggleClass('flipped');
-        });
-        $('.classclick11').on('click', function () {
-            $('.card11').toggleClass('flipped');
-        });
-        $('.classclick12').on('click', function () {
-            $('.card12').toggleClass('flipped');
-        });
-    });
-</script>
