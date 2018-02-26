@@ -70,14 +70,17 @@
                     </li>
                     <li class="nav-item">
                         <!--<a id="nav_link_guide" class="nav-link" ui-sref="guide">HƯỚNG DẪN</a>-->
-                        <a id="nav_link_guide" class="nav-link" ng-click="vm.register()">HƯỚNG DẪN</a>
+                        <a id="nav_link_guide" class="nav-link" ui-sref="guide">HƯỚNG DẪN</a>
                     </li>
                     <!--<li class="nav-item hidden-xs">
                         <a class="nav-link" href="#">+84983221239</a>
-                    </li>
-                    <li class="nav-item hidden-xs">
-                        <a class="nav-link" href="#">Đăng ký</a>
                     </li>-->
+                    <li class="nav-item hidden-lg" ng-show="msisdn != null">
+                        <a class="nav-link">Xin chào {{msisdn}}</a>
+                    </li>
+                    <li class="nav-item hidden-lg" ng-show="vm.isAuthenticated == false">
+                        <a class="nav-link" ng-click="vm.register()">Đăng ký</a>
+                    </li>
                     <li class="nav-item hidden-xs">
                         <a class="nav-link" href="#"><i class="fa fa-facebook"></i></a>
                         <a class="nav-link" href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>

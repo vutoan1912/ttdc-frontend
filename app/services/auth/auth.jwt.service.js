@@ -5,9 +5,9 @@
         .module('thientaidoanchuApp')
         .factory('AuthServerProvider', AuthServerProvider);
 
-    AuthServerProvider.$inject = ['$http', '$localStorage', '$sessionStorage', '$q', 'API_URL', '$state'];
+    AuthServerProvider.$inject = ['$http', '$localStorage', '$sessionStorage', '$q', 'API_URL', '$state', '$rootScope'];
 
-    function AuthServerProvider ($http, $localStorage, $sessionStorage, $q, API_URL, $state) {
+    function AuthServerProvider ($http, $localStorage, $sessionStorage, $q, API_URL, $state, $rootScope) {
 
         var _token;
 
@@ -72,13 +72,14 @@
                 password: credentials.password,
                 rememberMe: credentials.rememberMe
             };
-            return $http.post(API_URL + 'api/auth/wap-login', data).success(authenticateSuccess);
+            return $http.post(API_URL + 'api/auth/wap-login', data).success(authenticateSuccess).error(authenticateError);
 
             function authenticateSuccess (data, status, headers) {
                 //console.log(data);
                 var jwt = data.id_token;
                 service.storeAuthenticationToken(jwt, credentials.rememberMe);
                 setToken(jwt);
+                $rootScope.root_authenticate = true;
                 return jwt;
 
                 /*var bearerToken = headers('Authorization');
@@ -87,6 +88,11 @@
                     service.storeAuthenticationToken(jwt, credentials.rememberMe);
                     return jwt;
                 }*/
+            }
+
+            function authenticateError(error) {
+                //console.log(error)
+                $rootScope.root_authenticate = false;
             }
         }
 
@@ -115,6 +121,8 @@
             delete $localStorage.authenticationToken;
             delete $sessionStorage.authenticationToken;
             _token = null;
+            $sessionStorage.msisdn = undefined;
+            $rootScope.root_authenticate = false;
             $state.go('home');
         }
     }

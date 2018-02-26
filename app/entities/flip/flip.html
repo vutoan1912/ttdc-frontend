@@ -8,7 +8,7 @@
                             Số kim cương:  <span class="red">{{account.diamonds}}</span>
                         </div>
                         <div class="float-right">
-                            Số lượt lật bài: <span class="red">{{account.diamonds/10}}</span>
+                            Số lượt lật bài: <span class="red">{{account.cards}}</span>
                         </div>
                         <div class="w-100 clearfix"></div>
                         <div class="quydoi clearfix row">
@@ -17,7 +17,9 @@
                                 <select name="" id="" class="sl-quydoi img-fluid">
                                     <option value="">10 kim cương : 1 lần mở thẻ bài</option>
                                 </select>
-                                <button class="btn btn-quydoi" style="margin-top: -5px;width: 28%;height: 96%;">Đổi</button>
+                                <button class="btn btn-quydoi" style="margin-top: -5px;width: 28%;height: 96%;" ng-click="vm.convertCard()">
+                                    Đổi
+                                </button>
                             </div>
                         </div>
                     </div>

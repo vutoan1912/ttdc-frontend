@@ -64,13 +64,13 @@
 
                                 <div class="one-text justify-content-center row" ng-repeat="row in vm.array_answer_guest track by $index" style="padding-top: 10px;">
                                     <div ng-repeat="c in row track by $index">
-                                        <div class="col inner" style="padding-right: 4px;padding-left: 4px;" ng-show="c != ' '" ng-click="vm.clearChar(c,$index,row)">
+                                        <div class="col inner" style="padding-right: 2px;padding-left: 2px;" ng-show="c != ' '" ng-click="vm.clearChar(c,$index,row)">
                                             <img src="content/images/icon_23.png" class="img-fluid">
                                             <div class="text align-items-center">
                                                 <div class="text-center">{{c}}</div>
                                             </div>
                                         </div>
-                                        <div class="col inner" style="padding-right: 7px;padding-left: 7px;" ng-show="c == ' '">
+                                        <div class="col inner" style="padding-right: 4px;padding-left: 4px;" ng-show="c == ' '">
                                             <div class="text align-items-center">
                                                 <div class="text-center" style="width: 15px"></div>
                                             </div>

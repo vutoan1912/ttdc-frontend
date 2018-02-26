@@ -575,6 +575,7 @@ audio{
   }
   .main{ margin-top: 15px !important}
   .game{margin-bottom: 10px;}
+  .main .tip {margin-top: 10px;}
 }
 
 .breadcrumb > li {

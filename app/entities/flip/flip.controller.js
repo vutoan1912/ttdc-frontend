@@ -6,9 +6,9 @@
         .controller('FlipController', FlipController);
 
 
-    FlipController.$inject = ['$scope', 'Principal', 'MEDIA_SERVER', '$translate', '$timeout', '$localStorage', '$sessionStorage', 'API_URL', '$http'];
+    FlipController.$inject = ['$scope', 'Principal', 'MEDIA_SERVER', '$translate', '$timeout', '$localStorage', '$sessionStorage', 'API_URL', '$http', '$rootScope'];
 
-    function FlipController ($scope, Principal, MEDIA_SERVER, $translate, $timeout, $localStorage, $sessionStorage, API_URL, $http) {
+    function FlipController ($scope, Principal, MEDIA_SERVER, $translate, $timeout, $localStorage, $sessionStorage, API_URL, $http, $rootScope) {
         var vm = this;
         vm.index = null;
 
@@ -27,7 +27,7 @@
 
         //get token from $localStorage
         var token = $localStorage.authenticationToken || $sessionStorage.authenticationToken;
-        console.log(token);
+        //console.log(token);
         //fake token
         //var token = 'eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImV4cCI6MTUyMDkzNTkyOSwic2NvcGUiOltdfQ.Fw7gOlXeUjArK0dAuxTUP2SZYeK7UIY3dhPmCV0h3gkRwHqC35cYAOuvA68sPk8mJYGG7gneLX7_9xMentMVJw';
 
@@ -42,6 +42,7 @@
         vm.clickCancel = clickCancel;
         vm.clickConfirm = clickConfirm;
         vm.popupShowHide = popupShowHide;
+        vm.convertCard = convertCard;
 
         vm.array_card = []
         for(var i = 0; i < 10; i++){
@@ -71,7 +72,7 @@
 
         function pickCard(index) {
 
-            if($scope.account.diamonds / 10 > 0 && vm.array_card[index].status == 1){
+            if($scope.account.cards > 0 && vm.array_card[index].status == 1){
 
                 var req = {
                     method: 'POST',
@@ -117,13 +118,51 @@
             }
         }
 
+        function convertCard() {
+            var req = {
+                method: 'POST',
+                url: API_URL + 'api/prizes/convertCard',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                data: {
+                    "active": true,
+                    "avatar": "string",
+                    "cards": 0,
+                    "created": "string",
+                    "diamonds": 0,
+                    "id": 0,
+                    "langKey": "string",
+                    "msisdn": $sessionStorage.msisdn,
+                    "password": "string",
+                    "questions": 0,
+                    "sub": true,
+                    "totalBuy": 0,
+                    "updated": "string",
+                    "userType": 0
+                }
+            }
+
+            return $http(req).then(function(response){
+                console.log(response)
+
+                getAccount();
+
+            }, function(error){
+                console.log(error)
+
+            });
+        }
+
         function popupShowHide() {
             vm.popupShow = !vm.popupShow;
         }
 
+        $scope.finish = false;
         function clickCancel() {
             vm.popupShow = false;
-            $('.card'+vm.index).toggleClass('flipped');
+            if(!$scope.finish) $('.card'+vm.index).toggleClass('flipped');
+            if($scope.account.cards == 0) $scope.finish = true;
         }
 
         function clickConfirm() {
@@ -134,63 +173,63 @@
 
         $(document).ready(function(){
             $('.classclick1').on('click', function () {
-                if(vm.array_card[0].status == 1){
+                if($scope.account.cards > 0 && vm.array_card[0].status == 1){
                     $('.card1').toggleClass('flipped');
                     //vm.array_card[0].status = 0;
                     vm.index = 1;
                 }
             });
             $('.classclick2').on('click', function () {
-                if(vm.array_card[1].status == 1){
+                if($scope.account.cards > 0 && vm.array_card[1].status == 1){
                     $('.card2').toggleClass('flipped');
                     //vm.array_card[1].status = 0;
                     vm.index = 2;
                 }
             });
             $('.classclick3').on('click', function () {
-                if(vm.array_card[2].status == 1){
+                if($scope.account.cards > 0 && vm.array_card[2].status == 1){
                     $('.card3').toggleClass('flipped');
                     //vm.array_card[2].status = 0;
                     vm.index = 3;
                 }
             });
             $('.classclick4').on('click', function () {
-                if(vm.array_card[3].status == 1){
+                if($scope.account.cards > 0 && vm.array_card[3].status == 1){
                     $('.card4').toggleClass('flipped');
                     //vm.array_card[3].status = 0;
                     vm.index = 4;
                 }
             });
             $('.classclick5').on('click', function () {
-                if(vm.array_card[4].status == 1){
+                if($scope.account.cards > 0 && vm.array_card[4].status == 1){
                     $('.card5').toggleClass('flipped');
                     //vm.array_card[4].status = 0;
                     vm.index = 5;
                 }
             });
             $('.classclick6').on('click', function () {
-                if(vm.array_card[5].status == 1){
+                if($scope.account.cards > 0 && vm.array_card[5].status == 1){
                     $('.card6').toggleClass('flipped');
                     //vm.array_card[5].status = 0;
                     vm.index = 6;
                 }
             });
             $('.classclick7').on('click', function () {
-                if(vm.array_card[6].status == 1){
+                if($scope.account.cards > 0 && vm.array_card[6].status == 1){
                     $('.card7').toggleClass('flipped');
                     //vm.array_card[6].status = 0;
                     vm.index = 7;
                 }
             });
             $('.classclick8').on('click', function () {
-                if(vm.array_card[7].status == 1){
+                if($scope.account.cards > 0 && vm.array_card[7].status == 1){
                     $('.card8').toggleClass('flipped');
                     //vm.array_card[7].status = 0;
                     vm.index = 8;
                 }
             });
             $('.classclick9').on('click', function () {
-                if(vm.array_card[8].status == 1){
+                if($scope.account.cards > 0 && vm.array_card[8].status == 1){
                     $('.card9').toggleClass('flipped');
                     //vm.array_card[8].status = 0;
                     vm.index = 9;

@@ -6,10 +6,10 @@
         .controller('LoginController', LoginController);
 
     // LoginController.$inject = ['$rootScope', '$state', '$timeout', 'Auth', '$uibModalInstance'];
-    LoginController.$inject = ['$rootScope', '$state', '$timeout', 'Auth'];
+    LoginController.$inject = ['$rootScope', '$state', '$timeout', 'Auth', '$sessionStorage'];
 
     // function LoginController ($rootScope, $state, $timeout, Auth, $uibModalInstance) {
-    function LoginController ($rootScope, $state, $timeout, Auth) {
+    function LoginController ($rootScope, $state, $timeout, Auth, $sessionStorage) {
         var vm = this;
 
         vm.authenticationError = false;
@@ -51,7 +51,7 @@
                 vm.authenticationError = false;
                 //$uibModalInstance.close();
 
-                $rootScope.msisdn = vm.username;
+                $sessionStorage.msisdn = vm.username;
 
                 if ($state.current.name === 'register' || $state.current.name === 'login' ||
                     $state.current.name === 'finishReset' || $state.current.name === 'requestReset') {
@@ -79,7 +79,7 @@
         }*/
 
         function register() {
-            if(angular.isDefined($rootScope.msisdn) && $rootScope.msisdn != null){
+            if(angular.isDefined($sessionStorage.msisdn) && $sessionStorage.msisdn != null){
                 //Đăng ký wap
                 //console.log('register wap')
 

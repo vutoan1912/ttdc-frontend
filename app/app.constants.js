@@ -8,7 +8,7 @@
         .constant('BUILD_TIMESTAMP', "")
         .constant('API_URL', "http://localhost:9092/")
         .constant('QUESTION_CONTENT', "content/questions/")
-        .constant('MEDIA_SERVER', "http://localhost/doanchu/")
+        .constant('MEDIA_SERVER', "http://localhost:8080/")
         .constant('WEB_SERVER', "http://localhost:8080/#/")
 ;
 })();

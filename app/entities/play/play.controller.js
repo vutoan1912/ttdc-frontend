@@ -445,14 +445,16 @@
         }
 
         function clearChar(char, index, row) {
-            //console.log(index)
-            //console.log(row)
-            row[index] = "";
-            for(var x=0;x<vm.array_suggest.length;x++){
-                for(var y=0;y<vm.array_suggest[x].length;y++){
-                    if(vm.array_suggest[x][y] == "" ) {
-                        vm.array_suggest[x][y] = char;
-                        return;
+            if(!vm.finish_play){
+                //console.log(index)
+                //console.log(row)
+                row[index] = "";
+                for(var x=0;x<vm.array_suggest.length;x++){
+                    for(var y=0;y<vm.array_suggest[x].length;y++){
+                        if(vm.array_suggest[x][y] == "" ) {
+                            vm.array_suggest[x][y] = char;
+                            return;
+                        }
                     }
                 }
             }
@@ -486,6 +488,17 @@
                         if(vm.array_answer[j][rand] != " " && vm.array_answer_guest[j][rand] == ""){
                             vm.array_answer_guest[j][rand] = vm.array_answer[j][rand];
                             i++;
+
+                            //clear array suggest
+                            for(var x=0;x<vm.array_suggest.length;x++){
+                                for(var y=0;y<vm.array_suggest[x].length;y++){
+                                    if(vm.array_suggest[x][y] == vm.array_answer[j][rand]) {
+                                        vm.array_suggest[x][y] = "";
+                                        //x = 1000;
+                                        //y = 1000;
+                                    }
+                                }
+                            }
                         }
                     }
                     //console.log(vm.array_answer)

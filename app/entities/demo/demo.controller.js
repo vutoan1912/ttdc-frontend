@@ -434,14 +434,16 @@
         }
 
         function clearChar(char, index, row) {
-            //console.log(index)
-            //console.log(row)
-            row[index] = "";
-            for(var x=0;x<vm.array_suggest.length;x++){
-                for(var y=0;y<vm.array_suggest[x].length;y++){
-                    if(vm.array_suggest[x][y] == "" ) {
-                        vm.array_suggest[x][y] = char;
-                        return;
+            if(!vm.finish_play){
+                //console.log(index)
+                //console.log(row)
+                row[index] = "";
+                for(var x=0;x<vm.array_suggest.length;x++){
+                    for(var y=0;y<vm.array_suggest[x].length;y++){
+                        if(vm.array_suggest[x][y] == "" ) {
+                            vm.array_suggest[x][y] = char;
+                            return;
+                        }
                     }
                 }
             }
@@ -449,26 +451,39 @@
         
         function suggestAnwer() {
 
-            vm.popupContent = null;
-            vm.errorKey = null;
-            vm.popupBtn = false;
-            vm.popupShow = false;
-            //return response.data;
+            if(!vm.finish_play){
+                vm.popupContent = null;
+                vm.errorKey = null;
+                vm.popupBtn = false;
+                vm.popupShow = false;
+                //return response.data;
 
-            //ghép từ gợi ý
-            var rand = 0;
-            var i = 0, j = 0;
-            while (i < 3) {
-                j = Math.floor(Math.random() * vm.array_answer_guest.length);
-                rand = Math.floor(Math.random() * vm.array_answer_guest[j].length);
-                if(vm.array_answer[j][rand] != " " && vm.array_answer_guest[j][rand] == ""){
-                    vm.array_answer_guest[j][rand] = vm.array_answer[j][rand];
-                    i++;
+                //ghép từ gợi ý
+                var rand = 0;
+                var i = 0, j = 0;
+                while (i < 3) {
+                    j = Math.floor(Math.random() * vm.array_answer_guest.length);
+                    rand = Math.floor(Math.random() * vm.array_answer_guest[j].length);
+                    if(vm.array_answer[j][rand] != " " && vm.array_answer_guest[j][rand] == ""){
+                        vm.array_answer_guest[j][rand] = vm.array_answer[j][rand];
+                        i++;
+
+                        //clear array suggest
+                        for(var x=0;x<vm.array_suggest.length;x++){
+                            for(var y=0;y<vm.array_suggest[x].length;y++){
+                                if(vm.array_suggest[x][y] == vm.array_answer[j][rand]) {
+                                    vm.array_suggest[x][y] = "";
+                                    //x = 1000;
+                                    //y = 1000;
+                                }
+                            }
+                        }
+                    }
                 }
+                //console.log(vm.array_answer)
+                //console.log(vm.array_answer_guest)
+                getAccount(-1);
             }
-            //console.log(vm.array_answer)
-            //console.log(vm.array_answer_guest)
-            getAccount(-1);
         }
 
         function changeQuestion() {

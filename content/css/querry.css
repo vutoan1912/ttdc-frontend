@@ -1,5 +1,5 @@
 @media only screen and (max-width: 991.98px) {
-   .box-card .w-100{
+  .box-card .w-100{
     display: none;
   }
   .mobile-card .hidden-xs{
@@ -31,7 +31,7 @@
 
   .trans-white{
     font-size: 20px;
-    height: 42px;
+    height: 80px;
     line-height: 38px;
   }
   .chontu{
@@ -114,7 +114,7 @@
   .game .nav-icon1.open span:nth-child(3){
       top: 6px;
   }
- .box-card .no-gutters > .col,
+  .box-card .no-gutters > .col,
   .box-card .no-gutters > [class*="col-"] {
     padding-right: 10px;
     padding-left: 10px;
@@ -125,7 +125,7 @@
    height: 180px;
    margin-bottom: 20px;
   }
-.nav-bot button.cycle{
+  .nav-bot button.cycle{
 		font-size: 20px;
     height: 50px;
     width: 50px;
@@ -146,13 +146,13 @@
 	color: #fff;
 	font-weight: bold;
 }
-.box-register{
+  .box-register{
 	float:none !important;
 	margin:0 auto !important;
 	padding-top:2em;
 	width:80% !important;
 }
-@media only screen and (max-width: 480px) {
+  @media only screen and (max-width: 480px) {
   .box-card .no-gutters > .col,
   .box-card .no-gutters > [class*="col-"] {
     height: 120px;

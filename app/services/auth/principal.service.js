@@ -98,7 +98,7 @@
                     _authenticated = true;
                     $rootScope.root_authenticate = true;
                     deferred.resolve(_identity);
-                    JhiTrackerService.connect();
+                    //JhiTrackerService.connect();
                 }else{
                     _identity = null;
                     _authenticated = false;
@@ -132,16 +132,18 @@
             return deferred.promise;
 
             function getAccountThen (response) {
-                //console.log(response)
+                console.log(response)
                 if(response.status == 200){
                     _identity = response.data;
                     _authenticated = true;
+                    //console.log(_authenticated)
                     $rootScope.root_authenticate = true;
                     deferred.resolve(_identity);
-                    JhiTrackerService.connect();
+                    //JhiTrackerService.connect();
                 }else{
                     _identity = null;
                     _authenticated = false;
+                    //console.log(_authenticated)
                     $rootScope.root_authenticate = false;
                     deferred.resolve(_identity);
                 }
@@ -151,6 +153,7 @@
                 //console.log(_identity)
                 _identity = null;
                 _authenticated = false;
+                //console.log(_authenticated)
                 deferred.resolve(_identity);
             }
         }
