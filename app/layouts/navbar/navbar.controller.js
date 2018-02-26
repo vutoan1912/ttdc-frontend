@@ -5,31 +5,46 @@
         .module('thientaidoanchuApp')
         .controller('NavbarController', NavbarController);
 
-    NavbarController.$inject = ['$state', 'Auth', 'Principal', 'ProfileService', 'LoginService', '$rootScope', 'AuthServerProvider', '$scope'];
+    NavbarController.$inject = ['$state', 'Auth', 'Principal', '$window', '$rootScope', 'AuthServerProvider', '$scope', 'WEB_SERVER'];
 
-    function NavbarController ($state, Auth, Principal, ProfileService, LoginService, $rootScope, AuthServerProvider, $scope) {
+    function NavbarController ($state, Auth, Principal, $window, $rootScope, AuthServerProvider, $scope, WEB_SERVER) {
         var vm = this;
 
         vm.isNavbarCollapsed = true;
+        vm.isAuthenticated = false;
+        vm.isHome = false;
 
         function getAccount() {
-            Principal.identity().then(function(account) {
-                console.log(account);
+            Principal.getAccountInfo().then(function(account) {
+                //console.log(account);
                 $scope.account = account;
                 vm.isAuthenticated = Principal.isAuthenticated();
+                //console.log(vm.isAuthenticated)
             });
         }
 
-        getAccount();
+        $rootScope.$watch('root_authenticate', function () {
+            getAccount();
+        })
 
-        //reject
-        if(!$scope.isAuthenticated){
-            if ($state.current.name === 'play'
-                || $state.current.name === 'flip'
-                || $state.current.name === 'prepare') {
-                $state.go('home');
+        /*$rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
+            console.log('$rootScope $stateChangeSuccess')
+        });*/
+
+        $scope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
+            //console.log('$scope $stateChangeSuccess')
+            //reject
+            if(!$rootScope.root_authenticate){
+                if ($state.current.name === 'play'
+                    || $state.current.name === 'flip'
+                    || $state.current.name === 'prepare') {
+                    $state.go('home');
+                }
             }
-        }
+
+            //show bannner
+            if ($state.current.name === 'home') vm.isHome = true; else vm.isHome = false;
+        });
 
         vm.login = login;
         vm.logout = logout;
@@ -59,21 +74,29 @@
             vm.isNavbarCollapsed = true;
         }
 
-        //console.log($rootScope.msisdn);
+        function goHome() {
+            $state.go('home');
+        }
 
+        //MSISDN
+        console.log($rootScope.msisdn);
         function getMsisdn() {
-            //$rootScope
-            if(angular.isUndefined($rootScope.msisdn) && !$scope.isAuthenticated){
-                var header = getHeaders();
-                //console.log(header);
 
-                //get msisdn -> $rootScope.msisdn
-                //if not exists MSISDN -> null
-                //if(angular.isDefined(header.msisdn)) $rootScope.msisdn = header.msisdn;
-                //else $rootScope.msisdn = null;
+            //$rootScope
+            if(angular.isUndefined($rootScope.msisdn) && !vm.isAuthenticated){
+                var response = JSON.parse(httpGet('api.php').toLowerCase());
+                //console.log(response)
+                var data = response.data;
+                //console.log(data)
+
+                if(data.msisdn !== undefined && data.msisdn != null)
+                    $rootScope.msisdn = data.msisdn;
+                else
+                    $rootScope.msisdn = null;
 
                 //fake msisdn
                 //$rootScope.msisdn = 'admin';
+                //$rootScope.msisdn = 'guest';
 
                 console.log($rootScope.msisdn)
 
@@ -85,49 +108,21 @@
                         rememberMe: true
                     }
                     AuthServerProvider.loginAuto(credentials).then(function (response) {
-                        console.log(response.data.id_token);
+                        //console.log(response.data.id_token);
+                        //console.log($localStorage.authenticationToken);
+                        getAccount();
                         $state.go('home');
                     })
                 }
             }
         }
 
-        function getHeaders() {
-            var req = new XMLHttpRequest();
-            req.open('GET', document.location, false);
-            req.send(null);
-
-            // associate array to store all values
-            var data = new Object();
-
-            // get all headers in one call and parse each item
-            var headers = req.getAllResponseHeaders().toLowerCase();
-            var aHeaders = headers.split('\n')
-            var i =0;
-            for (i= 0; i < aHeaders.length; i++) {
-                var thisItem = aHeaders[i];
-                var key = thisItem.substring(0, thisItem.indexOf(':'));
-                var value = thisItem.substring(thisItem.indexOf(':')+1);
-                data[key] = value;
-            }
-
-            // get referer
-            var referer = document.referrer;
-            data["Referer"] = referer;
-
-            // get useragent
-            var useragent = navigator.userAgent;
-            data["UserAgent"] = useragent;
-
-
-            //extra code to display the values in html
-            /*var display = "";
-            for(var key in data) {
-                if (key != "") display += "<b>" + key + "</b> : " + data[key] + "<br>";
-            }
-            document.getElementById("dump").innerHTML =  display;*/
-
-            return data;
+        function httpGet(theUrl)
+        {
+            var xmlHttp = new XMLHttpRequest();
+            xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
+            xmlHttp.send( null );
+            return xmlHttp.responseText;
         }
 
         getMsisdn();
@@ -137,15 +132,19 @@
                 //Đăng ký wap
                 //console.log('register wap')
 
+                //Chuỗi mã hóa  = trans_id&pkg&free_circle&price&&circle& customer_care& price_customer_care&back_url
+                //http://dangky.mobifone.com.vn/wap/html/sp/confirm.jsp?sp_id={sp_id}&link={chuỗi mã hóa}
+                var stringEncode = "1&DC&0&6000&1&19001009&1000&" + WEB_SERVER + "register_backlink";
+                stringEncode = stringEncode.replace("&#","##");
+                var key = "gV84mUOVwdN2XIgc";
+                var cipherText = CryptoJS.AES.encrypt(stringEncode, key).toString();
+                console.log(cipherText)
+                $window.location.href = 'http://dangky.mobifone.com.vn/wap/html/sp/confirm.jsp?sp_id=207&link='+cipherText;
             }else{
                 //Đăng ký web
                 //console.log('register web')
                 $state.go('register');
             }
-        }
-
-        function goHome() {
-            $state.go('home');
         }
     }
 })();

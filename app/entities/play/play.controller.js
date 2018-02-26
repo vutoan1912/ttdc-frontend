@@ -12,7 +12,10 @@
         var vm = this;
 
         var array_alphabet = ["a","b","c","d","e","g","h","i","k","l","m","n","o","p","q","r","s","t","u","v","x","y"];
-        var intervals = [];
+
+        var intervals = JSON.parse(localStorage.getItem("storage_intervals"));
+        if(intervals == null) intervals = [];
+        //console.log(intervals)
 
         vm.status = null;
 
@@ -362,7 +365,6 @@
 
             if(distance>0)
             {
-                //console.log(intervals)
                 var x = setInterval(function() {
                     //console.log(distance)
                     distance = distance - 1;
@@ -378,6 +380,8 @@
                     }
                 }, 1000);
                 intervals.push(x);
+                localStorage.removeItem("storage_intervals");
+                localStorage.setItem("storage_intervals",JSON.stringify(intervals));
             }
             else
             {
@@ -455,98 +459,105 @@
         }
         
         function suggestAnwer() {
-
-            var req = {
-                method: 'GET',
-                url: API_URL + 'api/questions/getGuide?questionId='+vm.question.id,
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                }
-            }
-
-            return $http(req).then(function(response){
-                console.log(response)
-                console.log('Lấy gợi ý thành công !')
-                vm.popupContent = null;
-                vm.errorKey = null;
-                vm.popupBtn = false;
-                vm.popupShow = false;
-                //return response.data;
-
-                //ghép từ gợi ý
-                var rand = 0;
-                var i = 0, j = 0;
-                while (i < 3) {
-                    j = Math.floor(Math.random() * vm.array_answer_guest.length);
-                    rand = Math.floor(Math.random() * vm.array_answer_guest[j].length);
-                    if(vm.array_answer[j][rand] != " " && vm.array_answer_guest[j][rand] == ""){
-                        vm.array_answer_guest[j][rand] = vm.array_answer[j][rand];
-                        i++;
+            if(!vm.finish_play){
+                var req = {
+                    method: 'GET',
+                    url: API_URL + 'api/questions/getGuide?questionId='+vm.question.id,
+                    headers: {
+                        'Authorization': 'Bearer ' + token
                     }
                 }
-                //console.log(vm.array_answer)
-                //console.log(vm.array_answer_guest)
-                getAccount();
 
-            }, function(error){
-                console.log(error)
-                vm.errorKey = error.data.errorKey;
-                vm.popupContent = error.data.title;
-                vm.popupBtn = false;
-                vm.popupShow = true;
-                //return error;
-            });
+                return $http(req).then(function(response){
+                    console.log(response)
+                    console.log('Lấy gợi ý thành công !')
+                    vm.popupContent = null;
+                    vm.errorKey = null;
+                    vm.popupBtn = false;
+                    vm.popupShow = false;
+                    //return response.data;
+
+                    //ghép từ gợi ý
+                    var rand = 0;
+                    var i = 0, j = 0;
+                    while (i < 3) {
+                        j = Math.floor(Math.random() * vm.array_answer_guest.length);
+                        rand = Math.floor(Math.random() * vm.array_answer_guest[j].length);
+                        if(vm.array_answer[j][rand] != " " && vm.array_answer_guest[j][rand] == ""){
+                            vm.array_answer_guest[j][rand] = vm.array_answer[j][rand];
+                            i++;
+                        }
+                    }
+                    //console.log(vm.array_answer)
+                    //console.log(vm.array_answer_guest)
+                    getAccount();
+
+                }, function(error){
+                    console.log(error)
+                    vm.errorKey = error.data.errorKey;
+                    vm.popupContent = error.data.title;
+                    vm.popupBtn = false;
+                    vm.popupShow = true;
+                    //return error;
+                });
+            }
         }
 
         function changeQuestion() {
-
-            var req = {
-                method: 'POST',
-                url: API_URL + 'api/questions/changeQuestion',
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                },
-                data: {
-                    "active": true,
-                    "answer": "string",
-                    "content": "string",
-                    "created": "string",
-                    "id": 0,
-                    "link": "string",
-                    "type": 0,
-                    "updated": "string"
+            console.log(vm.finish_play)
+            if(!vm.finish_play){
+                var req = {
+                    method: 'POST',
+                    url: API_URL + 'api/questions/changeQuestion',
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    },
+                    data: {
+                        "active": true,
+                        "answer": "string",
+                        "content": "string",
+                        "created": "string",
+                        "id": 0,
+                        "link": "string",
+                        "type": 0,
+                        "updated": "string"
+                    }
                 }
-            }
 
-            return $http(req).then(function(response){
-                console.log(response)
-                console.log('Đổi câu hỏi thành công !')
-                vm.popupContent = null;
-                vm.errorKey = null;
-                vm.popupBtn = false;
-                vm.popupShow = false;
-                //return response.data;
+                return $http(req).then(function(response){
+                    console.log(response)
+                    console.log('Đổi câu hỏi thành công !')
+                    vm.popupContent = null;
+                    vm.errorKey = null;
+                    vm.popupBtn = false;
+                    vm.popupShow = false;
+                    //return response.data;
 
+                    clearStorage();
+                    getAccount();
+                    countDown();
+
+                }, function(error){
+                    clearStorage();
+                    console.log(error)
+                    vm.errorKey = error.data.errorKey;
+                    if(vm.errorKey == "changequestionsfull"){
+                        vm.popupBtn = false;
+                    }else if(vm.errorKey == "emptybuy"){
+                        vm.popupBtn = false;
+                    }else if(vm.errorKey == "invalidquestions"){
+                        vm.popupBtn = false;
+                    }else if(vm.errorKey == "emptyquestions"){
+                        vm.popupBtn = true;
+                    }
+                    vm.popupContent = error.data.title;
+                    vm.popupShow = true;
+                    //return error;
+                });
+            }else{
                 clearStorage();
-                getAccount();
                 countDown();
-
-            }, function(error){
-                console.log(error)
-                vm.errorKey = error.data.errorKey;
-                if(vm.errorKey == "changequestionsfull"){
-                    vm.popupBtn = false;
-                }else if(vm.errorKey == "emptybuy"){
-                    vm.popupBtn = false;
-                }else if(vm.errorKey == "invalidquestions"){
-                    vm.popupBtn = false;
-                }else if(vm.errorKey == "emptyquestions"){
-                    vm.popupBtn = true;
-                }
-                vm.popupContent = error.data.title;
-                vm.popupShow = true;
-                //return error;
-            });
+            }
         }
 
     }

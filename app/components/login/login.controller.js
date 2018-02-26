@@ -36,14 +36,23 @@
 
         function login (event) {
             //console.log('login')
+            if(vm.username.substring(0,1) == "0"){
+                vm.username = "84" + vm.username.substring(1,vm.username.length);
+            }
+            //console.log(vm.username)
+
             event.preventDefault();
             Auth.login({
                 username: vm.username,
                 password: vm.password,
                 rememberMe: vm.rememberMe
-            }).then(function () {
+            }).then(function (response) {
+                console.log(response)
                 vm.authenticationError = false;
                 //$uibModalInstance.close();
+
+                $rootScope.msisdn = vm.username;
+
                 if ($state.current.name === 'register' || $state.current.name === 'login' ||
                     $state.current.name === 'finishReset' || $state.current.name === 'requestReset') {
                     $state.go('home');
@@ -58,7 +67,8 @@
                     Auth.resetPreviousState();
                     $state.go(previousState.name, previousState.params);
                 }
-            }).catch(function () {
+            }).catch(function (error) {
+                console.log(error)
                 vm.authenticationError = true;
             });
         }

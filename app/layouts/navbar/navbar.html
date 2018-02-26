@@ -8,23 +8,25 @@
             </div>
             <div class="navbar-collapse flex-column align-items-end col col-8 col-md-10">
                 <ul class="navbar-nav">
-                    <li class="nav-item" ng-show="account != null">
-                        <a class="nav-link" href="#" style="color: white">{{account.msisdn}}</a>
+                    <li class="nav-item" ng-show="msisdn != null">
+                        <a class="nav-link" ui-sref="account" style="color: white">{{msisdn}}</a>
                     </li>
-                    <li class="nav-item" ng-show="account == null">
+                    <li class="nav-item" ng-show="msisdn == null">
                         <a class="nav-link" ng-click="vm.login()" style="color: white">Đăng nhập</a>
                     </li>
-                    <li class="nav-item" ng-show="isAuthenticated == true">
+                    <li class="nav-item" ng-show="vm.isAuthenticated == true">
                         <a class="nav-link" ng-click="vm.logout()" style="color: white">Đăng xuất</a>
                     </li>
-                    <li class="nav-item" ng-show="isAuthenticated == false">
+                    <li class="nav-item" ng-show="vm.isAuthenticated == false">
                         <a class="nav-link" ng-click="vm.register()" style="color: white">Đăng ký</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa fa-facebook"></i></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>
+                        <a class="nav-link" href="#">
+                            <i class="fa fa-google-plus" aria-hidden="true"></i>
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>
@@ -47,27 +49,28 @@
             </button>
 
             <div class="collapse navbar-collapse flex-column align-items-start col col-12 col-md-10" id="navbarCollapse">
-                <ul class="navbar-nav">
+                <ul class="navbar-nav" style="margin: 0 0;">
                     <li class="nav-item active">
-                        <a class="nav-link" ui-sref="home">TRANG CHỦ</a>
+                        <a id="nav_link_home" class="nav-link" ui-sref="home">TRANG CHỦ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="#">GIỚI THIỆU</a>
+                        <a id="nav_link_present" class="nav-link" ui-sref="present">GIỚI THIỆU</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref="prepare">SĂN KIM CƯƠNG</a>
+                        <a id="nav_link_catch" class="nav-link" ui-sref="default">SĂN KIM CƯƠNG</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref="flip">LẬT BÀi MAY MẮN</a>
+                        <a id="nav_link_flip" class="nav-link" ui-sref="flip">LẬT BÀi MAY MẮN</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref="code">MÃ DỰ THƯỞNG</a>
+                        <a id="nav_link_code" class="nav-link" ui-sref="code">MÃ DỰ THƯỞNG</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref="rule">THỂ LỆ</a>
+                        <a id="nav_link_rule" class="nav-link" ui-sref="rule">THỂ LỆ</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ui-sref="guide">HƯỚNG DẪN</a>
+                        <!--<a id="nav_link_guide" class="nav-link" ui-sref="guide">HƯỚNG DẪN</a>-->
+                        <a id="nav_link_guide" class="nav-link" ng-click="vm.register()">HƯỚNG DẪN</a>
                     </li>
                     <!--<li class="nav-item hidden-xs">
                         <a class="nav-link" href="#">+84983221239</a>
@@ -84,7 +87,7 @@
             </div>
         </div>
     </nav>
-    <div class="banner" style="display:none" >
+    <div class="banner" ng-show="vm.isHome == true">
         <img src="content/images/banner--ngang.png" class="rounded mx-auto d-block img-fluid" alt="#">
     </div>
 </header>
@@ -144,4 +147,70 @@
             $('.searchbox-icon').css('display','block');
         }
     }
+    $(document).ready(function(){
+
+        $("#nav_link_home").click(function(){
+            $("#nav_link_home").addClass("active");
+            $("#nav_link_present").removeClass("active");
+            $("#nav_link_catch").removeClass("active");
+            $("#nav_link_flip").removeClass("active");
+            $("#nav_link_code").removeClass("active");
+            $("#nav_link_rule").removeClass("active");
+            $("#nav_link_guide").removeClass("active");
+        });
+        $("#nav_link_present").click(function(){
+            $("#nav_link_home").removeClass("active");
+            $("#nav_link_present").addClass("active");
+            $("#nav_link_catch").removeClass("active");
+            $("#nav_link_flip").removeClass("active");
+            $("#nav_link_code").removeClass("active");
+            $("#nav_link_rule").removeClass("active");
+            $("#nav_link_guide").removeClass("active");
+        });
+        $("#nav_link_catch").click(function(){
+            $("#nav_link_home").removeClass("active");
+            $("#nav_link_present").removeClass("active");
+            $("#nav_link_catch").addClass("active");
+            $("#nav_link_flip").removeClass("active");
+            $("#nav_link_code").removeClass("active");
+            $("#nav_link_rule").removeClass("active");
+            $("#nav_link_guide").removeClass("active");
+        });
+        $("#nav_link_flip").click(function(){
+            $("#nav_link_home").removeClass("active");
+            $("#nav_link_present").removeClass("active");
+            $("#nav_link_catch").removeClass("active");
+            $("#nav_link_flip").addClass("active");
+            $("#nav_link_code").removeClass("active");
+            $("#nav_link_rule").removeClass("active");
+            $("#nav_link_guide").removeClass("active");
+        });
+        $("#nav_link_code").click(function(){
+            $("#nav_link_home").removeClass("active");
+            $("#nav_link_present").removeClass("active");
+            $("#nav_link_catch").removeClass("active");
+            $("#nav_link_flip").removeClass("active");
+            $("#nav_link_code").addClass("active");
+            $("#nav_link_rule").removeClass("active");
+            $("#nav_link_guide").removeClass("active");
+        });
+        $("#nav_link_rule").click(function(){
+            $("#nav_link_home").removeClass("active");
+            $("#nav_link_present").removeClass("active");
+            $("#nav_link_catch").removeClass("active");
+            $("#nav_link_flip").removeClass("active");
+            $("#nav_link_code").removeClass("active");
+            $("#nav_link_rule").addClass("active");
+            $("#nav_link_guide").removeClass("active");
+        });
+        $("#nav_link_guide").click(function(){
+            $("#nav_link_home").removeClass("active");
+            $("#nav_link_present").removeClass("active");
+            $("#nav_link_catch").removeClass("active");
+            $("#nav_link_flip").removeClass("active");
+            $("#nav_link_code").removeClass("active");
+            $("#nav_link_rule").removeClass("active");
+            $("#nav_link_guide").addClass("active");
+        });
+    });
 </script>

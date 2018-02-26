@@ -1,0 +1,119 @@
+<main>
+    <div class="main">
+
+        <style>
+            .tip{height: 40px;line-height: 40px;padding: 0 0 0 18px !important;text-align: left important;font-size: 17px!important;}
+            .hello {
+
+                text-align: left !important;
+                width: 100%;
+                /* min-height: 60px; */
+                padding-bottom: 20px;
+                margin-bottom: 20px;
+                border-bottom: 3px double #ccc;
+                padding-left: 20px;
+            }
+            .content-circle {margin-top:20px; }
+            .content-circle ul{list-style-type: none;}
+            .content-circle ol li{list-style-type: none;}
+            .content-circle .liMain{margin-bottom: 20px;}
+            li .heading{ color: #009201; font-weight: bold; }
+            .main {margin-top: 10px !important;}
+            .table .thead-dark th{border-color: aliceblue}
+            .table .thead-dark th {color: red;background-color: #f2b002;border-bottom-color: #32383e;}
+            .content-circle h4{text-align: center}
+            .content-circle .time{text-align: center}
+            .content-circle .time span {color: red; font-style: italic}
+            .content-circle .search{ margin-top: 20px;   float: right;    margin-bottom: 20px;}
+            .breadcrumb-item a{color:#009201}
+            .content-circle p{  margin-bottom: 5px;}
+
+
+
+        </style>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Thông tin cá nhân</li>
+                        </ol>
+                    </nav>
+                    <div class="hello">Gói cước đang sử dụng khách hàng vui lòng đăng nhập để được sử dụng</div>
+                    <div class="content-circle" style="padding: 0 20px;">
+                        <p> Số điểm: <span> Khách điểm</span> </p>
+                        <p> Số lượt lật bài còn lại: <span>O bài /tuần</span><p>
+                        <p> Số lượt tích lũy trong tuần này: <span>O điểm</span><p>
+                        <p> Lịch sử lật bài:<p>
+                        <table class="table">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">STT</th>
+                                    <th scope="col">Thời gian</th>
+                                    <th scope="col">Mã dự thưởng</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        <p> Số giải thưởng hiện có</p>
+                        <table class="table">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">STT</th>
+                                    <th scope="col">Giải thưởng</th>
+                                    <th scope="col">Số lượng</th>
+                                    <th scope="col">Chi tiết</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Mark</td>
+                                    <td>Otto</td>
+                                    <td>Otto</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Jacob</td>
+                                    <td>Thornton</td>
+                                    <td>Otto</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Larry</td>
+                                    <td>the Bird</td>
+                                    <td>Otto</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                    </div>
+
+                </div>
+                <div class="col-md-4">
+                    <body-winner-list></body-winner-list>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

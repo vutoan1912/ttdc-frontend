@@ -107,7 +107,7 @@
             AuthServerProvider.login(credentials)
                 .then(loginThen)
                 .catch(function (err) {
-                    this.logout();
+                    //this.logout();
                     deferred.reject(err);
                     return cb(err);
                 }.bind(this));
@@ -136,7 +136,7 @@
 
         function logout () {
             AuthServerProvider.logout();
-            Principal.authenticate(null);
+            Principal.authenticateOFF(null);
         }
 
         function resetPasswordFinish (keyAndPassword, callback) {

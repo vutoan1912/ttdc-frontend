@@ -12,7 +12,9 @@
         var vm = this;
 
         var token = "";
-        var intervals = [];
+        var intervals = JSON.parse(localStorage.getItem("storage_intervals_demo"));
+        if(intervals == null) intervals = [];
+        //console.log(intervals)
 
         var array_alphabet = ["a","b","c","d","e","g","h","i","k","l","m","n","o","p","q","r","s","t","u","v","x","y"];
         vm.status = null;
@@ -367,6 +369,8 @@
                     }
                 }, 1000);
                 intervals.push(x);
+                localStorage.removeItem("storage_intervals_demo");
+                localStorage.setItem("storage_intervals_demo",JSON.stringify(intervals));
             }
             else
             {
@@ -468,54 +472,58 @@
         }
 
         function changeQuestion() {
-
-            var req = {
-                method: 'POST',
-                url: API_URL + 'api/questions/changeQuestionTest?type=' + vm.typeQuestion,
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                },
-                data: {
-                    "active": true,
-                    "answer": "string",
-                    "content": "string",
-                    "created": "string",
-                    "id": 0,
-                    "link": "string",
-                    "type": 0,
-                    "updated": "string"
+            if(!vm.finish_play){
+                var req = {
+                    method: 'POST',
+                    url: API_URL + 'api/questions/changeQuestionTest?type=' + vm.typeQuestion,
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    },
+                    data: {
+                        "active": true,
+                        "answer": "string",
+                        "content": "string",
+                        "created": "string",
+                        "id": 0,
+                        "link": "string",
+                        "type": 0,
+                        "updated": "string"
+                    }
                 }
-            }
 
-            return $http(req).then(function(response){
-                console.log(response)
-                console.log('Đổi câu hỏi thành công !')
-                vm.popupContent = null;
-                vm.errorKey = null;
-                vm.popupBtn = false;
-                vm.popupShow = false;
-                //return response.data;
+                return $http(req).then(function(response){
+                    console.log(response)
+                    console.log('Đổi câu hỏi thành công !')
+                    vm.popupContent = null;
+                    vm.errorKey = null;
+                    vm.popupBtn = false;
+                    vm.popupShow = false;
+                    //return response.data;
 
+                    clearStorage();
+                    getAccount(-1);
+                    countDown();
+
+                }, function(error){
+                    console.log(error)
+                    vm.errorKey = error.data.errorKey;
+                    if(vm.errorKey == "changequestionsfull"){
+                        vm.popupBtn = false;
+                    }else if(vm.errorKey == "emptybuy"){
+                        vm.popupBtn = false;
+                    }else if(vm.errorKey == "invalidquestions"){
+                        vm.popupBtn = false;
+                    }else if(vm.errorKey == "emptyquestions"){
+                        vm.popupBtn = true;
+                    }
+                    vm.popupContent = error.data.title;
+                    vm.popupShow = true;
+                    //return error;
+                });
+            }else{
                 clearStorage();
-                getAccount(-1);
                 countDown();
-
-            }, function(error){
-                console.log(error)
-                vm.errorKey = error.data.errorKey;
-                if(vm.errorKey == "changequestionsfull"){
-                    vm.popupBtn = false;
-                }else if(vm.errorKey == "emptybuy"){
-                    vm.popupBtn = false;
-                }else if(vm.errorKey == "invalidquestions"){
-                    vm.popupBtn = false;
-                }else if(vm.errorKey == "emptyquestions"){
-                    vm.popupBtn = true;
-                }
-                vm.popupContent = error.data.title;
-                vm.popupShow = true;
-                //return error;
-            });
+            }
         }
 
     }

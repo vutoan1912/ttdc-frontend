@@ -39,7 +39,7 @@
 
         function login (credentials) {
 
-            console.log(credentials)
+            //console.log(credentials)
 
             var data = {
                 msisdn: credentials.username,

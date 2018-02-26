@@ -8,26 +8,26 @@
     stateConfig.$inject = ['$stateProvider'];
 
     function stateConfig($stateProvider) {
-        $stateProvider.state('settings', {
-            parent: 'account',
-            url: '/settings',
+        $stateProvider.state('present', {
+            parent: 'app',
+            url: '/present',
             data: {
-                authorities: ['ROLE_USER'],
-                pageTitle: 'global.menu.account.settings'
+                authorities: [],
+                pageTitle: 'Giới thiệu'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/account/settings/settings.html',
-                    controller: 'SettingsController',
+                    templateUrl: 'app/entities/present/present.html',
+                    controller: 'PresentController',
                     controllerAs: 'vm'
                 }
-            },
+            }/*,
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('settings');
+                    $translatePartialLoader.addPart('present');
                     return $translate.refresh();
                 }]
-            }
+            }*/
         });
     }
 })();

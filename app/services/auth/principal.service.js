@@ -5,9 +5,9 @@
         .module('thientaidoanchuApp')
         .factory('Principal', Principal);
 
-    Principal.$inject = ['$q', 'Account', 'JhiTrackerService'];
+    Principal.$inject = ['$q', 'Account', 'JhiTrackerService','$rootScope'];
 
-    function Principal ($q, Account, JhiTrackerService) {
+    function Principal ($q, Account, JhiTrackerService, $rootScope) {
         var _identity,
             _authenticated = false;
 
@@ -18,7 +18,8 @@
             identity: identity,
             isAuthenticated: isAuthenticated,
             isIdentityResolved: isIdentityResolved,
-            getAccountInfo: getAccountInfo
+            getAccountInfo: getAccountInfo,
+            authenticateOFF: authenticateOFF
         };
 
         return service;
@@ -26,6 +27,12 @@
         function authenticate (identity) {
             _identity = identity;
             _authenticated = identity !== null;
+        }
+
+        function authenticateOFF (identity) {
+            _identity = undefined;
+            _authenticated = identity !== null;
+            $rootScope.root_authenticate = false;
         }
 
         function hasAnyAuthority (authorities) {
@@ -65,9 +72,10 @@
 
             // check and see if we have retrieved the identity data from the server.
             // if we have, reuse it by immediately resolving
+            //console.log(_identity);
             if (angular.isDefined(_identity)) {
+                //console.log('_identity null')
                 deferred.resolve(_identity);
-
                 return deferred.promise;
             }
 
@@ -88,11 +96,13 @@
                 if(response.status == 200){
                     _identity = response.data;
                     _authenticated = true;
+                    $rootScope.root_authenticate = true;
                     deferred.resolve(_identity);
                     JhiTrackerService.connect();
                 }else{
                     _identity = null;
                     _authenticated = false;
+                    $rootScope.root_authenticate = false;
                     deferred.resolve(_identity);
                 }
             }
@@ -126,11 +136,13 @@
                 if(response.status == 200){
                     _identity = response.data;
                     _authenticated = true;
+                    $rootScope.root_authenticate = true;
                     deferred.resolve(_identity);
                     JhiTrackerService.connect();
                 }else{
                     _identity = null;
                     _authenticated = false;
+                    $rootScope.root_authenticate = false;
                     deferred.resolve(_identity);
                 }
             }

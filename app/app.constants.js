@@ -9,5 +9,6 @@
         .constant('API_URL', "http://localhost:9092/")
         .constant('QUESTION_CONTENT', "content/questions/")
         .constant('MEDIA_SERVER', "http://localhost/doanchu/")
+        .constant('WEB_SERVER', "http://localhost:8080/#/")
 ;
 })();
