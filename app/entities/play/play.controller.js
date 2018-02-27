@@ -6,9 +6,9 @@
         .controller('PlayController', PlayController);
 
 
-    PlayController.$inject = ['$scope', 'Principal', 'MEDIA_SERVER', '$translate', '$timeout', '$localStorage', '$sessionStorage', 'API_URL', '$http', 'QUESTION_CONTENT'];
+    PlayController.$inject = ['$scope', 'Principal', 'MEDIA_SERVER', '$translate', '$timeout', '$localStorage', '$sessionStorage', 'API_URL', '$http', 'QUESTION_CONTENT','$state'];
 
-    function PlayController ($scope, Principal, MEDIA_SERVER, $translate, $timeout, $localStorage, $sessionStorage, API_URL, $http, QUESTION_CONTENT) {
+    function PlayController ($scope, Principal, MEDIA_SERVER, $translate, $timeout, $localStorage, $sessionStorage, API_URL, $http, QUESTION_CONTENT,$state) {
         var vm = this;
 
         var array_alphabet = ["a","b","c","d","e","g","h","i","k","l","m","n","o","p","q","r","s","t","u","v","x","y"];
@@ -53,6 +53,11 @@
         vm.clickCancel = clickCancel;
         vm.clickConfirm = clickConfirm;
         vm.popupShowHide = popupShowHide;
+        vm.goHome = goHome;
+
+        function goHome() {
+            $state.go("default");
+        }
 
         function popupShowHide() {
             vm.popupShow = !vm.popupShow;
@@ -207,8 +212,8 @@
         }
 
         function chooseCharacter(char, index, row) {
-            if(!vm.finish_play){
-                //console.log(char)
+            if(!vm.finish_play && char.length > 0){
+                console.log(char)
                 row[index] = "";
 
                 var count_char = 0;
@@ -445,7 +450,7 @@
         }
 
         function clearChar(char, index, row) {
-            if(!vm.finish_play){
+            if(!vm.finish_play && char.length > 0){
                 //console.log(index)
                 //console.log(row)
                 row[index] = "";
@@ -459,7 +464,7 @@
                 }
             }
         }
-        
+
         function suggestAnwer() {
             if(!vm.finish_play){
                 var req = {
@@ -495,9 +500,10 @@
                                     if(vm.array_suggest[x][y] == vm.array_answer[j][rand]) {
                                         vm.array_suggest[x][y] = "";
                                         //x = 1000;
-                                        //y = 1000;
+                                        y = 1000;
                                     }
                                 }
+                                if(y == 1000) x = 1000;
                             }
                         }
                     }

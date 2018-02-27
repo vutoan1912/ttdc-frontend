@@ -6,9 +6,9 @@
         .controller('DemoController', DemoController);
 
 
-    DemoController.$inject = ['$scope', 'Principal', 'MEDIA_SERVER', '$translate', '$timeout', '$localStorage', '$sessionStorage', 'API_URL', '$http', 'QUESTION_CONTENT','$stateParams'];
+    DemoController.$inject = ['$scope', 'Principal', 'MEDIA_SERVER', '$translate', '$timeout', '$localStorage', '$sessionStorage', 'API_URL', '$http', 'QUESTION_CONTENT','$stateParams','$state'];
 
-    function DemoController ($scope, Principal, MEDIA_SERVER, $translate, $timeout, $localStorage, $sessionStorage, API_URL, $http, QUESTION_CONTENT, $stateParams) {
+    function DemoController ($scope, Principal, MEDIA_SERVER, $translate, $timeout, $localStorage, $sessionStorage, API_URL, $http, QUESTION_CONTENT, $stateParams, $state) {
         var vm = this;
 
         var token = "";
@@ -43,6 +43,11 @@
         vm.clickCancel = clickCancel;
         vm.clickConfirm = clickConfirm;
         vm.popupShowHide = popupShowHide;
+        vm.goHome = goHome;
+
+        function goHome() {
+            $state.go("default");
+        }
 
         function popupShowHide() {
             vm.popupShow = !vm.popupShow;
@@ -62,6 +67,8 @@
         function getQuestion () {
             //vm.errorKey = null;
             //vm.status = null;
+
+            $scope.countSuggestAnswer = 0;
 
             var req = {
                 method: 'GET',
@@ -196,8 +203,8 @@
         }
 
         function chooseCharacter(char, index, row) {
-            if(!vm.finish_play){
-                //console.log(char)
+            if(!vm.finish_play && char.length > 0){
+                console.log(char)
                 row[index] = "";
 
                 var count_char = 0;
@@ -231,6 +238,7 @@
         function submitAnswer() {
             console.log(vm.status)
             clearStorage();
+            $scope.countSuggestAnswer = 0;
             if(vm.status == 200){
                 console.log('submit answer')
                 var answer_result = "";
@@ -434,7 +442,7 @@
         }
 
         function clearChar(char, index, row) {
-            if(!vm.finish_play){
+            if(!vm.finish_play && char.length > 0){
                 //console.log(index)
                 //console.log(row)
                 row[index] = "";
@@ -448,10 +456,13 @@
                 }
             }
         }
-        
+
+        $scope.countSuggestAnswer = 0;
         function suggestAnwer() {
 
-            if(!vm.finish_play){
+            if(!vm.finish_play && $scope.countSuggestAnswer < 1){
+                $scope.countSuggestAnswer = $scope.countSuggestAnswer + 1;
+
                 vm.popupContent = null;
                 vm.errorKey = null;
                 vm.popupBtn = false;
@@ -474,15 +485,21 @@
                                 if(vm.array_suggest[x][y] == vm.array_answer[j][rand]) {
                                     vm.array_suggest[x][y] = "";
                                     //x = 1000;
-                                    //y = 1000;
+                                    y = 1000;
                                 }
                             }
+                            if(y == 1000) x = 1000;
                         }
                     }
                 }
                 //console.log(vm.array_answer)
                 //console.log(vm.array_answer_guest)
                 getAccount(-1);
+            }else{
+                vm.popupContent = "Bạn đã sử dụng hết gợi ý cho câu hỏi này !";
+                vm.errorKey = null;
+                vm.popupBtn = false;
+                vm.popupShow = true;
             }
         }
 

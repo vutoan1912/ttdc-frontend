@@ -31,7 +31,8 @@
 
   .trans-white{
     font-size: 20px;
-    height: 80px;
+    /*height: 80px;*/
+    min-height: 50px;
     line-height: 38px;
   }
   .chontu{

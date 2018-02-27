@@ -76,11 +76,11 @@
         }
 
         function goHome() {
-            $state.go('home');
+            $state.go('default');
         }
 
         //MSISDN
-        console.log($sessionStorage.msisdn);
+        //console.log($sessionStorage.msisdn);
         function getMsisdn() {
 
             //$rootScope
@@ -100,7 +100,7 @@
                     $sessionStorage.msisdn = null;
 
                 $scope.msisdn = $sessionStorage.msisdn;
-                console.log($sessionStorage.msisdn)
+                //console.log($sessionStorage.msisdn)
 
                 if(angular.isDefined($sessionStorage.msisdn) && $sessionStorage.msisdn != null){
                     //check sub
@@ -117,7 +117,7 @@
                     })
                 }
             }else{
-                console.log('gán msisdn')
+                //console.log('gán msisdn')
                 $scope.msisdn = $sessionStorage.msisdn;
             }
         }
@@ -143,9 +143,7 @@
                     /*headers: {
                         'Authorization': 'Bearer ' + token
                     },*/
-                    data: {
-                        "msisdn" : $sessionStorage.msisdn
-                    }
+                    data: $sessionStorage.msisdn
                 }
 
                 return $http(req).then(function(response){
@@ -158,9 +156,7 @@
                         /*headers: {
                             'Authorization': 'Bearer ' + token
                         },*/
-                        data: {
-                            "msisdn" : $sessionStorage.msisdn
-                        }
+                        data: $sessionStorage.msisdn
                     }
 
                     return $http(req).then(function(response){
@@ -168,12 +164,12 @@
 
                         //Chuỗi mã hóa  = trans_id&pkg&free_circle&price&&circle& customer_care& price_customer_care&back_url
                         //http://dangky.mobifone.com.vn/wap/html/sp/confirm.jsp?sp_id={sp_id}&link={chuỗi mã hóa}
-                        var stringEncode = "1&DC&0&6000&1&19001009&1000&" + WEB_SERVER + "register_backlink";
+                        var stringEncode = response.data + "&DC&0&6000&1&19001009&1000&" + WEB_SERVER + "register_backlink";
                         stringEncode = stringEncode.replace("&#","##");
                         var key = "gV84mUOVwdN2XIgc";
                         var cipherText = CryptoJS.AES.encrypt(stringEncode, key).toString();
-                        console.log(cipherText)
-                        $window.location.href = 'http://dangky.mobifone.com.vn/wap/html/sp/confirm.jsp?sp_id=207&link='+cipherText;
+                        //console.log(cipherText)
+                        $window.location.href = 'http://dangky.mobifone.vn/wap/html/sp/confirm.jsp?sp_id=207&link='+cipherText;
 
                     }, function(error){
                         console.log(error)

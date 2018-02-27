@@ -12,16 +12,39 @@
                         </div>
                         <div class="w-100 clearfix"></div>
                         <div class="quydoi clearfix row">
-                            <label class="col col-3 col-sm-2">Quy đổi:</label>
-                            <div class="col col-7 col-sm-7" style="padding-left: 30px;">
-                                <select name="" id="" class="sl-quydoi img-fluid">
+                            <label class="col col-3 col-sm-2 quydoism">Quy đổi:</label>
+                            <div class="col col-7 col-sm-7 cachdong">
+                                <select style="width: 100%;" name="" id="" class="sl-quydoi img-fluid">
                                     <option value="">10 kim cương : 1 lần mở thẻ bài</option>
                                 </select>
-                                <button class="btn btn-quydoi" style="margin-top: -5px;width: 28%;height: 96%;" ng-click="vm.convertCard()">
+                            </div>
+                                <button class="btn btn-quydoi" style="" ng-click="vm.convertCard()">
                                     Đổi
                                 </button>
                             </div>
-                        </div>
+
+                        <style>
+
+                            @media screen and (max-width: 580px) {
+                                .alert-box {
+                                    display: block;
+                                }
+                                .quydoism{
+                                    max-width: 26% !important;
+                                    flex: 0 0 26% !important;
+                                }
+                            }
+                            @media screen and (min-width: 600px) {
+                                .btn-quydoi {
+
+                                }
+
+                                .cachdong {
+                                    padding-left: 30px;
+                                }
+                            }
+
+                        </style>
                     </div>
 
                     <div class="alert alert-danger">
