@@ -159,17 +159,25 @@
                         data: $sessionStorage.msisdn
                     }
 
-                    return $http(req).then(function(response){
-                        console.log(response)
+                    return $http(req).then(function(res){
+                        console.log(res)
 
                         //Chuỗi mã hóa  = trans_id&pkg&free_circle&price&&circle& customer_care& price_customer_care&back_url
                         //http://dangky.mobifone.com.vn/wap/html/sp/confirm.jsp?sp_id={sp_id}&link={chuỗi mã hóa}
-                        var stringEncode = response.data + "&DC&0&6000&1&19001009&1000&" + WEB_SERVER + "register_backlink";
-                        stringEncode = stringEncode.replace("&#","##");
+
                         var key = "gV84mUOVwdN2XIgc";
-                        var cipherText = CryptoJS.AES.encrypt(stringEncode, key).toString();
-                        //console.log(cipherText)
-                        $window.location.href = 'http://dangky.mobifone.vn/wap/html/sp/confirm.jsp?sp_id=207&link='+cipherText;
+                        var plaintext = response.data + "&DC&0&6000&1&19001009&1000&" + WEB_SERVER + "register_backlink";
+                        plaintext = plaintext.replace("&#","##");
+
+                        //solution 1
+                        //var cipherText = CryptoJS.AES.encrypt(plaintext, key).toString();
+
+                        //solution 2
+                        var ciphertext = Aes.Ctr.encrypt(plaintext, key, 128);
+                        //console.log(ciphertext)
+
+                        //redirect
+                        $window.location.href = 'http://dangky.mobifone.vn/wap/html/sp/confirm.jsp?sp_id=207&link='+ciphertext;
 
                     }, function(error){
                         console.log(error)

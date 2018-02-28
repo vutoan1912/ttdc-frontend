@@ -29,15 +29,27 @@
 
         if(link != null){
             link = link.replace(" ","+");
-
             var key = "gV84mUOVwdN2XIgc";
-            var plaintext  = CryptoJS.AES.decrypt(link, key);
-            console.log(plaintext.toString())
-            console.log(hex2a(plaintext.toString()))
+
+            //solution 1
+            //var plaintext  = CryptoJS.AES.decrypt(link, key);
+            //console.log(plaintext.toString())
+            //console.log(hex2a(plaintext.toString()))
+
+            //solution 2
+            var plaintext = Aes.Ctr.decrypt(link, key, 128);
+            console.log(plaintext)
 
             //document.getElementById("dump_decrypt").innerHTML = 'decrypt: ' + hex2a(plaintext.toString());
 
-            register(msisdn);
+            var result = plaintext.split("&")[2];
+            if(result == 1){
+                var msisdn = plaintext.split("&")[1];
+                console.log(msisdn)
+                //register(msisdn);
+            }else{
+                console.log(result)
+            }
 
         }else{
             console.log("Không có thông tin trả về")
@@ -45,26 +57,22 @@
         }
 
         function register(msisdn) {
+            //Fake MO đăng ký
             var req = {
                 method: 'POST',
                 url: API_URL + 'api/payment/registerSub',
-                headers: {
-                    'Authorization': 'Bearer '
-                },
-                data: {
-                    "msisdn": msisdn
-                }
+                /*headers: {
+                    'Authorization': 'Bearer ' + token
+                },*/
+                data: msisdn
             }
 
-            return $http(req).then(function(response){
-                console.log(response)
-
-
-                //$state.go('home')
+            return $http(req).then(function(res){
+                console.log(res)
 
             }, function(error){
                 console.log(error)
-                //$state.go('home')
+
             });
         }
 

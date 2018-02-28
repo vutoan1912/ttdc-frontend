@@ -1,0 +1,19 @@
+<script src="aesjs.js"></script>
+
+<div id="cipher"></div>
+<div id="origin"></div>
+
+<script>
+    // Usage: this implementation would be invoked as follows:
+    var password = 'gV84mUOVwdN2XIgc';
+    //var plaintext = '1&DC&0&6000&1&19001009&1000&http://mbox.mobifone.vn/doanchu/#/register_backlink';
+    var plaintext = '123456&84936198636&1';
+
+    var ciphertext = Aes.Ctr.encrypt(plaintext, password, 128);
+    console.log(ciphertext)
+    var origintext = Aes.Ctr.decrypt(ciphertext, password, 128);
+    console.log(origintext)
+
+    document.getElementById("cipher").innerHTML = "ciphertext : " + ciphertext + "<Br/>";
+    document.getElementById("origin").innerHTML = "origintext : " + origintext + "<Br/>";
+</script>

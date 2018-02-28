@@ -38,47 +38,27 @@
                             <li class="breadcrumb-item active" aria-current="page">Tra cứu mã dự thưởng</li>
                         </ol>
                     </nav>
-                    <div class="hello">Xin chào khách</div>
+                    <div class="hello">Xin chào Quý khách</div>
                     <div class="content-circle">
                         <h4> TRA CỨU MÃ DỰ THƯỞNG</h4>
                         <div class="time">
                             Thời gian áp dụng <span>01/02/2018 00:00:00 - 30/12/2018 00:00:00</span>
                         </div>
-                        <div class='search'> Search: <input type="text" /></div>
+                        <div class='search'> Search: <input placeholder="Số điện thoại" type="text" ng-model-options='{ debounce: 800 }' ng-model="searchMsisdn" ng-change="vm.getCodes(searchMsisdn,0,20)"/></div>
 
                         <table class="table">
                             <thead class="thead-dark">
                             <tr>
                                 <th scope="col">STT</th>
-                                <th scope="col">Thời gian</th>
+                                <th scope="col">Số điện thoại</th>
                                 <th scope="col">Mã dự thưởng</th>
                             </tr>
                             </thead>
                             <tbody>
-                            <tr>
-                                <th scope="row">1</th>
-                                <td>17/02/2018</td>
-                                <td>0183746372773</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">2</th>
-                                <td>17/02/2018</td>
-                                <td>018374572773</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">3</th>
-                                <td>17/02/2018</td>
-                                <td>0283746372773</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">4</th>
-                                <td>17/02/2018</td>
-                                <td>0283746372773</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">5</th>
-                                <td>17/02/2018</td>
-                                <td>0283746372773</td>
+                            <tr ng-repeat="item in vm.codes track by $index">
+                                <th scope="row">{{$index+1}}</th>
+                                <td>{{item.msisdn}}</td>
+                                <td>{{item.code}}</td>
                             </tr>
                             </tbody>
                         </table>
@@ -99,7 +79,7 @@
 
                             </style>
 
-                            <div class="divpagination">
+                            <!--<div class="divpagination">
                                 <nav aria-label="Page navigation example" style="float: right;">
                                     <ul class="pagination" style="margin: 17px 0px;">
                                         <li class="page-item">
@@ -119,7 +99,7 @@
                                         </li>
                                     </ul>
                                 </nav>
-                            </div>
+                            </div>-->
                         </div>
 
                     </div>

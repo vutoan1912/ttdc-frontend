@@ -212,8 +212,8 @@
         }
 
         function chooseCharacter(char, index, row) {
+            //console.log(char)
             if(!vm.finish_play && char.length > 0){
-                console.log(char)
                 row[index] = "";
 
                 var count_char = 0;
@@ -484,10 +484,22 @@
                     vm.popupShow = false;
                     //return response.data;
 
+                    //đếm số từ gợi ý cần ghép
+                    var finish_play_now = false;
+                    var count_suggest = 0;
+                    for(var m=0;m<vm.array_answer_guest.length;m++){
+                        for(var n=0;n<vm.array_answer_guest[m].length;n++){
+                            if(vm.array_answer_guest[m][n] == "") {
+                                count_suggest++;
+                            }
+                        }
+                    }
+                    if(count_suggest > 3) count_suggest = 3; else finish_play_now = true;
+
                     //ghép từ gợi ý
                     var rand = 0;
                     var i = 0, j = 0;
-                    while (i < 3) {
+                    while (i < count_suggest) {
                         j = Math.floor(Math.random() * vm.array_answer_guest.length);
                         rand = Math.floor(Math.random() * vm.array_answer_guest[j].length);
                         if(vm.array_answer[j][rand] != " " && vm.array_answer_guest[j][rand] == ""){
@@ -510,6 +522,8 @@
                     //console.log(vm.array_answer)
                     //console.log(vm.array_answer_guest)
                     getAccount();
+
+                    if(finish_play_now) {submitAnswer(); vm.finish_play=true;}
 
                 }, function(error){
                     console.log(error)

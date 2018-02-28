@@ -47,22 +47,16 @@
         vm.array_card = []
         for(var i = 0; i < 10; i++){
             var card = {};
-            if(i % 3 == 1){
+            if(i % 2 == 1){
                 card = {
                     front_img : "content/images/the-xanh.png",
-                    back_img : "content/images/100.png",
-                    status : 1
-                }
-            }else if(i % 3 == 2){
-                card = {
-                    front_img : "content/images/the-vang.png",
-                    back_img : "content/images/50.png",
+                    back_img : "",
                     status : 1
                 }
             }else{
                 card = {
                     front_img : "content/images/the-vang.png",
-                    back_img : "content/images/20.png",
+                    back_img : "",
                     status : 1
                 }
             }
@@ -93,6 +87,18 @@
 
                 return $http(req).then(function(response){
                     console.log(response)
+
+                    if(response.data.id == 1){
+                        vm.array_card[index].back_img = "content/images/mdt.png";
+                    }else if(response.data.id == 2){
+                        vm.array_card[index].back_img = "content/images/kc.png";
+                    }else if(response.data.id == 3){
+                        vm.array_card[index].back_img = "content/images/20.png";
+                    }else if(response.data.id == 4){
+                        vm.array_card[index].back_img = "content/images/50.png";
+                    }else if(response.data.id == 5){
+                        vm.array_card[index].back_img = "content/images/100.png";
+                    }
 
                     vm.popupContent = "Chúc mừng bạn đã nhận được " + response.data.name;
                     vm.errorKey = null;
@@ -147,6 +153,7 @@
                 console.log(response)
 
                 getAccount();
+                $scope.finish = false;
 
             }, function(error){
                 console.log(error)
