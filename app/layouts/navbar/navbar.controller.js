@@ -36,9 +36,7 @@
             //console.log('$scope $stateChangeSuccess')
             //reject
             if(!$rootScope.root_authenticate){
-                if ($state.current.name === 'play'
-                    || $state.current.name === 'flip'
-                    || $state.current.name === 'prepare') {
+                if ($state.current.name === 'play') {
                     $state.go('home');
                 }
             }
@@ -137,56 +135,28 @@
                 //Đăng ký wap
                 //console.log('register wap')
 
+                //Chuỗi mã hóa  = trans_id&pkg&free_circle&price&&circle& customer_care& price_customer_care&back_url
+                //http://dangky.mobifone.com.vn/wap/html/sp/confirm.jsp?sp_id={sp_id}&link={chuỗi mã hóa}
+                //var key = "gV84mUOVwdN2XIgc";
+
+                var plaintext = "&DC&0&6000&1&19001009&1000&" + WEB_SERVER + "register_backlink";
+
                 var req = {
                     method: 'POST',
                     url: API_URL + 'api/payment/generateTransaction',
-                    /*headers: {
-                        'Authorization': 'Bearer ' + token
-                    },*/
-                    data: $sessionStorage.msisdn
+                    data: {
+                        "msisdn": $sessionStorage.msisdn,
+                        "url": plaintext
+                    }
                 }
 
                 return $http(req).then(function(response){
-                    console.log(response)
-
-                    //Fake MO đăng ký
-                    var req = {
-                        method: 'POST',
-                        url: API_URL + 'api/payment/registerSub',
-                        /*headers: {
-                            'Authorization': 'Bearer ' + token
-                        },*/
-                        data: $sessionStorage.msisdn
-                    }
-
-                    return $http(req).then(function(res){
-                        console.log(res)
-
-                        //Chuỗi mã hóa  = trans_id&pkg&free_circle&price&&circle& customer_care& price_customer_care&back_url
-                        //http://dangky.mobifone.com.vn/wap/html/sp/confirm.jsp?sp_id={sp_id}&link={chuỗi mã hóa}
-
-                        var key = "gV84mUOVwdN2XIgc";
-                        var plaintext = response.data + "&DC&0&6000&1&19001009&1000&" + WEB_SERVER + "register_backlink";
-                        plaintext = plaintext.replace("&#","##");
-
-                        //solution 1
-                        //var cipherText = CryptoJS.AES.encrypt(plaintext, key).toString();
-
-                        //solution 2
-                        var ciphertext = Aes.Ctr.encrypt(plaintext, key, 128);
-                        //console.log(ciphertext)
-
-                        //redirect
-                        $window.location.href = 'http://dangky.mobifone.vn/wap/html/sp/confirm.jsp?sp_id=207&link='+ciphertext;
-
-                    }, function(error){
-                        console.log(error)
-
-                    });
+                    console.log(response.data.url)
+                    //redirect
+                    $window.location.href = 'http://dangky.mobifone.vn/wap/html/sp/confirm.jsp?sp_id=207&link='+response.data.url;
 
                 }, function(error){
                     console.log(error)
-
                 });
 
             }else{

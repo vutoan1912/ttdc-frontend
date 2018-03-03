@@ -17,7 +17,7 @@
 
         function getAccount() {
             Principal.getAccountInfo().then(function(account) {
-                console.log(account);
+                //console.log(account);
                 $scope.account = account;
             });
         }
@@ -64,6 +64,7 @@
         }
         //console.log(vm.array_card)
 
+        $scope.isDisabled = false;
         function pickCard(index) {
 
             if($scope.account.cards > 0 && vm.array_card[index].status == 1){
@@ -86,7 +87,9 @@
                 }
 
                 return $http(req).then(function(response){
-                    console.log(response)
+                    //console.log(response)
+
+                    $scope.isDisabled = false;
 
                     if(response.data.id == 1){
                         vm.array_card[index].back_img = "content/images/mdt.png";
@@ -150,7 +153,7 @@
             }
 
             return $http(req).then(function(response){
-                console.log(response)
+                //console.log(response)
 
                 getAccount();
                 $scope.finish = false;
@@ -180,7 +183,8 @@
 
         $(document).ready(function(){
             $('.classclick1').on('click', function () {
-                if($scope.account.cards > 0 && vm.array_card[0].status == 1){
+                if($scope.account.cards > 0 && !$scope.isDisabled){
+                    $scope.isDisabled = true;
                     $('.card1').toggleClass('flipped');
                     //vm.array_card[0].status = 0;
                     vm.index = 1;
@@ -188,6 +192,7 @@
             });
             $('.classclick2').on('click', function () {
                 if($scope.account.cards > 0 && vm.array_card[1].status == 1){
+                    $scope.isDisabled = true;
                     $('.card2').toggleClass('flipped');
                     //vm.array_card[1].status = 0;
                     vm.index = 2;
@@ -195,6 +200,7 @@
             });
             $('.classclick3').on('click', function () {
                 if($scope.account.cards > 0 && vm.array_card[2].status == 1){
+                    $scope.isDisabled = true;
                     $('.card3').toggleClass('flipped');
                     //vm.array_card[2].status = 0;
                     vm.index = 3;
@@ -202,6 +208,7 @@
             });
             $('.classclick4').on('click', function () {
                 if($scope.account.cards > 0 && vm.array_card[3].status == 1){
+                    $scope.isDisabled = true;
                     $('.card4').toggleClass('flipped');
                     //vm.array_card[3].status = 0;
                     vm.index = 4;
@@ -209,6 +216,7 @@
             });
             $('.classclick5').on('click', function () {
                 if($scope.account.cards > 0 && vm.array_card[4].status == 1){
+                    $scope.isDisabled = true;
                     $('.card5').toggleClass('flipped');
                     //vm.array_card[4].status = 0;
                     vm.index = 5;
@@ -216,6 +224,7 @@
             });
             $('.classclick6').on('click', function () {
                 if($scope.account.cards > 0 && vm.array_card[5].status == 1){
+                    $scope.isDisabled = true;
                     $('.card6').toggleClass('flipped');
                     //vm.array_card[5].status = 0;
                     vm.index = 6;
@@ -223,6 +232,7 @@
             });
             $('.classclick7').on('click', function () {
                 if($scope.account.cards > 0 && vm.array_card[6].status == 1){
+                    $scope.isDisabled = true;
                     $('.card7').toggleClass('flipped');
                     //vm.array_card[6].status = 0;
                     vm.index = 7;
@@ -230,6 +240,7 @@
             });
             $('.classclick8').on('click', function () {
                 if($scope.account.cards > 0 && vm.array_card[7].status == 1){
+                    $scope.isDisabled = true;
                     $('.card8').toggleClass('flipped');
                     //vm.array_card[7].status = 0;
                     vm.index = 8;
@@ -237,6 +248,7 @@
             });
             $('.classclick9').on('click', function () {
                 if($scope.account.cards > 0 && vm.array_card[8].status == 1){
+                    $scope.isDisabled = true;
                     $('.card9').toggleClass('flipped');
                     //vm.array_card[8].status = 0;
                     vm.index = 9;

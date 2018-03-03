@@ -6,8 +6,8 @@
 <script>
     // Usage: this implementation would be invoked as follows:
     var password = 'gV84mUOVwdN2XIgc';
-    //var plaintext = '1&DC&0&6000&1&19001009&1000&http://mbox.mobifone.vn/doanchu/#/register_backlink';
-    var plaintext = '123456&84936198636&1';
+    var plaintext = '100&DC&0&6000&1&19001009&1000&http://mbox.mobifone.vn/doanchu/#/register_backlink';
+    //var plaintext = '123456&84936198636&1';
 
     var ciphertext = Aes.Ctr.encrypt(plaintext, password, 128);
     console.log(ciphertext)

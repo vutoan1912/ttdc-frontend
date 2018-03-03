@@ -44,62 +44,65 @@
                         <div class="time">
                             Thời gian áp dụng <span>01/02/2018 00:00:00 - 30/12/2018 00:00:00</span>
                         </div>
-                        <div class='search'> Search: <input placeholder="Số điện thoại" type="text" ng-model-options='{ debounce: 800 }' ng-model="searchMsisdn" ng-change="vm.getCodes(searchMsisdn,0,20)"/></div>
+                        <div class='search'> Search: <input placeholder="Số điện thoại" type="text" ng-model-options='{ debounce: 800 }' ng-model="searchMsisdn" ng-change="vm.getCodes(searchMsisdn,0,1000)"/></div>
+                        <br><br><br><br>
+                        <div style="height: 700px; overflow-y: scroll;">
+                            <table class="table">
+                                <thead class="thead-dark">
+                                <tr>
+                                    <th scope="col">STT</th>
+                                    <th scope="col">Số điện thoại</th>
+                                    <th scope="col">Mã dự thưởng</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="item in vm.codes track by $index">
+                                    <th scope="row">{{$index+1}}</th>
+                                    <td>{{item.msisdn}}</td>
+                                    <td>{{item.code}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                            <div>
 
-                        <table class="table">
-                            <thead class="thead-dark">
-                            <tr>
-                                <th scope="col">STT</th>
-                                <th scope="col">Số điện thoại</th>
-                                <th scope="col">Mã dự thưởng</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            <tr ng-repeat="item in vm.codes track by $index">
-                                <th scope="row">{{$index+1}}</th>
-                                <td>{{item.msisdn}}</td>
-                                <td>{{item.code}}</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                        <div>
+                                <style>
+                                    .page-item.active .page-link{ background-color: #f2b002; border: 1px solid red;}
+                                    .page-link {
+                                        position: relative;
+                                        display: block;
+                                        padding: .5rem .75rem;
+                                        margin-left: -1px;
+                                        line-height: 1.25;
+                                        color: #555;
+                                        background-color: #fff;
+                                        border: 1px solid #dee2e6;
+                                    }
 
-                            <style>
-                                .page-item.active .page-link{ background-color: #f2b002; border: 1px solid red;}
-                                .page-link {
-                                    position: relative;
-                                    display: block;
-                                    padding: .5rem .75rem;
-                                    margin-left: -1px;
-                                    line-height: 1.25;
-                                    color: #555;
-                                    background-color: #fff;
-                                    border: 1px solid #dee2e6;
-                                }
+                                </style>
 
-                            </style>
+                                <!--<div class="divpagination">
+                                    <nav aria-label="Page navigation example" style="float: right;">
+                                        <ul class="pagination" style="margin: 17px 0px;">
+                                            <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Previous">
+                                                    <span aria-hidden="true">&laquo;</span>
+                                                    <span class="sr-only">Previous</span>
+                                                </a>
+                                            </li>
+                                            <li class="page-item active"><a class="page-link" href="#">1 </a></li>
+                                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                            <li class="page-item">
+                                                <a class="page-link" href="#" aria-label="Next">
+                                                    <span aria-hidden="true">&raquo;</span>
+                                                    <span class="sr-only">Next</span>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </nav>
+                                </div>-->
+                            </div>
 
-                            <!--<div class="divpagination">
-                                <nav aria-label="Page navigation example" style="float: right;">
-                                    <ul class="pagination" style="margin: 17px 0px;">
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Previous">
-                                                <span aria-hidden="true">&laquo;</span>
-                                                <span class="sr-only">Previous</span>
-                                            </a>
-                                        </li>
-                                        <li class="page-item active"><a class="page-link" href="#">1 </a></li>
-                                        <li class="page-item"><a class="page-link" href="#">2</a></li>
-                                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                                        <li class="page-item">
-                                            <a class="page-link" href="#" aria-label="Next">
-                                                <span aria-hidden="true">&raquo;</span>
-                                                <span class="sr-only">Next</span>
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </div>-->
                         </div>
 
                     </div>

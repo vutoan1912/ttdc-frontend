@@ -51,6 +51,20 @@
                                         </video>
                                     </div>
 
+                                    <!--game english-->
+                                    <div ng-show="vm.question.type == 5">
+                                        <img src="../../../content/images/questionEnglish.jpg" class="img-fluid logo-game" style="width: 75%">
+                                        <style>
+                                            audio::-internal-media-controls-download-button {display:none;}
+                                            audio::-webkit-media-controls-enclosure {overflow:hidden;}
+                                            audio::-webkit-media-controls-panel {width: calc(100% + 30px); /* Adjust as needed */}
+                                            audio {opacity: 0.6; margin-top:5px}
+                                        </style>
+                                        <audio controls="" autoplay="" name="media" >
+                                            <source src="{{vm.question.link}}" type="audio/mpeg">
+                                        </audio>
+                                    </div>
+
                                 </div>
                             </div>
                             <br>
@@ -87,7 +101,6 @@
                                 <a class="float-left" style="padding-top: 5px;" ng-click="vm.suggestAnwer()">
                                     <img src="content/images/icon_30.png">
                                 </a>
-
                                 <a class="float-right" style="padding-top: 5px;" ng-click="vm.changeQuestion()">
                                     <img src="content/images/icon_27.png">
                                 </a>

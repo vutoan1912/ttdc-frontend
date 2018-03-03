@@ -314,6 +314,13 @@
                 myVideo.load();
                 myVideo.play();
                 return vm.question.link;
+            } else if(type == 5) {
+                var myAudio = document.getElementsByTagName('audio')[0];
+                vm.question.link = MEDIA_SERVER + QUESTION_CONTENT + 'audio/' + link;
+                myAudio.src = vm.question.link;
+                myAudio.load();
+                myAudio.play();
+                return vm.question.link;
             }
             else return link;
         }
@@ -391,7 +398,7 @@
             else
             {
                 console.log('Hết giờ lâu rồi nhé! Ahihi');
-                clearStorage();
+                submitAnswer();
                 vm.finish_play = true;
             }
         }
