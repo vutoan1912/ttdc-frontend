@@ -6,7 +6,7 @@
                 <div class="col-md-6">
                     <div class="game clearfix">
                         <div class="oval"></div>
-                        <button class="cycle float-left">
+                        <button class="cycle float-left" ui-sref="default">
                             <i class="fa fa-reply" aria-hidden="true"></i>
                         </button>
                         <div class="diamon">
@@ -25,7 +25,7 @@
                             <br>
                             <div class="row justify-content-md-center text-center">
                                 <div class="text-center col col-md-12">
-                                    <a ui-sref="play">
+                                    <a ng-click="vm.goPlay()">
                                         <img src="content/images/play-button.png" class="img-fluid icon2">
                                     </a>
                                 </div>
@@ -47,7 +47,7 @@
                             <br>
                             <div class="row nav-bot justify-content-around">
                                 <div class="col col-3 text-center">
-                                    <button class="cycle">
+                                    <button class="cycle" ng-click="vm.goHome()">
                                         <i class="fa fa-home" aria-hidden="true"></i>
                                     </button><br>
                                     <span>Tùy Chọn</span>
@@ -76,11 +76,7 @@
                                 <button type="button" class="close closePopUp" ng-click="vm.clickCancel()">×</button>
                             </div>
                             <h4>Chơi có thưởng:</h4>
-                            <p>Dành cho các thuê bao Mobifone đã đăng ky tham gia CTKM Đoán Chữ.<br>
-                                Kim cương tích lũy khi tham gia trả lời câu hỏi có hiệu lực tham gia lật bài trúng thưởng
-                            <h4>Chơi vui</h4>
-                            <p>Thuê bao chưa đăng ký, đăng nhập đều có thể chơi thử. <br>
-                                Cho 10 kim cương mặc định để chơi thử. <br>
+                            <p>Dành cho các TB Mobifone đã tham gia CTKM đoán chữ. Tích lũy kim cương khi tham gia trả lời câu hỏi để lật bài trúng thưởng.
                             <div style="padding-top: 20px;display: inline-flex;width: 100%;" ng-show="vm.popupBtn">
                                 <button class="btn btn-cancel" ng-click="vm.clickCancel()">{{vm.btnCancel}}</button>
                                 <button class="btn btn-confirm" ng-click="vm.clickConfirm()">{{vm.btnConfirm}}</button>

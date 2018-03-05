@@ -5,9 +5,9 @@
         .module('thientaidoanchuApp')
         .controller('NavbarController', NavbarController);
 
-    NavbarController.$inject = ['$state', 'Auth', 'Principal', '$window', '$rootScope', 'AuthServerProvider', '$scope', 'WEB_SERVER', 'API_URL', '$http', '$sessionStorage'];
+    NavbarController.$inject = ['$state', 'Auth', 'Principal', '$window', '$rootScope', 'AuthServerProvider', '$scope', 'WEB_SERVER', 'API_URL', '$http', '$sessionStorage', '$localStorage'];
 
-    function NavbarController ($state, Auth, Principal, $window, $rootScope, AuthServerProvider, $scope, WEB_SERVER, API_URL, $http, $sessionStorage) {
+    function NavbarController ($state, Auth, Principal, $window, $rootScope, AuthServerProvider, $scope, WEB_SERVER, API_URL, $http, $sessionStorage, $localStorage) {
         var vm = this;
 
         vm.isNavbarCollapsed = true;
@@ -24,8 +24,9 @@
         }
 
         $rootScope.$watch('root_authenticate', function () {
-            getAccount();
+            //Auth.logout();
             getMsisdn();
+            getAccount();
         })
 
         /*$rootScope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
@@ -33,6 +34,12 @@
         });*/
 
         $scope.$on('$stateChangeSuccess',  function(event, toState, toParams, fromState, fromParams) {
+
+            //if ($state.current.name === 'play' || $state.current.name === 'flip') {
+                getMsisdn();
+                //getAccount();
+            //}
+
             //console.log('$scope $stateChangeSuccess')
             //reject
             if(!$rootScope.root_authenticate){
@@ -78,32 +85,38 @@
         }
 
         //MSISDN
-        //console.log($sessionStorage.msisdn);
+        console.log($localStorage.msisdn);
         function getMsisdn() {
 
-            //$rootScope
-            if(angular.isUndefined($sessionStorage.msisdn)){
-                var response = JSON.parse(httpGet('api.php').toLowerCase());
-                //console.log(response)
-                var data = response.data;
-                //console.log(data)
+            var response = JSON.parse(httpGet('api.php').toLowerCase());//console.log(response)
+            var data = response.data;
+            //fake msisdn
+            //data.msisdn = 'admin';
+            //data.msisdn = 'guest';
 
-                //fake msisdn
-                //data.msisdn = 'admin';
-                //data.msisdn = 'guest';
+            if($localStorage.msisdn != data.msisdn && $localStorage.sourceLogin == true){
+                delete $localStorage.authenticationToken;
+                delete $sessionStorage.authenticationToken;
+            }
 
-                if(data.msisdn !== undefined && data.msisdn != null)
-                    $sessionStorage.msisdn = data.msisdn;
-                else
-                    $sessionStorage.msisdn = null;
+            if(data.msisdn !== undefined && data.msisdn != null){
+                $localStorage.sourceLogin = true;
+                $localStorage.msisdn = data.msisdn;
+            }else{
+                if($localStorage.sourceLogin == true){
+                    $localStorage.msisdn = null;
+                }
+            }
 
-                $scope.msisdn = $sessionStorage.msisdn;
-                //console.log($sessionStorage.msisdn)
+            $scope.msisdn = $localStorage.msisdn;
+            console.log($scope.msisdn)
 
-                if(angular.isDefined($sessionStorage.msisdn) && $sessionStorage.msisdn != null){
+            if(angular.isUndefined($localStorage.sourceLogin) || $localStorage.sourceLogin == null || $localStorage.sourceLogin == true){
+                $localStorage.sourceLogin = true;
+                if(angular.isDefined($localStorage.msisdn) && $localStorage.msisdn != null) {
                     //check sub
                     var credentials = {
-                        username: $sessionStorage.msisdn,
+                        username: $localStorage.msisdn,
                         password: null,
                         rememberMe: true
                     }
@@ -111,12 +124,9 @@
                         //console.log(response.data.id_token);
                         //console.log($localStorage.authenticationToken);
                         getAccount();
-                        $state.go('home');
+                        //$state.go('home');
                     })
                 }
-            }else{
-                //console.log('gán msisdn')
-                $scope.msisdn = $sessionStorage.msisdn;
             }
         }
 
@@ -131,7 +141,7 @@
         getMsisdn();
 
         function register() {
-            if(angular.isDefined($sessionStorage.msisdn) && $sessionStorage.msisdn != null){
+            if(angular.isDefined($localStorage.msisdn) && $localStorage.msisdn != null){
                 //Đăng ký wap
                 //console.log('register wap')
 
@@ -145,7 +155,7 @@
                     method: 'POST',
                     url: API_URL + 'api/payment/generateTransaction',
                     data: {
-                        "msisdn": $sessionStorage.msisdn,
+                        "msisdn": $localStorage.msisdn,
                         "url": plaintext
                     }
                 }

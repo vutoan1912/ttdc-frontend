@@ -6,11 +6,11 @@
                 <div class="col-md-6">
                     <div class="game clearfix">
                         <div class="oval"></div>
-                        <button class="cycle float-left" ui-sref="default">
+                        <button class="cycle float-left" ui-sref="prepare">
                             <i class="fa fa-reply" aria-hidden="true"></i>
                         </button>
 
-                        <div class="diamon">
+                        <div class="diamon" style="margin-left: 20px;">
                             <img src="content/images/diamond_icon.png" class="float-left">
                             <label>{{account.diamonds}}</label>
                         </div>
@@ -33,6 +33,13 @@
                                     <!--game audio-->
                                     <div ng-show="vm.question.type == 3">
                                         <img src="https://media.giphy.com/media/TflmaQZaQGRGg/source.gif" class="img-fluid logo-game">
+                                    </div>
+                                    <!--game english-->
+                                    <div ng-show="vm.question.type == 5">
+                                        <img src="{{img_english}}" class="img-fluid logo-game" style="width: 75%">
+                                    </div>
+
+                                    <div ng-show="vm.question.type == 3 || vm.question.type == 5">
                                         <style>
                                             audio::-internal-media-controls-download-button {display:none;}
                                             audio::-webkit-media-controls-enclosure {overflow:hidden;}
@@ -49,20 +56,6 @@
                                         <video height="240" width="100%" preload="auto" controls="" class="video-js vjs-default-skin" id="content_video">
                                             <source type="video/mp4" src="{{vm.question.link}}"></source>
                                         </video>
-                                    </div>
-
-                                    <!--game english-->
-                                    <div ng-show="vm.question.type == 5">
-                                        <img src="../../../content/images/questionEnglish.jpg" class="img-fluid logo-game" style="width: 75%">
-                                        <style>
-                                            audio::-internal-media-controls-download-button {display:none;}
-                                            audio::-webkit-media-controls-enclosure {overflow:hidden;}
-                                            audio::-webkit-media-controls-panel {width: calc(100% + 30px); /* Adjust as needed */}
-                                            audio {opacity: 0.6; margin-top:5px}
-                                        </style>
-                                        <audio controls="" autoplay="" name="media" >
-                                            <source src="{{vm.question.link}}" type="audio/mpeg">
-                                        </audio>
                                     </div>
 
                                 </div>

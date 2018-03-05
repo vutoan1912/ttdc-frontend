@@ -64,9 +64,55 @@
         }
         //console.log(vm.array_card)
 
+        function convertCard() {
+            var req = {
+                method: 'POST',
+                url: API_URL + 'api/prizes/convertCard',
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                },
+                data: {
+                    "active": true,
+                    "avatar": "string",
+                    "cards": 0,
+                    "created": "string",
+                    "diamonds": 0,
+                    "id": 0,
+                    "langKey": "string",
+                    "msisdn": $localStorage.msisdn,
+                    "password": "string",
+                    "questions": 0,
+                    "sub": true,
+                    "totalBuy": 0,
+                    "updated": "string",
+                    "userType": 0
+                }
+            }
+
+            return $http(req).then(function(response){
+                //console.log(response)
+
+                getAccount();
+                $scope.finish = false;
+
+            }, function(error){
+                console.log(error)
+
+            });
+        }
+
+        function popupShowHide() {
+            vm.popupShow = !vm.popupShow;
+        }
+
         $scope.isDisabled = false;
         function pickCard(index) {
-
+            if($scope.account == null){
+                vm.popupContent = "Bạn cần đăng ký chơi và tích lũy kim cương để có thể lật bài.";
+                vm.popupBtn = false;
+                vm.popupShow = true;
+                return;
+            }
             if($scope.account.cards > 0 && vm.array_card[index].status == 1){
 
                 var req = {
@@ -127,47 +173,6 @@
             }
         }
 
-        function convertCard() {
-            var req = {
-                method: 'POST',
-                url: API_URL + 'api/prizes/convertCard',
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                },
-                data: {
-                    "active": true,
-                    "avatar": "string",
-                    "cards": 0,
-                    "created": "string",
-                    "diamonds": 0,
-                    "id": 0,
-                    "langKey": "string",
-                    "msisdn": $sessionStorage.msisdn,
-                    "password": "string",
-                    "questions": 0,
-                    "sub": true,
-                    "totalBuy": 0,
-                    "updated": "string",
-                    "userType": 0
-                }
-            }
-
-            return $http(req).then(function(response){
-                //console.log(response)
-
-                getAccount();
-                $scope.finish = false;
-
-            }, function(error){
-                console.log(error)
-
-            });
-        }
-
-        function popupShowHide() {
-            vm.popupShow = !vm.popupShow;
-        }
-
         $scope.finish = false;
         function clickCancel() {
             vm.popupShow = false;
@@ -183,7 +188,7 @@
 
         $(document).ready(function(){
             $('.classclick1').on('click', function () {
-                if($scope.account.cards > 0 && !$scope.isDisabled){
+                if($scope.account.cards > 0 && !$scope.isDisabled && vm.array_card[1].status == 1){
                     $scope.isDisabled = true;
                     $('.card1').toggleClass('flipped');
                     //vm.array_card[0].status = 0;
@@ -191,7 +196,7 @@
                 }
             });
             $('.classclick2').on('click', function () {
-                if($scope.account.cards > 0 && vm.array_card[1].status == 1){
+                if($scope.account.cards > 0 && !$scope.isDisabled && vm.array_card[1].status == 1){
                     $scope.isDisabled = true;
                     $('.card2').toggleClass('flipped');
                     //vm.array_card[1].status = 0;
@@ -199,7 +204,7 @@
                 }
             });
             $('.classclick3').on('click', function () {
-                if($scope.account.cards > 0 && vm.array_card[2].status == 1){
+                if($scope.account.cards > 0 && !$scope.isDisabled && vm.array_card[2].status == 1){
                     $scope.isDisabled = true;
                     $('.card3').toggleClass('flipped');
                     //vm.array_card[2].status = 0;
@@ -207,7 +212,7 @@
                 }
             });
             $('.classclick4').on('click', function () {
-                if($scope.account.cards > 0 && vm.array_card[3].status == 1){
+                if($scope.account.cards > 0 && !$scope.isDisabled && vm.array_card[3].status == 1){
                     $scope.isDisabled = true;
                     $('.card4').toggleClass('flipped');
                     //vm.array_card[3].status = 0;
@@ -215,7 +220,7 @@
                 }
             });
             $('.classclick5').on('click', function () {
-                if($scope.account.cards > 0 && vm.array_card[4].status == 1){
+                if($scope.account.cards > 0 && !$scope.isDisabled && vm.array_card[4].status == 1){
                     $scope.isDisabled = true;
                     $('.card5').toggleClass('flipped');
                     //vm.array_card[4].status = 0;
@@ -223,7 +228,7 @@
                 }
             });
             $('.classclick6').on('click', function () {
-                if($scope.account.cards > 0 && vm.array_card[5].status == 1){
+                if($scope.account.cards > 0 && !$scope.isDisabled && vm.array_card[5].status == 1){
                     $scope.isDisabled = true;
                     $('.card6').toggleClass('flipped');
                     //vm.array_card[5].status = 0;
@@ -231,7 +236,7 @@
                 }
             });
             $('.classclick7').on('click', function () {
-                if($scope.account.cards > 0 && vm.array_card[6].status == 1){
+                if($scope.account.cards > 0 && !$scope.isDisabled && vm.array_card[6].status == 1){
                     $scope.isDisabled = true;
                     $('.card7').toggleClass('flipped');
                     //vm.array_card[6].status = 0;
@@ -239,7 +244,7 @@
                 }
             });
             $('.classclick8').on('click', function () {
-                if($scope.account.cards > 0 && vm.array_card[7].status == 1){
+                if($scope.account.cards > 0 && !$scope.isDisabled && vm.array_card[7].status == 1){
                     $scope.isDisabled = true;
                     $('.card8').toggleClass('flipped');
                     //vm.array_card[7].status = 0;
@@ -247,7 +252,7 @@
                 }
             });
             $('.classclick9').on('click', function () {
-                if($scope.account.cards > 0 && vm.array_card[8].status == 1){
+                if($scope.account.cards > 0 && !$scope.isDisabled && vm.array_card[8].status == 1){
                     $scope.isDisabled = true;
                     $('.card9').toggleClass('flipped');
                     //vm.array_card[8].status = 0;

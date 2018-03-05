@@ -21,6 +21,8 @@
         vm.typeQuestion = $stateParams.type;
         console.log('type question: ' + vm.typeQuestion);
 
+        $scope.img_english = MEDIA_SERVER + "content/images/questionEnglish.jpg";
+
         //vm.question_content = QUESTION_CONTENT;
         //console.log(vm.question_content);
         vm.question = {};
@@ -162,6 +164,8 @@
                     vm.popupBtn = false;
                 }else if(vm.errorKey == "emptyquestions"){
                     vm.popupBtn = true;
+                    vm.btnCancel = "Hủy";
+                    vm.btnConfirm = "Đồng ý";
                 }
                 vm.popupContent = error.data.title;
                 //popupShowHide();
@@ -277,6 +281,8 @@
                     }
                     vm.errorKey = "getQuestion";
                     vm.popupBtn = true;
+                    vm.btnCancel = "Xem lại";
+                    vm.btnConfirm = "Chơi tiếp";
                     vm.popupShow = true;
                     //popupShowHide();
                     //return response.data;
@@ -503,11 +509,10 @@
                             for(var y=0;y<vm.array_suggest[x].length;y++){
                                 if(vm.array_suggest[x][y] == vm.array_answer[j][rand]) {
                                     vm.array_suggest[x][y] = "";
-                                    //x = 1000;
-                                    y = 1000;
+                                    y = 1000; break;
                                 }
                             }
-                            if(y == 1000) x = 1000;
+                            if(y == 1000) { x = 1000; console.log('finish clear suggest'); break; }
                         }
                     }
                 }
@@ -568,6 +573,8 @@
                         vm.popupBtn = false;
                     }else if(vm.errorKey == "emptyquestions"){
                         vm.popupBtn = true;
+                        vm.btnCancel = "Hủy";
+                        vm.btnConfirm = "Đồng ý";
                     }
                     vm.popupContent = error.data.title;
                     vm.popupShow = true;

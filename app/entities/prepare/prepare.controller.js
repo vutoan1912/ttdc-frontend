@@ -6,9 +6,9 @@
         .controller('PrepareController', PrepareController);
 
 
-    PrepareController.$inject = ['$scope', 'Principal', 'MEDIA_SERVER', '$translate', '$timeout', '$localStorage', '$sessionStorage', 'API_URL', '$http'];
+    PrepareController.$inject = ['$scope', 'Principal', 'MEDIA_SERVER', '$translate', '$timeout', '$localStorage', '$sessionStorage', 'API_URL', '$http', '$state'];
 
-    function PrepareController ($scope, Principal, MEDIA_SERVER, $translate, $timeout, $localStorage, $sessionStorage, API_URL, $http) {
+    function PrepareController ($scope, Principal, MEDIA_SERVER, $translate, $timeout, $localStorage, $sessionStorage, API_URL, $http, $state) {
         var vm = this;
 
         vm.popupShow = false;
@@ -22,8 +22,14 @@
         vm.popupShowHide = popupShowHide;
         vm.clickCancel = clickCancel;
 
+        vm.goHome = goHome;
+
+        function goHome() {
+            $state.go("default");
+        }
+
         function getAccount() {
-            Principal.identity().then(function(account) {
+            Principal.getAccountInfo().then(function(account) {
                 console.log(account);
                 $scope.account = account;
                 vm.isAuthenticated = Principal.isAuthenticated();
@@ -33,7 +39,10 @@
         getAccount();
 
         function goPlay() {
-            $state.go('play');
+            if($scope.account != null)
+                $state.go('play');
+            else
+                popupShowHide();
         }
 
         function popupShowHide() {

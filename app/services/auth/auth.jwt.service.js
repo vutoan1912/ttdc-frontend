@@ -121,7 +121,8 @@
             delete $localStorage.authenticationToken;
             delete $sessionStorage.authenticationToken;
             _token = null;
-            $sessionStorage.msisdn = undefined;
+            $localStorage.msisdn = undefined;
+            $localStorage.sourceLogin = true;
             $rootScope.root_authenticate = false;
             $state.go('home');
         }

@@ -78,8 +78,14 @@
                     <li class="nav-item hidden-xs" ng-show="msisdn != null">
                         <a class="nav-link">Xin chào {{msisdn}}</a>
                     </li>
+                    <li class="nav-item hidden-xs" ng-show="msisdn == null">
+                        <a class="nav-link" ng-click="vm.login()">Đăng nhập</a>
+                    </li>
                     <li class="nav-item hidden-xs" ng-show="vm.isAuthenticated == false">
                         <a class="nav-link" ng-click="vm.register()">Đăng ký</a>
+                    </li>
+                    <li class="nav-item hidden-xs" ng-show="vm.isAuthenticated == true">
+                        <a class="nav-link" ng-click="vm.logout()">Đăng xuất</a>
                     </li>
                     <!--<li class="nav-item hidden-xs">-->
                         <!--<a class="nav-link" href="#"><i class="fa fa-facebook"></i></a>-->

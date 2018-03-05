@@ -30,7 +30,7 @@
         //get token from $localStorage
         var token = $localStorage.authenticationToken || $sessionStorage.authenticationToken;
 
-        vm.getCodes("",0,1000);
+        vm.getCodes("",0,500);
 
         function getCodes(msisdn, page, size) {
 
