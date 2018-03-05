@@ -54,8 +54,8 @@
       <file leaf-file-name="play.controller.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/entities/play/play.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="874">
-              <caret line="605" column="25" lean-forward="false" selection-start-line="605" selection-start-column="16" selection-end-line="605" selection-end-column="25" />
+            <state relative-caret-position="738">
+              <caret line="567" column="43" lean-forward="true" selection-start-line="567" selection-start-column="43" selection-end-line="567" selection-end-column="43" />
               <folding>
                 <element signature="e#903#944#0" expanded="false" />
                 <element signature="e#1163#1334#0" expanded="false" />
@@ -191,7 +191,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>CryptoJS</find>
       <find>suggest</find>
       <find>//fake</find>
       <find>== 1</find>
@@ -221,6 +220,7 @@
       <find>$scope.countSuggestAnswer = 0;</find>
       <find>countSuggestAnswer</find>
       <find>getque</find>
+      <find>countDown</find>
     </findStrings>
     <replaceStrings>
       <replace>code</replace>
@@ -612,7 +612,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="202128000" />
+    <option name="totallyTimeSpent" value="202252000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -1076,8 +1076,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/entities/play/play.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="874">
-          <caret line="605" column="25" lean-forward="false" selection-start-line="605" selection-start-column="16" selection-end-line="605" selection-end-column="25" />
+        <state relative-caret-position="738">
+          <caret line="567" column="43" lean-forward="true" selection-start-line="567" selection-start-column="43" selection-end-line="567" selection-end-column="43" />
           <folding>
             <element signature="e#903#944#0" expanded="false" />
             <element signature="e#1163#1334#0" expanded="false" />
