@@ -74,15 +74,15 @@
         vm.suggestAnwer = suggestAnwer;
         vm.changeQuestion = changeQuestion;
 
-        if($scope.isAuthenticated) countDown();
+        if($scope.isAuthenticated) countDown(0);
 
-        function getQuestion () {
+        function getQuestion (changeQuestion) {
             //vm.errorKey = null;
             //vm.status = null;
 
             var req = {
                 method: 'GET',
-                url: API_URL + 'api/questions/getQuestion',
+                url: API_URL + 'api/questions/getQuestion?changeQuestion='+changeQuestion,
                 headers: {
                     'Authorization': 'Bearer ' + token
                 },
@@ -174,9 +174,10 @@
                     vm.popupBtn = true;
                     vm.btnCancel = "Hủy";
                     vm.btnConfirm = "Đồng ý";
+                }else if(vm.errorKey == "changequestionsfull"){
+                    vm.popupBtn = false;
                 }
                 vm.popupContent = error.data.title;
-                //popupShowHide();
                 vm.popupShow = true;
 
                 //clear storage
@@ -351,7 +352,7 @@
         }
 
         //var distance;
-        function countDown() {
+        function countDown(changeQuestion) {
             var distance = 120;
             var TimeSubmit = '';
             if(localStorage.getItem("dateNow")!= '' && localStorage.getItem("dateNow")!= null )
@@ -378,7 +379,7 @@
                 localStorage.setItem("dateNow",TimeSubmit);
 
                 //get question and set data storage
-                if($scope.isAuthenticated) getQuestion();
+                if($scope.isAuthenticated) getQuestion(changeQuestion);
             }
 
             if(distance>0)
@@ -418,7 +419,7 @@
             if(vm.errorKey == "emptyquestions"){
                 buyQuestion();
             }else if(vm.errorKey == "getQuestion"){
-                countDown();
+                countDown(0);
             }else if(vm.errorKey == "emptyquestions"){
                 buyQuestion();
             }
@@ -549,61 +550,15 @@
         }
 
         function changeQuestion() {
-            console.log(vm.finish_play)
+
             if(!vm.finish_play){
-                var req = {
-                    method: 'POST',
-                    url: API_URL + 'api/questions/changeQuestion',
-                    headers: {
-                        'Authorization': 'Bearer ' + token
-                    },
-                    data: {
-                        "active": true,
-                        "answer": "string",
-                        "content": "string",
-                        "created": "string",
-                        "id": 0,
-                        "link": "string",
-                        "type": 0,
-                        "updated": "string"
-                    }
-                }
+                clearStorage();
+                getAccount();
+                countDown(1);
 
-                return $http(req).then(function(response){
-                    console.log(response)
-                    console.log('Đổi câu hỏi thành công !')
-                    vm.popupContent = null;
-                    vm.errorKey = null;
-                    vm.popupBtn = false;
-                    vm.popupShow = false;
-                    //return response.data;
-
-                    clearStorage();
-                    getAccount();
-                    countDown();
-
-                }, function(error){
-                    clearStorage();
-                    console.log(error)
-                    vm.errorKey = error.data.errorKey;
-                    if(vm.errorKey == "changequestionsfull"){
-                        vm.popupBtn = false;
-                    }else if(vm.errorKey == "emptybuy"){
-                        vm.popupBtn = false;
-                    }else if(vm.errorKey == "invalidquestions"){
-                        vm.popupBtn = false;
-                    }else if(vm.errorKey == "emptyquestions"){
-                        vm.popupBtn = true;
-                        vm.btnCancel = "Hủy";
-                        vm.btnConfirm = "Đồng ý";
-                    }
-                    vm.popupContent = error.data.title;
-                    vm.popupShow = true;
-                    //return error;
-                });
             }else{
                 clearStorage();
-                countDown();
+                countDown(0);
             }
         }
 

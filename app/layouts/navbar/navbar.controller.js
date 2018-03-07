@@ -43,7 +43,7 @@
             //console.log('$scope $stateChangeSuccess')
             //reject
             if(!$rootScope.root_authenticate){
-                if ($state.current.name === 'play') {
+                if ($state.current.name === 'play' || $state.current.name === 'account') {
                     $state.go('home');
                 }
             }
