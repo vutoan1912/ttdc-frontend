@@ -14,7 +14,7 @@
 
         function getAccount() {
             Principal.identity().then(function(account) {
-                //console.log(account);
+                console.log(account);
                 $scope.account = account;
                 vm.isAuthenticated = Principal.isAuthenticated();
                 vm.getCodes($scope.account.msisdn,0,500);
@@ -48,7 +48,7 @@
             }
 
             return $http(req).then(function(response){
-                console.log(response)
+                //console.log(response)
                 vm.codes = response.data;
 
                 //$scope.totalCount = parseInt( response.headers()["X-Total-Count"], 10 ) ;

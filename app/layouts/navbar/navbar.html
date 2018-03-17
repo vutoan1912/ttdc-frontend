@@ -51,34 +51,31 @@
             <div class="collapse navbar-collapse flex-column align-items-start col col-12 col-md-10" id="navbarCollapse">
                 <ul class="navbar-nav" style="margin: 0 0;">
                     <li class="nav-item active">
-                        <a id="nav_link_home" class="nav-link" ui-sref="home">TRANG CHỦ</a>
+                        <a id="nav_link_home" class="nav-link m-link" ui-sref="home">TRANG CHỦ</a>
                     </li>
                     <li class="nav-item">
-                        <a id="nav_link_present" class="nav-link" ui-sref="present">GIỚI THIỆU</a>
+                        <a id="nav_link_present" class="nav-link m-link" ui-sref="present">GIỚI THIỆU</a>
                     </li>
                     <li class="nav-item">
-                        <a id="nav_link_catch" class="nav-link" ui-sref="default">SĂN KIM CƯƠNG</a>
+                        <a id="nav_link_catch" class="nav-link m-link" ui-sref="default">SĂN KIM CƯƠNG</a>
                     </li>
                     <li class="nav-item">
-                        <a id="nav_link_flip" class="nav-link" ui-sref="flip">LẬT BÀi MAY MẮN</a>
+                        <a id="nav_link_flip" class="nav-link m-link" ui-sref="flip">LẬT BÀi MAY MẮN</a>
                     </li>
                     <li class="nav-item">
-                        <a id="nav_link_code" class="nav-link" ui-sref="code">MÃ DỰ THƯỞNG</a>
+                        <a id="nav_link_code" class="nav-link m-link" ui-sref="code">MÃ DỰ THƯỞNG</a>
                     </li>
                     <li class="nav-item">
-                        <a id="nav_link_rule" class="nav-link" ui-sref="rule">THỂ LỆ</a>
+                        <a id="nav_link_rule" class="nav-link m-link" ui-sref="rule">THỂ LỆ</a>
                     </li>
                     <li class="nav-item">
-                        <!--<a id="nav_link_guide" class="nav-link" ui-sref="guide">HƯỚNG DẪN</a>-->
-                        <a id="nav_link_guide" class="nav-link" ui-sref="guide">HƯỚNG DẪN</a>
+                        <a id="nav_link_guide" class="nav-link m-link" ui-sref="guide">HƯỚNG DẪN</a>
                     </li>
-                    <!--<li class="nav-item hidden-xs">
-                        <a class="nav-link" href="#">+84983221239</a>
-                    </li>-->
-                    <li class="nav-item hidden-xs" ng-show="msisdn != null">
-                        <a class="nav-link">Xin chào {{msisdn}}</a>
+
+                    <li class="nav-item hidden-xs m-link" ng-show="msisdn != null">
+                        <a class="nav-link" ui-sref="account">Xin chào {{msisdn}}</a>
                     </li>
-                    <li class="nav-item hidden-xs" ng-show="msisdn == null">
+                    <li class="nav-item hidden-xs m-link" ng-show="msisdn == null">
                         <a class="nav-link" ng-click="vm.login()">Đăng nhập</a>
                     </li>
                     <li class="nav-item hidden-xs" ng-show="vm.isAuthenticated == false">
@@ -92,6 +89,14 @@
                         <!--<a class="nav-link" href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a>-->
                         <!--<a class="nav-link" href="#"><i class="fa fa-search" aria-hidden="true"></i></a>-->
                     <!--</li>-->
+
+                    <script>
+
+                        $('.m-link').click(function (){
+                            $('.nav-icon1').toggleClass('open');
+                            $('.navbar-toggler').click();
+                        });
+                    </script>
                 </ul>
             </div>
         </div>
