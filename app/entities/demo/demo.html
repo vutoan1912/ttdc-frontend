@@ -91,12 +91,14 @@
                             <div class="clearfix"></div>
 
                             <div class="control">
-                                <a class="float-left" style="padding-top: 5px;" ng-click="vm.suggestAnwer()">
+                                <a class="float-left" style="padding-top: 5px;text-align: center;" ng-click="vm.suggestAnwer()">
                                     <img src="content/images/icon_30.png">
+                                    <!--<br>Gợi ý-->
                                 </a>
 
-                                <a class="float-right" style="padding-top: 5px;" ng-click="vm.changeQuestion()">
+                                <a class="float-right" style="padding-top: 5px;text-align: center;" ng-click="vm.changeQuestion()">
                                     <img src="content/images/icon_27.png">
+                                    <!--<br>Đổi câu hỏi-->
                                 </a>
                                 <div class="over text-center align-items-center justify-content-center">
                                     <img src="content/images/video.png">
@@ -118,24 +120,24 @@
                             </div>
                             <br><br>
                             <div class="row nav-bot justify-content-around">
-                                <div class="col col-3 text-center">
+                                <div class="col col-6 text-center">
                                     <button class="cycle" ng-click="vm.goHome()">
                                         <i class="fa fa-home" aria-hidden="true"></i>
                                     </button><br>
                                     <span>Tùy chọn</span>
                                 </div>
                                 <div class="col col-6 text-center">
-                                    <button class="cycle">
+                                    <button class="cycle" ng-click="vm.goPrize()">
                                         <i class="fa fa-users" aria-hidden="true"></i>
                                     </button><br>
                                     <span>Danh sách trúng thưởng</span>
                                 </div>
-                                <div class="col col-3 text-center">
-                                    <button class="cycle">
-                                        <i class="fa fa-cog" aria-hidden="true"></i>
-                                    </button><br>
-                                    <span>Cài đặt</span>
-                                </div>
+                                <!--<div class="col col-3 text-center">-->
+                                    <!--<button class="cycle">-->
+                                        <!--<i class="fa fa-cog" aria-hidden="true"></i>-->
+                                    <!--</button><br>-->
+                                    <!--<span>Cài đặt</span>-->
+                                <!--</div>-->
                             </div>
 
                             <!--popup-->

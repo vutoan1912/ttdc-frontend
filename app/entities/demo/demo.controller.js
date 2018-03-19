@@ -16,7 +16,9 @@
         if(intervals == null) intervals = [];
         //console.log(intervals)
 
-        var array_alphabet = ["a","b","c","d","e","g","h","i","k","l","m","n","o","p","q","r","s","t","u","v","x","y"];
+        //var array_alphabet = ["a","b","c","d","e","g","h","i","k","l","m","n","o","p","q","r","s","t","u","v","x","y"];
+        var array_alphabet = ["A","B","C","D","E","G","H","I","K","L","M","N","O","P","Q","R","S","T","U","V","X","Y"];
+
         vm.status = null;
         vm.typeQuestion = $stateParams.type;
         console.log('type question: ' + vm.typeQuestion);
@@ -46,9 +48,13 @@
         vm.clickConfirm = clickConfirm;
         vm.popupShowHide = popupShowHide;
         vm.goHome = goHome;
+        vm.goPrize = goPrize;
 
         function goHome() {
             $state.go("default");
+        }
+        function goPrize() {
+            $state.go("prize");
         }
 
         function popupShowHide() {

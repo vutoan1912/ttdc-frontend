@@ -90,6 +90,7 @@
 
             var response = JSON.parse(httpGet('api.php').toLowerCase());//console.log(response)
             var data = response.data;
+
             //fake msisdn
             //data.msisdn = 'admin';
             //data.msisdn = 'guest';

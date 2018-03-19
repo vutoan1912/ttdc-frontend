@@ -35,12 +35,12 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Tra cứu mã dự thưởng</li>
+                            <li class="breadcrumb-item active" aria-current="page">Danh sách khách hàng trúng thưởng</li>
                         </ol>
                     </nav>
                     <div class="hello">Xin chào Quý khách</div>
                     <div class="content-circle">
-                        <h4> TRA CỨU MÃ DỰ THƯỞNG</h4>
+                        <h4> DANH SÁCH KHÁCH HÀNG TRÚNG THƯỞNG</h4>
                         <div class="time">
                             Thời gian áp dụng <span>01/02/2018 00:00:00 - 30/12/2018 00:00:00</span>
                         </div>
@@ -51,15 +51,17 @@
                                 <thead class="thead-dark">
                                 <tr>
                                     <th scope="col">STT</th>
-                                    <th scope="col">Số điện thoại</th>
-                                    <th scope="col">Mã dự thưởng</th>
+                                    <th scope="col">Thuê bao</th>
+                                    <th scope="col">Thời gian</th>
+                                    <th scope="col">Giải thưởng</th>
                                 </tr>
                                 </thead>
                                 <tbody>
                                 <tr ng-repeat="item in vm.codes track by $index">
                                     <th scope="row">{{$index + ((page-1)*size) + 1}}</th>
                                     <td>{{item.msisdn}}</td>
-                                    <td>{{item.code}}</td>
+                                    <td>{{item.created}}</td>
+                                    <td>{{item.content}}</td>
                                 </tr>
                                 </tbody>
                             </table>

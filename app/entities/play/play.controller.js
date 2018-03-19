@@ -11,7 +11,7 @@
     function PlayController ($scope, Principal, MEDIA_SERVER, $translate, $timeout, $localStorage, $sessionStorage, API_URL, $http, QUESTION_CONTENT,$state) {
         var vm = this;
 
-        var array_alphabet = ["a","b","c","d","e","g","h","i","k","l","m","n","o","p","q","r","s","t","u","v","x","y"];
+        var array_alphabet = ["A","B","C","D","E","G","H","I","K","L","M","N","O","P","Q","R","S","T","U","V","X","Y"];
 
         var intervals = JSON.parse(localStorage.getItem("storage_intervals"));
         if(intervals == null) intervals = [];
@@ -56,9 +56,13 @@
         vm.clickConfirm = clickConfirm;
         vm.popupShowHide = popupShowHide;
         vm.goHome = goHome;
+        vm.goPrize = goPrize;
 
         function goHome() {
             $state.go("default");
+        }
+        function goPrize() {
+            $state.go("prize");
         }
 
         function popupShowHide() {

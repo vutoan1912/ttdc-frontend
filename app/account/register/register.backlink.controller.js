@@ -6,9 +6,9 @@
         .controller('RegisterBackLinkController', RegisterBackLinkController);
 
 
-    RegisterBackLinkController.$inject = ['$timeout','errorConstants','$state','$sessionStorage', 'API_URL', '$http'];
+    RegisterBackLinkController.$inject = ['$timeout','errorConstants','$state','$sessionStorage','$localStorage', 'API_URL', '$http'];
 
-    function RegisterBackLinkController ($timeout, errorConstants, $state, $sessionStorage, API_URL, $http) {
+    function RegisterBackLinkController ($timeout, errorConstants, $state, $sessionStorage,$localStorage, API_URL, $http) {
         var vm = this;
         //console.log('register back link')
 
@@ -56,7 +56,7 @@
                     $state.go('home');
                 }
             }, function(error){
-                console.log(error);
+                //console.log(error);
                 $state.go('home');
             });
 

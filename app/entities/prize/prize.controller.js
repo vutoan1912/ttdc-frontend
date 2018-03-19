@@ -3,12 +3,12 @@
 
     angular
         .module('thientaidoanchuApp')
-        .controller('CodeController', CodeController);
+        .controller('PrizeController', PrizeController);
 
 
-    CodeController.$inject = ['$scope', 'Principal', 'MEDIA_SERVER', '$translate', '$timeout', '$localStorage', '$sessionStorage', 'API_URL', '$http'];
+    PrizeController.$inject = ['$scope', 'Principal', 'MEDIA_SERVER', '$translate', '$timeout', '$localStorage', '$sessionStorage', 'API_URL', '$http'];
 
-    function CodeController ($scope, Principal, MEDIA_SERVER, $translate, $timeout, $localStorage, $sessionStorage, API_URL, $http) {
+    function PrizeController ($scope, Principal, MEDIA_SERVER, $translate, $timeout, $localStorage, $sessionStorage, API_URL, $http) {
         var vm = this;
 
         /*$scope.isAuthenticated = Principal.isAuthenticated();
@@ -43,9 +43,9 @@
             if(page>0) page--;
             var url = "";
             if($scope.searchMsisdn != null && $scope.searchMsisdn.length > 0)
-                url = API_URL + 'api/code-prizes/searchCMS?query=msisdn=="'+$scope.searchMsisdn+'"&page='+page+'&size='+size;
+                url = API_URL + 'api/user-prize/searchCMS?query=msisdn=="'+$scope.searchMsisdn+'";prizeId=in=(3,4,5,6)&page='+page+'&size='+size;
             else
-                url = API_URL + 'api/code-prizes/searchCMS?query=&page='+page+'&size='+size;
+                url = API_URL + 'api/user-prize/searchCMS?query=prizeId=in=(3,4,5,6)&page='+page+'&size='+size;
             //http://localhost:9092/api/code-prizes/searchCMS?query=msisdn=="841663799822"&page=1&size=5
             //http://localhost:9092/api/code-prizes/searchCMS?query=&page=1&size=5
 

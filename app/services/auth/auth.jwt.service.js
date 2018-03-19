@@ -72,7 +72,7 @@
                 password: credentials.password,
                 rememberMe: credentials.rememberMe
             };
-            return $http.post(API_URL + 'api/auth/wap-login', data).success(authenticateSuccess).error(authenticateError);
+            return $http.post(API_URL + 'api/auth/wap-login', null).success(authenticateSuccess).error(authenticateError);
 
             function authenticateSuccess (data, status, headers) {
                 //console.log(data);
