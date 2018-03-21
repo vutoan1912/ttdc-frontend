@@ -9,6 +9,14 @@
     TypeDemoController.$inject = ['$scope', 'Principal', 'MEDIA_SERVER', '$translate', '$timeout', '$localStorage', '$sessionStorage', 'API_URL', '$http'];
 
     function TypeDemoController ($scope, Principal, MEDIA_SERVER, $translate, $timeout, $localStorage, $sessionStorage, API_URL, $http) {
-        //var vm = this;
+        var vm = this;
+
+        vm.popupShow = false;
+
+        vm.popupShowHide = popupShowHide;
+
+        function popupShowHide() {
+            vm.popupShow = !vm.popupShow;
+        }
     }
 })();

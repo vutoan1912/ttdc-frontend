@@ -278,13 +278,12 @@
 
                 return $http(req).then(function(response){
                     console.log(response);
-                    if(response.data == 1){
+                    if(response.data.status == 1){
                         getAccount(3);
-                        vm.popupContent = "Chúc mừng bạn đã trả lời đúng ! Bạn có muốn tham gia chơi tiếp không?";
                     } else{
                         getAccount(-2);
-                        vm.popupContent = "Đáp án của bạn chưa chính xác ! Bạn có muốn tham gia chơi tiếp không?";
                     }
+                    vm.popupContent = response.data.content + ". Bạn có muốn tham gia chơi tiếp không?";
                     vm.errorKey = "getQuestion";
                     vm.popupBtn = true;
                     vm.btnCancel = "Xem lại";
@@ -305,28 +304,31 @@
         function buildLink(type, link) {
             if(type == 2){
                 vm.question.link = MEDIA_SERVER + QUESTION_CONTENT + 'images/' + link;
-                return vm.question.link;
             } else if(type == 3) {
                 var myAudio = document.getElementsByTagName('audio')[0];
                 vm.question.link = MEDIA_SERVER + QUESTION_CONTENT + 'audio/' + link;
                 myAudio.src = vm.question.link;
                 myAudio.load();
                 myAudio.play();
-                return vm.question.link;
             } else if(type == 4) {
                 var myVideo = document.getElementsByTagName('video')[0];
                 vm.question.link = MEDIA_SERVER + QUESTION_CONTENT + 'videos/' + link;
                 myVideo.src = vm.question.link;
                 myVideo.load();
                 myVideo.play();
-                return vm.question.link;
             } else if(type == 5) {
+
+                var split = link.split('&');
+                var link_image = split[0];
+                var link_audio = split[1];
+
+                $scope.img_english = MEDIA_SERVER + QUESTION_CONTENT + 'images/' + link_image;
+
                 var myAudio = document.getElementsByTagName('audio')[0];
-                vm.question.link = MEDIA_SERVER + QUESTION_CONTENT + 'audio/' + link;
+                vm.question.link = MEDIA_SERVER + QUESTION_CONTENT + 'audio/' + link_audio;
                 myAudio.src = vm.question.link;
                 myAudio.load();
                 myAudio.play();
-                return vm.question.link;
             }
             else return link;
         }

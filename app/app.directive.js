@@ -61,14 +61,26 @@
 
             return $http(req).then(function(response){
                 //console.log(response)
-                scope.codes = response.data.data;
 
+                angular.forEach(response.data.data, function (code) {
+                    code.msisdn = hideMsisdn(code.msisdn);
+                });
+                scope.codes = response.data.data;
                 return response;
             }, function(error){
                 //console.log(error)
 
                 return error;
             });
+
+            function hideMsisdn(msisdn) {
+                if(angular.isDefined(msisdn) && msisdn.length > 3)
+                {
+                    msisdn = msisdn.substring(0, msisdn.length - 3) + 'xxx';
+                    return msisdn;
+                }
+                return null;
+            }
         }
     }
 

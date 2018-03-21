@@ -59,7 +59,10 @@
             }
 
             return $http(req).then(function(response){
-                console.log(response)
+                //console.log(response)
+                angular.forEach(response.data.data, function (code) {
+                    code.msisdn = hideMsisdn(code.msisdn);
+                });
                 vm.codes = response.data.data;
                 $scope.total = response.data.total;
 
@@ -71,7 +74,14 @@
             });
         }
 
-
+        function hideMsisdn(msisdn) {
+            if(angular.isDefined(msisdn) && msisdn.length > 3)
+            {
+                msisdn = msisdn.substring(0, msisdn.length - 3) + 'xxx';
+                return msisdn;
+            }
+            return null;
+        }
 
     }
 })();

@@ -32,7 +32,7 @@
 
                                     <!--game audio-->
                                     <div ng-show="vm.question.type == 3">
-                                        <img src="https://media.giphy.com/media/TflmaQZaQGRGg/source.gif" class="img-fluid logo-game">
+                                        <img src="http://bestanimations.com/Music/Notation/colorful-music-notes.gif" class="img-fluid logo-game">
                                     </div>
                                     <!--game english-->
                                     <div ng-show="vm.question.type == 5">
@@ -63,7 +63,7 @@
                             <br>
                             <div class="row justify-content-center text-center">
                                 <div class="text-center col col-md-12">
-                                    <label class="trans-white">{{vm.question.content}}</label>
+                                    <label class="trans-white" ng-bind-html="vm.question.content"></label>
                                 </div>
                             </div>
 

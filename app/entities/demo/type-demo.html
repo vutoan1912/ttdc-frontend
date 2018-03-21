@@ -19,9 +19,7 @@
                             </div>
                             <br>
                             <div class="row justify-content-around text-center" style="color: #1F811F">
-                                <!--<b>-->
-                                    Kim cương tích lũy trong phần chơi thử sẽ không có hiệu lực nhận thưởng từ chương trình (Duy nhất tại trang chơi thử)
-                                <!--</b>-->
+                                    Kim cương tích lũy trong phần chơi thử sẽ không có hiệu lực nhận thưởng từ chương trình
                             </div>
 
                             <div class="row justify-content-around text-center all-button">
@@ -58,7 +56,7 @@
                                 </div>
                                 <div class="w-100"></div>
                                 <div class="col col-sm-12 align-self-end">
-                                    <a href="#" class="text-center">
+                                    <a class="text-center" ng-click="vm.popupShowHide()">
                                         <img src="content/images/gd-dchu_28.png" class="img-fluid icon"><br>
                                         Hướng dẫn
                                     </a>
@@ -67,6 +65,33 @@
                             <br>
                             <br>
                         </div>
+
+
+                        <!--popup-->
+                        <div class="popup PopUpHelp" ng-show="vm.popupShow">
+                            <div class="bgr-trans"></div>
+                            <div class="bgr-popup">
+                                <div class="close-popup">
+                                    <button type="button" class="close closePopUp" ng-click="vm.popupShowHide()">×</button>
+                                </div>
+                                <div class="clearfix"></div>
+                                <br>
+                                <h4>Chơi vui</h4>
+                                <p>Dành cho tất cả các khách hàng muốn trải nghiệm dịch vụ và hoàn toàn miễn phí.</p>
+                                <p>Tích lũy kim cương khi tham gia trả lời câu hỏi để lật bài trúng thưởng. Kim cương tích lũy trong phần chơi thử sẽ không có hiệu lực nhận thưởng từ chương trình.</p><br>
+                            </div>
+                        </div>
+                        <style>
+                            .bgr-popup h4 { font-size: 22px; padding:0 20px}
+                            .bgr-popup p { font-size: 18px; padding:0 20px }
+                            .bgr-popup .close-popup {margin-bottom: 2em;overflow: hidden;}
+                            @media screen and (max-width: 480px){
+                                .bgr-popup h4 { font-size: 20px; padding:0 5px}
+                                .bgr-popup p { font-size: 17px; padding:0 5px }
+                                .bgr-popup {overflow: scroll}
+                            }
+                        </style>
+                        <!--end popup-->
                     </div>
                 </div>
                 <div class="col-md-3" style="text-align: left">
