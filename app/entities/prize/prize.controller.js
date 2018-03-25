@@ -43,9 +43,9 @@
             if(page>0) page--;
             var url = "";
             if($scope.searchMsisdn != null && $scope.searchMsisdn.length > 0)
-                url = API_URL + 'api/user-prize/searchCMS?query=msisdn=="'+$scope.searchMsisdn+'";prizeId=in=(3,4,5,6)&page='+page+'&size='+size;
+                url = API_URL + 'api/user-prize/searchCMS?query=msisdn=="'+$scope.searchMsisdn+'";prizeId=in=(3,4,5,6)&page='+page+'&size='+size+'&sort=id,desc';
             else
-                url = API_URL + 'api/user-prize/searchCMS?query=prizeId=in=(3,4,5,6)&page='+page+'&size='+size;
+                url = API_URL + 'api/user-prize/searchCMS?query=prizeId=in=(3,4,5,6)&page='+page+'&size='+size+'&sort=id,desc';
             //http://localhost:9092/api/code-prizes/searchCMS?query=msisdn=="841663799822"&page=1&size=5
             //http://localhost:9092/api/code-prizes/searchCMS?query=&page=1&size=5
 

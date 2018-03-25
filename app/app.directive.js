@@ -49,7 +49,7 @@
         return directive;
 
         function linkFunc(scope, element, attrs, parentCtrl) {
-            var url = API_URL + 'api/user-prize/searchCMS?query=prizeId=in=(3,4,5,6)&page=0&size=4';
+            var url = API_URL + 'api/user-prize/searchCMS?query=prizeId=in=(3,4,5,6)&page=0&size=4&sort=id,desc';
             var req = {
                 method: 'GET',
                 url: url,
