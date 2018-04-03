@@ -44,6 +44,22 @@
                         controllerAs: 'vm'
                     }
                 }
+            })
+            .state('register-xn', {
+                parent: 'app',
+                url: '/register-xn',
+                data: {
+                    authorities: [],
+                    pageTitle: 'register'
+                },
+                views: {
+                    'content@': {
+                        templateUrl: 'app/account/register/register_xn.html',
+                        controller: 'RegisterXNController',
+                        controllerAs: 'vm'
+                    }
+                }
             });
+
     }
 })();

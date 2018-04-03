@@ -110,7 +110,7 @@
             }
 
             $scope.msisdn = $localStorage.msisdn;
-            console.log($scope.msisdn)
+            //console.log($scope.msisdn)
 
             if(angular.isUndefined($localStorage.sourceLogin) || $localStorage.sourceLogin == null || $localStorage.sourceLogin == true){
                 $localStorage.sourceLogin = true;
