@@ -81,8 +81,6 @@
         if($scope.isAuthenticated) countDown(0);
 
         function getQuestion (changeQuestion) {
-            //vm.errorKey = null;
-            //vm.status = null;
             vm.btnConfirm = "Đồng ý";
             vm.popupContent = null;
             vm.popupBtn = false;
@@ -184,6 +182,7 @@
                     vm.btnConfirm = "Đồng ý";
                 }else if(vm.errorKey == "changequestionsfull"){
                     vm.popupBtn = false;
+                    vm.status = 200;
                 }
                 vm.popupContent = error.data.title;
                 vm.popupShow = true;
@@ -289,27 +288,26 @@
 
                 return $http(req).then(function(response){
                     console.log(response);
-                    // if(response.data.status == 1)
-                    //     vm.popupContent = "Chúc mừng bạn đã trả lời đúng ! Bạn có muốn tham gia chơi tiếp không?";
-                    // else
-                    //     vm.popupContent = "Đáp án của bạn chưa chính xác ! Bạn có muốn tham gia chơi tiếp không?";
-
                     vm.popupContent = response.data.content + ". Bạn có muốn tham gia chơi tiếp không?";
                     vm.errorKey = "getQuestion";
                     vm.popupBtn = true;
                     vm.btnCancel = "Xem lại";
                     vm.btnConfirm = "Chơi tiếp";
                     vm.popupShow = true;
-                    //popupShowHide();
-                    //return response.data;
+
                     getAccount();
 
                 }, function(error){
                     console.log(error)
-                    popupShowHide();
-                    vm.popupContent = error.data.title;
-                    //return error;
+                    var contentError = angular.isDefined(error.data) && error.data != null ? " - " + error.data : "";
+                    vm.popupContent = error.status + " - " + error.statusText + contentError;
+                    vm.popupBtn = false;
+                    vm.popupShow = true;
                 });
+            }else{
+                vm.popupContent = "Không thể thực hiện việc trả lời câu hỏi !";
+                vm.popupBtn = false;
+                vm.popupShow = true;
             }
         }
 
