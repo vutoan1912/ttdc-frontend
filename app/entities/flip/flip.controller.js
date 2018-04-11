@@ -188,7 +188,7 @@
 
         $(document).ready(function(){
             $('.classclick1').on('click', function () {
-                if($scope.account.cards > 0 && !$scope.isDisabled && vm.array_card[1].status == 1){
+                if($scope.account.cards > 0 && !$scope.isDisabled && vm.array_card[0].status == 1){
                     $scope.isDisabled = true;
                     $('.card1').toggleClass('flipped');
                     //vm.array_card[0].status = 0;
@@ -257,6 +257,14 @@
                     $('.card9').toggleClass('flipped');
                     //vm.array_card[8].status = 0;
                     vm.index = 9;
+                }
+            });
+            $('.classclick10').on('click', function () {
+                if($scope.account.cards > 0 && !$scope.isDisabled && vm.array_card[9].status == 1){
+                    $scope.isDisabled = true;
+                    $('.card10').toggleClass('flipped');
+                    //vm.array_card[8].status = 0;
+                    vm.index = 10;
                 }
             });
         });

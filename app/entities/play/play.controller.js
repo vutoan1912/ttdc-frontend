@@ -299,8 +299,14 @@
 
                 }, function(error){
                     console.log(error)
-                    var contentError = angular.isDefined(error.data) && error.data != null ? " - " + error.data : "";
-                    vm.popupContent = error.status + " - " + error.statusText + contentError;
+                    if(angular.isDefined(error.data.errorKey) &&
+                        (error.data.errorKey == "duplicatequestions"
+                        || error.data.errorKey == "invalidquestions")) {
+                        vm.popupContent = error.data.title;
+                    }else{
+                        var contentError = angular.isDefined(error.data) && error.data != null ? " - " + error.data : "";
+                        vm.popupContent = error.status + " - " + error.statusText + contentError;
+                    }
                     vm.popupBtn = false;
                     vm.popupShow = true;
                 });
@@ -428,11 +434,11 @@
 
         function clickConfirm() {
             if(vm.errorKey == "emptyquestions"){
+                vm.popupBtn = false;
+                vm.popupShow = false;
                 buyQuestion();
             }else if(vm.errorKey == "getQuestion"){
                 countDown(0);
-            }else if(vm.errorKey == "emptyquestions"){
-                buyQuestion();
             }
         }
 

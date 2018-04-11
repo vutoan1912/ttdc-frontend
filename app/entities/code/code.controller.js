@@ -41,37 +41,32 @@
         function getCodes(page, size) {
             if(page==0) $scope.page = 1;
             if(page>0) page--;
-            var url = "";
-            if($scope.searchMsisdn != null && $scope.searchMsisdn.length > 0)
-                url = API_URL + 'api/code-prizes/searchCMS?query=msisdn=="'+$scope.searchMsisdn+'"&page='+page+'&size='+size+'&sort=id,desc';
-            else
-                url = API_URL + 'api/code-prizes/searchCMS?query=&page='+page+'&size='+size+'&sort=id,desc';
-            //http://localhost:9092/api/code-prizes/searchCMS?query=msisdn=="841663799822"&page=1&size=5
-            //http://localhost:9092/api/code-prizes/searchCMS?query=&page=1&size=5
+            if($localStorage.msisdn != null && $localStorage.msisdn.length > 0){
+                var url = API_URL + 'api/code-prizes/searchCMS?query=msisdn=="'+$localStorage.msisdn+'"&page='+page+'&size='+size+'&sort=id,desc';
+                //else
+                //    url = API_URL + 'api/code-prizes/searchCMS?query=&page='+page+'&size='+size+'&sort=id,desc';
 
-            var req = {
-                method: 'GET',
-                url: url,
-                headers: {
-                    'Authorization': 'Bearer ' + token
-                },
-                data: {}
+                var req = {
+                    method: 'GET',
+                    url: url,
+                    headers: {
+                        'Authorization': 'Bearer ' + token
+                    },
+                    data: {}
+                }
+
+                return $http(req).then(function(response){
+                    console.log(response)
+                    vm.codes = response.data.data;
+                    $scope.total = response.data.total;
+
+                    return response;
+                }, function(error){
+                    console.log(error)
+
+                    return error;
+                });
             }
-
-            return $http(req).then(function(response){
-                console.log(response)
-                vm.codes = response.data.data;
-                $scope.total = response.data.total;
-
-                return response;
-            }, function(error){
-                console.log(error)
-
-                return error;
-            });
         }
-
-
-
     }
 })();
