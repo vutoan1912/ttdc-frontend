@@ -166,7 +166,7 @@
                 //console.log(vm.array_answer_guest)
 
                 setStorage();
-
+                vm.statusChange = true;
                 return response.data;
             }, function(error){
                 console.log(error)
@@ -189,6 +189,7 @@
 
                 //clear storage
                 clearStorage();
+                vm.statusChange = true;
                 return error;
             });
         }
@@ -569,17 +570,24 @@
             }
         }
 
+        vm.statusChange = true;
         function changeQuestion() {
+            if(vm.statusChange){
+                if(!vm.finish_play){
+                    clearStorage();
+                    getAccount();
+                    countDown(1);
 
-            if(!vm.finish_play){
-                clearStorage();
-                getAccount();
-                countDown(1);
-
+                }else{
+                    clearStorage();
+                    countDown(0);
+                }
             }else{
-                clearStorage();
-                countDown(0);
+                vm.popupContent = "Không thể quá nhiều lần việc đổi câu hỏi !";
+                vm.popupBtn = false;
+                vm.popupShow = true;
             }
+            vm.statusChange = false;
         }
 
     }
