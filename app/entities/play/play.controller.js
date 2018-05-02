@@ -194,10 +194,14 @@
             });
         }
 
-        function clearStorage() {
+        function clearIntervalQuestion() {
             //clear interval
             intervals.forEach(clearInterval);
             intervals = [];
+        }
+
+        function clearStorage() {
+            clearIntervalQuestion();
 
             localStorage.removeItem("dateNow");
             localStorage.removeItem("storage_answer");
@@ -251,17 +255,17 @@
                 //submit answer
                 vm.finish_play = true;
                 submitAnswer();
-
                 //clear storage
                 clearStorage();
             }
         }
 
         function submitAnswer() {
-            console.log(vm.status)
+            //console.log(vm.status)
             clearStorage();
+
             if(vm.status == 200){
-                console.log('submit answer')
+
                 var answer_result = "";
                 for(var t=0;t<vm.array_answer_guest.length;t++){
                     if(answer_result.length == 0)
@@ -269,50 +273,54 @@
                     else
                         answer_result += " " + vm.array_answer_guest[t].join("").replace(",","");
                 }
-                console.log(answer_result)
-                var req = {
-                    method: 'POST',
-                    url: API_URL + 'api/questions/answerQuestion',
-                    headers: {
-                        'Authorization': 'Bearer ' + token
-                    },
-                    data: {
-                        "active": true,
-                        "answer": answer_result,
-                        "created": "string",
-                        "id": 0,
-                        "msisdn": "string",
-                        "questionId": vm.question.id,
-                        "updated": "string"
+                //console.log(answer_result)
+
+                //if(answer_result != null && answer_result.trim().length > 0){
+                    var req = {
+                        method: 'POST',
+                        url: API_URL + 'api/questions/answerQuestion',
+                        headers: {
+                            'Authorization': 'Bearer ' + token
+                        },
+                        data: {
+                            "active": true,
+                            "answer": answer_result,
+                            "created": "string",
+                            "id": 0,
+                            "msisdn": "string",
+                            "questionId": vm.question.id,
+                            "updated": "string"
+                        }
                     }
-                }
 
-                return $http(req).then(function(response){
-                    console.log(response);
-                    vm.popupContent = response.data.content + ". Bạn có muốn tham gia chơi tiếp không?";
-                    vm.errorKey = "getQuestion";
-                    vm.popupBtn = true;
-                    vm.btnCancel = "Xem lại";
-                    vm.btnConfirm = "Chơi tiếp";
-                    vm.popupShow = true;
+                    return $http(req).then(function(response){
+                        //console.log(response);
+                        vm.popupContent = response.data.content + ". Bạn có muốn tham gia chơi tiếp không?";
+                        vm.errorKey = "getQuestion";
+                        vm.popupBtn = true;
+                        vm.btnCancel = "Xem lại";
+                        vm.btnConfirm = "Chơi tiếp";
+                        vm.popupShow = true;
 
-                    getAccount();
+                        getAccount();
 
-                }, function(error){
-                    console.log(error)
-                    if(angular.isDefined(error.data.errorKey) &&
-                        (error.data.errorKey == "duplicatequestions"
-                        || error.data.errorKey == "invalidquestions")) {
-                        vm.popupContent = error.data.title;
-                    }else{
-                        var contentError = angular.isDefined(error.data) && error.data != null ? " - " + error.data : "";
-                        vm.popupContent = error.status + " - " + error.statusText + contentError;
-                    }
-                    vm.popupBtn = false;
-                    vm.popupShow = true;
-                });
+                    }, function(error){
+                        console.log(error)
+                        if(angular.isDefined(error.data.errorKey) &&
+                            (error.data.errorKey == "duplicatequestions"
+                                || error.data.errorKey == "invalidquestions")) {
+                            vm.popupContent = error.data.title;
+                        }else{
+                            var contentError = angular.isDefined(error.data) && error.data != null ? " - " + error.data : "";
+                            vm.popupContent = error.status + " - " + error.statusText + contentError;
+                        }
+                        vm.popupBtn = false;
+                        vm.popupShow = true;
+                    });
+                //}
+
             }else{
-                vm.popupContent = "Không thể thực hiện việc trả lời câu hỏi !";
+                vm.popupContent = "Lỗi kết nối. Không thể thực hiện việc trả lời câu hỏi !";
                 vm.popupBtn = false;
                 vm.popupShow = true;
             }
@@ -409,11 +417,13 @@
 
                     if (distance < 1) {
                         clearInterval(x);
-                        console.log('Đã hết giờ');
-                        clearStorage();
+                        //console.log('Đã hết giờ');
+                        console.log(intervals);
 
-                        vm.finish_play = true;
-                        submitAnswer();
+                        if(intervals.length == 1){
+                            vm.finish_play = true;
+                            submitAnswer();
+                        }
                     }
                 }, 1000);
                 intervals.push(x);
@@ -422,7 +432,7 @@
             }
             else
             {
-                console.log('Hết giờ lâu rồi nhé! Ahihi');
+                //console.log('Hết giờ lâu rồi nhé! Ahihi');
                 submitAnswer();
                 vm.finish_play = true;
             }
@@ -431,6 +441,13 @@
         function clickCancel() {
             //popupShowHide();
             vm.popupShow = false;
+            //console.log(vm.errorKey);
+            if(vm.errorKey == "emptyquestions"){
+                vm.popupBtn = false;
+                vm.popupShow = true;
+                vm.popupContent = "Bạn có "+ $scope.account.diamonds +" kim cương tương ứng với "+Math.floor($scope.account.diamonds/10)+" lượt lật bài trúng thưởng. <br>Lật bài <a href='http://mbox.mobifone.vn/doanchu/#/flip'><font color='white'>tại đây</font></a>";
+                vm.errorKey = null;
+            }
         }
 
         function clickConfirm() {
@@ -583,7 +600,7 @@
                     countDown(0);
                 }
             }else{
-                vm.popupContent = "Không thể quá nhiều lần việc đổi câu hỏi !";
+                vm.popupContent = "Lỗi kết nối! Hệ thống chưa lấy được dữ liệu câu hỏi tiếp theo";
                 vm.popupBtn = false;
                 vm.popupShow = true;
             }

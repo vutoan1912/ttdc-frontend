@@ -171,7 +171,7 @@
                                     </div>
                                     <div class="clearfix"></div>
                                     <h4></h4>
-                                    <p>{{vm.popupContent}}</p>
+                                    <p ng-bind-html="vm.popupContent"></p>
                                     <div style="padding-top: 20px;display: inline-flex;width: 100%;" ng-show="vm.popupBtn">
                                         <button class="btn btn-cancel" ng-click="vm.clickCancel()">{{vm.btnCancel}}</button>
                                         <button class="btn btn-confirm" ng-click="vm.clickConfirm()">{{vm.btnConfirm}}</button>
