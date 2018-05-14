@@ -48,7 +48,8 @@
                     </div>
 
                     <div class="alert alert-danger">
-                        <strong>Chú ý!</strong> Click vào để lật bài.
+                        <strong>Chú ý!</strong> Click vào để lật bài.<br>
+                        Tiếp tục trả lời câu hỏi tại <a ng-click="vm.clickGoPlay()" style="color: #002a80;font-weight: bold">đây</a>!
                     </div>
 
                     <div class="box-card d-flex flex-wrap" style="padding-top: 6px;">
@@ -146,7 +147,9 @@
                                     <div class="close-popup">
                                         <button type="button" class="close closePopUp" ng-click="vm.clickCancel()">×</button>
                                     </div>
-                                    <p>{{vm.popupContent}}</p>
+                                    <p ng-bind-html="vm.popupContent">
+                                        <!--{{vm.popupContent}}-->
+                                    </p>
                                     <div style="padding-top: 20px;display: inline-flex;width: 100%;" ng-show="vm.popupBtn">
                                         <button class="btn btn-cancel" ng-click="vm.clickCancel()">{{vm.btnCancel}}</button>
                                         <button class="btn btn-confirm" ng-click="vm.clickConfirm()">{{vm.btnConfirm}}</button>
@@ -189,6 +192,10 @@
 
                         </div>
                     </div>
+
+                    <!--<div class="alert alert-danger">-->
+                        <!--Tiếp tục trả lời câu hỏi tại <a ng-click="vm.clickGoPlay()" style="color: #002a80;font-weight: bold">đây</a>!-->
+                    <!--</div>-->
                 </div>
                 <div class="col-md-4">
                     <body-winner-list></body-winner-list>

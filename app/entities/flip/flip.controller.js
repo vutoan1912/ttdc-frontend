@@ -43,6 +43,7 @@
         vm.clickConfirm = clickConfirm;
         vm.popupShowHide = popupShowHide;
         vm.convertCard = convertCard;
+        vm.clickGoPlay = clickGoPlay;
 
         vm.array_card = []
         for(var i = 0; i < 10; i++){
@@ -184,6 +185,16 @@
             if(vm.errorKey == "userprize"){
 
             }
+        }
+
+        function clickGoPlay() {
+            if($scope.account == null){
+                vm.popupContent = "Bạn cần phải <a href='http://mbox.mobifone.vn/doanchu/#/login'>đăng nhập</a> để sử dụng chức năng này !";
+                vm.popupBtn = false;
+                vm.popupShow = true;
+                return;
+            }
+            $state.go("play");
         }
 
         $(document).ready(function(){

@@ -12,6 +12,7 @@
         var vm = this;
 
         vm.popupShow = false;
+        vm.popupShowGuide = false;
         vm.popupContent = null;
         vm.popupBtn = false;
         vm.btnCancel = "Hủy";
@@ -20,6 +21,7 @@
 
         vm.goPlay = goPlay;
         vm.popupShowHide = popupShowHide;
+        vm.popupShowHideGuide = popupShowHideGuide;
         vm.clickCancel = clickCancel;
 
         vm.goHome = goHome;
@@ -49,9 +51,14 @@
             vm.popupShow = !vm.popupShow;
         }
 
+        function popupShowHideGuide() {
+            vm.popupShowGuide = !vm.popupShowGuide;
+        }
+
         function clickCancel() {
             vm.popupShow = false;
-            $('.card'+vm.index).toggleClass('flipped');
+            vm.popupShowGuide = false;
+            //$('.card'+vm.index).toggleClass('flipped');
         }
     }
 
