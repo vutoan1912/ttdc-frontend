@@ -50,13 +50,13 @@
                 url: '/register-xn',
                 data: {
                     authorities: [],
-                    pageTitle: 'register'
+                    pageTitle: 'Register XN'
                 },
                 views: {
                     'content@': {
-                        templateUrl: 'app/account/register/register_xn.html',
-                        controller: 'RegisterXNController',
-                        controllerAs: 'vm'
+                        templateUrl: 'app/account/register/register_xn.img.html'
+                        //controller: 'RegisterXNController',
+                        //controllerAs: 'vm'
                     }
                 }
             });
