@@ -31,8 +31,7 @@ function getParameterByName(name, url) {
 
 var code = getParameterByName('code');
 var api_url = "";
-if(code == null) {code = "DC"; api_url = "fakeMoWap";}
-else {api_url = "fakeMoAds";}
+if(code == null) {code = "DC"; api_url = "fakeMoWap";} else {api_url = "fakeMoAds";}
 
 //console.log(document.referrer);
 
